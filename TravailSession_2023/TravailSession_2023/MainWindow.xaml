@@ -8,7 +8,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <NavigationView PaneDisplayMode="Left"
+                PaneTitle="Travail de Session 2023"
+                x:Name="navView"
+                IsBackEnabled="True"
+                IsSettingsVisible="False"
+                ItemInvoked="navView_ItemInvoked"
+                BackRequested="navView_BackRequested">
+
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Projets" x:Name="Proj" Icon="People"/>
+            <NavigationViewItem Content="Clients" x:Name="Client" Icon="People"/>
+            <NavigationViewItem Content="Émployes" x:Name="Emp" Icon="People"/>
+        </NavigationView.MenuItems>
+
+        <Frame x:Name="mainFrame" Grid.Row="1" />
+    </NavigationView>
 </Window>
