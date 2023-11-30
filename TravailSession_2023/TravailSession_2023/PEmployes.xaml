@@ -34,12 +34,12 @@
 
                             <StackPanel Grid.Row="0">
                                 <!--prenom-->
-                                <TextBlock  Text="{x:Bind  }"
+                                <TextBlock  Text="{x:Bind Prenom }"
                                         Grid.Column="0"
                                         FontSize="20"/>
 
                                 <!--nom-->
-                                <TextBlock  Text="{x:Bind }" 
+                                <TextBlock  Text="{x:Bind Nom}" 
                                         Grid.Column="1"
                                         FontSize="20"/>
                             </StackPanel>
@@ -48,7 +48,7 @@
                             
                             <StackPanel Grid.Row="2" HorizontalAlignment="Center">
                                 <!--Matricule-->
-                                <TextBlock  Text="{x:Bind  }"
+                                <TextBlock  Text="{x:Bind Matricule}"
                                     
                                     FontSize="20"
                                     FontWeight="Black"/>

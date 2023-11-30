@@ -34,29 +34,29 @@
 
                             <StackPanel Grid.Row="0" HorizontalAlignment="Center">
                                 <!--numéro du projet-->
-                                <TextBlock  Text="{x:Bind  }"
+                                <TextBlock  Text="{x:Bind NumProjet}"
                                         Grid.Row="0"
                                         FontSize="20"
                                         FontWeight="Black"/>
                             </StackPanel>
 
                             <!--titre-->
-                            <TextBlock  Text="{x:Bind  }"
+                            <TextBlock  Text="{x:Bind  Titre}"
                                         Grid.Row="1"
                                         FontSize="20"/>
 
                             <!--nom du client-->
-                            <TextBlock  Text="{x:Bind }" 
+                            <TextBlock  Text="{x:Bind Client}" 
                                         Grid.Row="2"
                                         FontSize="20"/>
                             
                             <!--date début-->
-                            <TextBlock  Text="{x:Bind  }"
+                            <TextBlock  Text="{x:Bind  DateDebut}"
                                         Grid.Row="3"
                                         FontSize="20"/>
 
                             <!--budget-->
-                            <TextBlock  Text="{x:Bind  }"
+                            <TextBlock  Text="{x:Bind  Budget}"
                                         Grid.Row="4"
                                         FontSize="20"/>
 
