@@ -1,3 +1,4 @@
+using Google.Protobuf.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,11 +27,36 @@ namespace TravailSession_2023
         public MainWindow()
         {
             this.InitializeComponent();
+            mainFrame.Navigate(typeof(PProjets));
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            var item = (NavigationViewItem)args.InvokedItemContainer;
+
+            switch (item.Name)
+            {
+                case "Proj":
+                    mainFrame.Navigate(typeof(PProjets));
+                    break;
+                case "Client":
+                    mainFrame.Navigate(typeof(PClients));
+                    break;
+                case "Emp":
+                    mainFrame.Navigate(typeof(PEmployes));
+                    break;
+                default:
+                    mainFrame.Navigate(typeof(PProjets));
+                    break;
+            }
         }
+
+        private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (mainFrame.CanGoBack)
+                mainFrame.GoBack();
+        }
+
+
     }
 }
