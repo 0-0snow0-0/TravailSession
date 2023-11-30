@@ -9,7 +9,55 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="gClients"  Background="Honeydew">
 
+        <ScrollViewer Margin="10" >
+            <!--Foreground="CadetBlue"-->
+            <GridView x:Name="gvClients" SelectionChanged="gvClients_SelectionChanged">
+                <GridView.ItemTemplate>
+
+                    <DataTemplate x:DataType="local:Client">
+                        <Grid Margin="25,15,25,10"   Padding="10,0,10,0" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Row="0">
+                                <!--identifiant-->
+                                <TextBlock  Text="{x:Bind  }"
+                                    Grid.Column="0"
+                                    FontSize="20"/>
+
+                                <!--nom-->
+                                <TextBlock  Text="{x:Bind }" 
+                                    Grid.Column="1"
+                                    FontSize="20"/>
+                            </StackPanel>
+
+
+
+                            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+                                <!--numTel-->
+                                <TextBlock  Text="{x:Bind  }"
+                                
+                                FontSize="20"
+                                FontWeight="Black"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
     </Grid>
 </Page>

@@ -27,5 +27,10 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
         }
+
+        private void gvProjets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

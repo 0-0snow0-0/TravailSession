@@ -21,16 +21,11 @@ namespace TravailSession_2023
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PEmployes : Page
+    public sealed partial class ZoomP : Page
     {
-        public PEmployes()
+        public ZoomP()
         {
             this.InitializeComponent();
-        }
-
-        private void gvEmployes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

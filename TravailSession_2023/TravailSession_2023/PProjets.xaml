@@ -9,7 +9,65 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid x:Name="gProjets"  Background="Honeydew">
 
+        <ScrollViewer Margin="10" >
+            <!--Foreground="CadetBlue"-->
+            <GridView x:Name="gvProjets" SelectionChanged="gvProjets_SelectionChanged">
+                <GridView.ItemTemplate>
+
+                    <DataTemplate x:DataType="local:Projet">
+                        <Grid Margin="25,15,25,10"   Padding="10,0,10,0" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+                                <!--numéro du projet-->
+                                <TextBlock  Text="{x:Bind  }"
+                                        Grid.Row="0"
+                                        FontSize="20"
+                                        FontWeight="Black"/>
+                            </StackPanel>
+
+                            <!--titre-->
+                            <TextBlock  Text="{x:Bind  }"
+                                        Grid.Row="1"
+                                        FontSize="20"/>
+
+                            <!--nom du client-->
+                            <TextBlock  Text="{x:Bind }" 
+                                        Grid.Row="2"
+                                        FontSize="20"/>
+                            
+                            <!--date début-->
+                            <TextBlock  Text="{x:Bind  }"
+                                        Grid.Row="3"
+                                        FontSize="20"/>
+
+                            <!--budget-->
+                            <TextBlock  Text="{x:Bind  }"
+                                        Grid.Row="4"
+                                        FontSize="20"/>
+
+
+
+
+
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
     </Grid>
 </Page>
