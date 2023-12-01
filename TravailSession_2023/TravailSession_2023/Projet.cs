@@ -12,7 +12,7 @@ namespace TravailSession_2023
     {
         string numProjet;
         string titre;
-        DateOnly dateDebut;
+        DateTime dateDebut;
         string description;
         int budget;
         int nbrEmprequis;
@@ -20,7 +20,7 @@ namespace TravailSession_2023
         int client;
         string statut;
 
-        public Projet(string numProjet, string titre, DateOnly dateDebut, string description, int budget, int nbrEmpRequis, double totalSalaire, int client, string statut) 
+        public Projet(string numProjet, string titre, DateTime dateDebut, string description, int budget, int nbrEmpRequis, double totalSalaire, int client, string statut) 
         { 
             this.numProjet = numProjet;
             this.titre = titre;
@@ -45,7 +45,7 @@ namespace TravailSession_2023
             set { titre = value; }
         }
 
-        public DateOnly DateDebut
+        public DateTime DateDebut
         {
             get { return dateDebut; }
             set {  dateDebut = value; }

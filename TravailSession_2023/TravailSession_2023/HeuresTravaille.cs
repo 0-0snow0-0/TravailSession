@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace TravailSession_2023
 {
-    class HeureTravaille : INotifyPropertyChanged
+    class HeuresTravaille : INotifyPropertyChanged
     {
         string matricule;
         string numProjet;
-        double nbrHeure;
+        double nbrHeures;
         double salaireEmploye;
 
-        public HeureTravaille(string matricule, string numProjet, double nbrHeure, double salaireEmploye)
+        public HeuresTravaille(string matricule, string numProjet, double nbrHeures, double salaireEmploye)
         {
             this.matricule = matricule;
             this.numProjet = numProjet;
-            this.nbrHeure = nbrHeure;
+            this.nbrHeures = nbrHeures;
             this.salaireEmploye = salaireEmploye;
         }
 
@@ -35,10 +35,10 @@ namespace TravailSession_2023
             set {  numProjet = value; }
         }
 
-        public double NbrHeure
+        public double NbrHeures
         {
-            get { return nbrHeure; }
-            set {  nbrHeure = value; }
+            get { return nbrHeures; }
+            set {  nbrHeures = value; }
         }
 
         public double SalaireEmploye

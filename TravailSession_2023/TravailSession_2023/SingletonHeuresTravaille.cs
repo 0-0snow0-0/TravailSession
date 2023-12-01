@@ -2,86 +2,56 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TravailSession_2023
 {
-    internal class SingletonClients
+    internal class SingletonHeuresTravailles
     {
         MySqlConnection connection = new MySqlConnection("Server=cours.cegep3r.info;Database=a2023_420325ri_fabeq7;Uid=1564431;Pwd=1564431");
 
-        ObservableCollection<Client> listeClients;
-        static SingletonClients instance = null;
+        ObservableCollection<HeuresTravaille> listeHeuresTravailles;
+        static SingletonHeuresTravailles instance = null;
 
-        public SingletonClients() 
-        { 
-            listeClients = new ObservableCollection<Client>();
+        public SingletonHeuresTravailles()
+        {
+            listeHeuresTravailles = new ObservableCollection<HeuresTravaille>();
             reload();
         }
 
-        public static SingletonClients getInstance()
+        public static SingletonHeuresTravailles getInstance()
         {
             if (instance == null)
-                instance = new SingletonClients();
+                instance = new SingletonHeuresTravailles();
             return instance;
         }
 
-        public ObservableCollection<Client> getListeClients() 
-        { 
-            return listeClients;
-        }
-
-        public Client getClient(int index)
+        public ObservableCollection<HeuresTravaille> getListeHeuresTravailles()
         {
-            return listeClients[index];
+            return listeHeuresTravailles;
         }
 
-        public void ajouterClient(Client client) 
-        { 
-            try
-            {
-                MySqlCommand commande = new MySqlCommand("insert_client");
-                commande.Connection = connection;
-                commande.CommandType = System.Data.CommandType.StoredProcedure;
-
-                commande.Parameters.AddWithValue("id_client", client.Id);
-                commande.Parameters.AddWithValue("nom_client", client.Nom);
-                commande.Parameters.AddWithValue("adresse_client", client.Adresse);
-                commande.Parameters.AddWithValue("numTel_client", client.NumTel);
-                commande.Parameters.AddWithValue("email_client", client.Email);
-
-                connection.Open();
-                commande.Prepare();
-                commande.ExecuteNonQuery();
-
-                connection.Close();
-                reload();
-            }
-            catch (Exception ex) 
-            { 
-                if (connection.State == System.Data.ConnectionState.Open) 
-                { 
-                    Console.WriteLine(ex.Message);
-                    connection.Close();
-                }
-            }
+        public HeuresTravaille getHeuresTravaille(int index)
+        {
+            return listeHeuresTravailles[index];
         }
 
-        public void modifierClient(Client client)
+        public void ajouterHeuresTravailles(HeuresTravaille ht)
         {
             try
             {
-                MySqlCommand commande = new MySqlCommand("modification_client");
+                MySqlCommand commande = new MySqlCommand("insert_heure");
                 commande.Connection = connection;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                commande.Parameters.AddWithValue("id_client", client.Id);
-                commande.Parameters.AddWithValue("nom_client", client.Nom);
-                commande.Parameters.AddWithValue("adresse_client", client.Adresse);
-                commande.Parameters.AddWithValue("numTel_client", client.NumTel);
-                commande.Parameters.AddWithValue("email_client", client.Email);
+                commande.Parameters.AddWithValue("numProjet_h", ht.NumProjet);
+                commande.Parameters.AddWithValue("matricule_h", ht.Matricule);
+                commande.Parameters.AddWithValue("nbrHeures_h", ht.NbrHeures);
+                commande.Parameters.AddWithValue("salaireEmploye_h", ht.SalaireEmploye);
+                
 
                 connection.Open();
                 commande.Prepare();
@@ -100,15 +70,18 @@ namespace TravailSession_2023
             }
         }
 
-        public void supprimerClient(Client client) 
-        { 
+        public void modifierHeuresTravaille(HeuresTravaille ht)
+        {
             try
             {
-                MySqlCommand commande = new MySqlCommand("supprimer_client");
+                MySqlCommand commande = new MySqlCommand("modification_heure");
                 commande.Connection = connection;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                commande.Parameters.AddWithValue("id_client", client.Id);
+                commande.Parameters.AddWithValue("numProjet_h", ht.NumProjet);
+                commande.Parameters.AddWithValue("matricule_h", ht.Matricule);
+                commande.Parameters.AddWithValue("nbrHeures_h", ht.NbrHeures);
+                
 
                 connection.Open();
                 commande.Prepare();
@@ -125,28 +98,57 @@ namespace TravailSession_2023
                     connection.Close();
                 }
             }
-        }   
+        }
+
+        public void supprimerHeuresTravaille(HeuresTravaille ht)
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("supprimer_heure");
+                commande.Connection = connection;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("numProjet_heure", ht.NumProjet);
+                commande.Parameters.AddWithValue("matricule_heure", ht.Matricule);
+
+                connection.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
+
+                connection.Close();
+                reload();
+            }
+            catch (Exception ex)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine(ex.Message);
+                    connection.Close();
+                }
+            }
+        }
 
 
         private void reload()
         {
-            listeClients.Clear();
+            listeHeuresTravailles.Clear();
 
             try
             {
-                MySqlCommand commande = new MySqlCommand("show_all_clients");
+                MySqlCommand commande = new MySqlCommand("show_all_heures");
                 commande.Connection = connection;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
-                
+
                 connection.Open();
-                commande.Prepare();                
+                commande.Prepare();
 
                 MySqlDataReader r = commande.ExecuteReader();
 
                 while (r.Read())
                 {
-                    Client client = new Client(Convert.ToInt16(r["id"]), r["nom"].ToString(), r["adresse"].ToString(), r["numTel"].ToString(), r["email"].ToString());
-                    listeClients.Add(client);
+                    /*Si la conversion ne marche pas. Peut être que les dates doivent êtres convertient en string first*/
+                    HeuresTravaille ht = new HeuresTravaille(r["numProjet"].ToString(), r["matricule"].ToString(), Convert.ToDouble(r["nbrHures"]), Convert.ToDouble(r["salaireemploye"]));
+                    listeHeuresTravailles.Add(ht);
                 }
 
                 r.Close();

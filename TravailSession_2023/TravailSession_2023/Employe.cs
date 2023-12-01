@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 namespace TravailSession_2023
 {
     class Employe : INotifyPropertyChanged
-    {
+    {        
         string matricule;
         string nom;
         string prenom;
-        DateOnly dateNaissance;
+        DateTime dateNaissance;
         string email;
         string adresse;
-        DateOnly dateEmbauche;
+        DateTime dateEmbauche;
         double tauxHoraire;
         string photo_url;
         string statut;
         string numProjet;
 
 
-        public Employe(string matricule, string nom, string prenom, DateOnly dateNaissance, string email, string adresse, DateOnly dateEmbauche, double tauxHoraire, string photo_url, string statut, string numProjet)
+        public Employe(string matricule, string nom, string prenom, DateTime dateNaissance, string email, string adresse, DateTime dateEmbauche, double tauxHoraire, string photo_url, string statut, string numProjet)
         {
             this.matricule = matricule;
             this.nom = nom;
@@ -56,7 +56,7 @@ namespace TravailSession_2023
             set {  prenom = value; }
         }
 
-        public DateOnly DateNaissance
+        public DateTime DateNaissance
         {
             get { return dateNaissance; }
             set {  dateNaissance = value; }
@@ -74,7 +74,7 @@ namespace TravailSession_2023
             set { adresse = value; }
         }
 
-        public DateOnly DateEmbauche
+        public DateTime DateEmbauche
         {
             get { return dateEmbauche; }
             set { dateEmbauche = value;}
