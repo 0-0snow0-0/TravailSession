@@ -30,7 +30,11 @@ namespace TravailSession_2023
 
         private void gvProjets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            int index = gvProjets.SelectedIndex;
+            if (index >= 0)
+            {
+                this.Frame.Navigate(typeof(ZoomP), index);
+            }
         }
     }
 }

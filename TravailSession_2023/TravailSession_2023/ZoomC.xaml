@@ -9,7 +9,74 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <ScrollViewer>
+        <Border BorderThickness="5" CornerRadius="10" BorderBrush="Gray"  Margin="300 100 300 100" Padding="20">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                   
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-    </Grid>
+                <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"  x:Name="zId" Margin="0 0 5 0">Id</TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="ZNom">Nom</TextBlock>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center">
+
+                    <TextBlock Grid.Column="1" x:Name="zAdresse"> adresse</TextBlock>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"  x:Name="zNumT" Margin="0 0 5 0">NumTel</TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="zEmail">Email</TextBlock>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="ModC" Grid.Column="1" Margin="0 0 10 0"  Click="ModC_Click">Modifier</Button>
+                        <Button x:Name="Sup" Grid.Column="2" Click="Sup_Click">Supprimer</Button>
+
+                    </Grid>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </ScrollViewer>
 </Page>

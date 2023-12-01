@@ -9,7 +9,120 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <ScrollViewer>
+        <Border BorderThickness="5" CornerRadius="10" BorderBrush="Gray"  Margin="300 100 300 100" Padding="20">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
 
-    </Grid>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"  x:Name="zPrenom" Margin="0 0 5 0">Prenom</TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="ZNom">Nom</TextBlock>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"  x:Name="zMatricule" Margin="0 0 5 0">Matricule</TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="ZDateN">Date Naissance</TextBlock>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"  x:Name="zEmail" Margin="0 0 5 0">Email</TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="ZAdresse">adresse</TextBlock>
+                    </Grid>
+
+                </StackPanel>
+                
+                <StackPanel Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"  x:Name="zDateE" Margin="0 0 5 0">date Embauche</TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="ZTauxH">Taux Horaire</TextBlock>
+                    </Grid>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Center">
+
+                    <TextBlock Grid.Column="1" x:Name="zPhotoURL">Photo URL ********************</TextBlock>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"  x:Name="zStatut">Statut</TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="ZNumP">Num Projet</TextBlock>
+                    </Grid>
+                </StackPanel>
+
+               
+
+                <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="ModE" Grid.Column="1" Margin="0 0 10 0"  Click="ModE_Click">Modifier</Button>
+                        <Button x:Name="Sup" Grid.Column="2" Click="Sup_Click">Supprimer</Button>
+
+                    </Grid>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </ScrollViewer>
 </Page>

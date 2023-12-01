@@ -27,5 +27,15 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
         }
+
+        private void Sup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ModC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

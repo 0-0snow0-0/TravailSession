@@ -30,7 +30,11 @@ namespace TravailSession_2023
 
         private void gvClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            int index = gvClients.SelectedIndex;
+            if (index >= 0)
+            {
+                this.Frame.Navigate(typeof(ZoomC), index);
+            }
         }
     }
 }
