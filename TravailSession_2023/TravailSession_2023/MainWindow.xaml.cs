@@ -27,7 +27,7 @@ namespace TravailSession_2023
         public MainWindow()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(ZoomC));
+            mainFrame.Navigate(typeof(ZoomE));
         }
 
         private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

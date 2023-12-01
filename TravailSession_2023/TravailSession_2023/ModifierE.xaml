@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="TravailSession_2023.ModifierE"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TravailSession_2023"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+
+    <StackPanel>
+        <TextBox Header="Prenom" x:Name="tbxPrenom"/>
+        <TextBox Header="Nom" x:Name="tbxNom"/>
+        <TextBox Header="Matricule" x:Name="tbxMatricule"/>
+        <DatePicker Header="Date Naissance" x:Name="dtDateN" />
+        <TextBox Header="Courriel" x:Name="tbxEmail"/>
+        <TextBox Header="Adresse" x:Name="tbxAdresse"/>
+        <DatePicker Header="Date Embauche" x:Name="dtDateE" />
+        <TextBox Header="Taux Horaire" x:Name="tbxTauxH"/>
+        <TextBox Header="Photo URL" x:Name="tbxPhotoUrl"/>
+        <ComboBox SelectionChanged="cStatut_SelectionChanged" Header="Statut" x:Name="cStatut">
+            <x:String>Yet to start</x:String>
+            <x:String>Started</x:String>
+            <x:String>Completed</x:String>
+        </ComboBox>
+        <TextBox Header="Numero du Projet " x:Name="tbxNumP"/>
+
+    </StackPanel>
+</ContentDialog>

@@ -11,7 +11,7 @@
 
     <ScrollViewer>
         <Border BorderThickness="5" CornerRadius="10" BorderBrush="Gray"  Margin="300 100 300 100" Padding="20">
-            <Grid >
+            <Grid x:Name="gZoomE">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>

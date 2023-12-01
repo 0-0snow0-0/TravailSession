@@ -28,13 +28,40 @@ namespace TravailSession_2023
             this.InitializeComponent();
         }
 
-        private void ModE_Click(object sender, RoutedEventArgs e)
+        private async void ModE_Click(object sender, RoutedEventArgs e)
         {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = gZoomE.XamlRoot;
+            dialog.Title = "Modifier l'employe";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = "";
 
+            var result = await dialog.ShowAsync();
         }
 
-        private void Sup_Click(object sender, RoutedEventArgs e)
+        private async void Sup_Click(object sender, RoutedEventArgs e)
         {
+            //base - Must implement the OK 
+
+            ModifierE dialog = new ModifierE();
+            dialog.XamlRoot = gZoomE.XamlRoot;
+            dialog.Title = "Suppresion de l'employe";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary) 
+            {
+                //Continue here 
+
+                TextBlock textBlock = new TextBlock();
+            }
+
+            var result = await dialog.ShowAsync(); 
 
         }
     }
