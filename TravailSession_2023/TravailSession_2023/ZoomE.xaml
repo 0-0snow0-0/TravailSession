@@ -38,8 +38,8 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zPrenom" Margin="0 0 5 0">Prenom</TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="ZNom">Nom</TextBlock>
+                        <TextBlock Grid.Column="1"  x:Name="zPrenom" Margin="0 0 5 0"/>
+                        <TextBlock Grid.Column="2"  x:Name="zNom"/>
                     </Grid>
 
                 </StackPanel>
@@ -52,8 +52,8 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zMatricule" Margin="0 0 5 0">Matricule</TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="ZDateN">Date Naissance</TextBlock>
+                        <TextBlock Grid.Column="1"  x:Name="zMatricule" Margin="0 0 5 0"/>
+                        <TextBlock Grid.Column="2"  x:Name="zDateN"/>
                     </Grid>
 
                 </StackPanel>
@@ -66,8 +66,8 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zEmail" Margin="0 0 5 0">Email</TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="ZAdresse">adresse</TextBlock>
+                        <TextBlock Grid.Column="1"  x:Name="zEmail" Margin="0 0 5 0"/>
+                        <TextBlock Grid.Column="2"  x:Name="zAdresse"/>
                     </Grid>
 
                 </StackPanel>
@@ -80,15 +80,15 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zDateE" Margin="0 0 5 0">date Embauche</TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="ZTauxH">Taux Horaire</TextBlock>
+                        <TextBlock Grid.Column="1"  x:Name="zDateE" Margin="0 0 5 0"/>
+                        <TextBlock Grid.Column="2"  x:Name="zTauxH"/>
                     </Grid>
 
                 </StackPanel>
 
                 <StackPanel Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Center">
 
-                    <TextBlock Grid.Column="1" x:Name="zPhotoURL">Photo URL ********************</TextBlock>
+                    <TextBlock Grid.Column="1" x:Name="zPhotoURL"/>
 
                 </StackPanel>
 
@@ -100,8 +100,8 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zStatut">Statut</TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="ZNumP">Num Projet</TextBlock>
+                        <TextBlock Grid.Column="1"  x:Name="zStatut"></TextBlock>
+                        <TextBlock Grid.Column="2"  x:Name="zNumP"/>
                     </Grid>
                 </StackPanel>
 

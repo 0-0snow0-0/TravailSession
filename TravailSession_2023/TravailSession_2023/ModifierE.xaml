@@ -8,23 +8,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+    <ScrollViewer Margin="10" Padding="5">
+        <StackPanel >
+            <TextBox Header="Prenom" x:Name="tbxPrenom" Margin="0 0 0 5"/>
+            <TextBox Header="Nom" x:Name="tbxNom" Margin="0 5 0 5"/>
+            <TextBox Header="Matricule" x:Name="tbxMatricule" Margin="0 5 0 5"/>
+            <DatePicker Header="Date Naissance" x:Name="dtDateN" Margin="0 5 0 5"/>
+            <TextBox Header="Courriel" x:Name="tbxEmail" Margin="0 5 0 5"/>
+            <TextBox Header="Adresse" x:Name="tbxAdresse" Margin="0 5 0 5"/>
+            <DatePicker Header="Date Embauche" x:Name="dtDateE" Margin="0 5 0 5"/>
+            <TextBox Header="Taux Horaire" x:Name="tbxTauxH" Margin="0 5 0 5"/>
+            <TextBox Header="Photo URL" x:Name="tbxPhotoUrl" Margin="0 5 0 5"/>
+            <ComboBox SelectedItem="cSelectedS" Header="Statut" x:Name="cStatut" Margin="0 5 0 5">
+                <x:String>Yet to start</x:String>
+                <x:String>Started</x:String>
+                <x:String>Completed</x:String>
+            </ComboBox>
+            <TextBox Header="Numero du Projet " x:Name="tbxNumP" Margin="0 5 0 5"/>
 
-    <StackPanel>
-        <TextBox Header="Prenom" x:Name="tbxPrenom"/>
-        <TextBox Header="Nom" x:Name="tbxNom"/>
-        <TextBox Header="Matricule" x:Name="tbxMatricule"/>
-        <DatePicker Header="Date Naissance" x:Name="dtDateN" />
-        <TextBox Header="Courriel" x:Name="tbxEmail"/>
-        <TextBox Header="Adresse" x:Name="tbxAdresse"/>
-        <DatePicker Header="Date Embauche" x:Name="dtDateE" />
-        <TextBox Header="Taux Horaire" x:Name="tbxTauxH"/>
-        <TextBox Header="Photo URL" x:Name="tbxPhotoUrl"/>
-        <ComboBox SelectionChanged="cStatut_SelectionChanged" Header="Statut" x:Name="cStatut">
-            <x:String>Yet to start</x:String>
-            <x:String>Started</x:String>
-            <x:String>Completed</x:String>
-        </ComboBox>
-        <TextBox Header="Numero du Projet " x:Name="tbxNumP"/>
-
-    </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
 </ContentDialog>

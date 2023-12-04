@@ -65,9 +65,6 @@ namespace TravailSession_2023
 
         }
 
-        private void cStatut_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
