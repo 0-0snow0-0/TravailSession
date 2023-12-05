@@ -54,7 +54,7 @@ namespace TravailSession_2023
             matricule = tbxMatricule.Text;
             nom = tbxNom.Text;
             prenom = tbxPrenom.Text;
-            //dateNaissance = new DateTime();
+            //dateNaissance = dtDateN.Date.ToString("yyyy-MM-dd");
             email = tbxEmail.Text;
             adresse = tbxAdresse.Text;
             //dateEmbauche = new DateTime();
