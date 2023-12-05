@@ -34,6 +34,12 @@ namespace TravailSession_2023
             return listeProjets;
         }
 
+        public ObservableCollection<Projet> getListeProjetsEnCours()
+        {
+            showProjetsEnCours();
+            return listeProjets;                       
+        }
+
         public Projet getProjet(int index)
         {
             return listeProjets[index];
@@ -122,6 +128,39 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+            }
+            catch (Exception ex)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine(ex.Message);
+                    connection.Close();
+                }
+            }
+        }
+
+        public void showProjetsEnCours()
+        {
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("show_projets_en_cours");
+                commande.Connection = connection;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                connection.Open();
+                commande.Prepare();
+
+                MySqlDataReader r = commande.ExecuteReader();
+
+                while (r.Read())
+                {
+                    /*Si la conversion ne marche pas. Peut être que les dates doivent êtres convertient en string first*/
+                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString());
+                    listeProjets.Add(projet);
+                }
+
+                r.Close();
+                connection.Close();
             }
             catch (Exception ex)
             {

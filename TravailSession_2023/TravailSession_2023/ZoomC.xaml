@@ -11,7 +11,7 @@
 
     <ScrollViewer>
         <Border BorderThickness="5" CornerRadius="10" BorderBrush="Gray"  Margin="300 100 300 100" Padding="20">
-            <Grid >
+            <Grid x:Name="gZoomC">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -36,7 +36,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="1"  x:Name="zId" Margin="0 0 5 0"/>
-                        <TextBlock Grid.Column="2"  x:Name="ZNom"/>
+                        <TextBlock Grid.Column="2"  x:Name="zNom"/>
                     </Grid>
 
                 </StackPanel>

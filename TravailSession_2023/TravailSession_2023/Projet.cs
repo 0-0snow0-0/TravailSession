@@ -33,6 +33,12 @@ namespace TravailSession_2023
             this.statut = statut;
         }
 
+        public Projet(string numProjet, string titre)
+        {
+            this.numProjet=numProjet;
+            this.titre=titre;
+        }
+
         public string NumProjet
         {
             get { return numProjet; }
