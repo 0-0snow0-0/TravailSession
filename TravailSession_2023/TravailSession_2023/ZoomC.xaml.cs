@@ -1,3 +1,4 @@
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -43,7 +44,7 @@ namespace TravailSession_2023
                     Client client = SingletonClients.getInstance().getClient(index);
 
                     zId.Text = client.Id.ToString();
-                    ZNom.Text = client.Nom;
+                    zNom.Text = client.Nom;
                     zAdresse.Text = client.Adresse;
                     zNumT.Text = client.NumTel;
                     zEmail.Text = client.Email;
@@ -58,9 +59,28 @@ namespace TravailSession_2023
 
         }
 
-        private void ModC_Click(object sender, RoutedEventArgs e)
+        private async void ModC_Click(object sender, RoutedEventArgs e)
         {
+            ModifierC dialog = new ModifierC();
+            dialog.XamlRoot = gZoomC.XamlRoot;
+            dialog.Title = "Modification de l'employe";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+           
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                
+                zId.Text = "Prenom : " + dialog.Id;
+                zNom.Text = "Nom : " + dialog.Nom;
+                zAdresse.Text = "Adresse : " + dialog.Adresse;
+                zNumT.Text = "" + dialog.NumTel;
+                zEmail.Text = "Courriel : " + dialog.Email;
+            }
         }
     }
 }
