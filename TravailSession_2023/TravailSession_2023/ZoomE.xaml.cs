@@ -26,11 +26,40 @@ namespace TravailSession_2023
     /// </summary>
     public sealed partial class ZoomE : Page
     {
+        int index = -1;
         public ZoomE()
         {
             this.InitializeComponent();
         }
-        Boolean nePasFermer = true; 
+        Boolean nePasFermer = true;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is not null)
+            {
+                index = (int)e.Parameter;
+                if (index >= 0)
+                {
+
+                    Employe employe = SingletonEmployes.getInstance().getEmploye(index);
+
+                    zPrenom.Text = employe.Prenom;
+                    zNom.Text = employe.Nom;
+                    zMatricule.Text = employe.Matricule.ToString();
+                    zDateN.Text = employe.DateNaissance.ToString();
+                    zEmail.Text = employe.Email;
+                    zAdresse.Text = employe.Adresse;
+                    zDateE.Text = employe.DateEmbauche.ToString();
+                    zTauxH.Text = employe.TauxHoraire.ToString();
+                    zPhotoURL.Text = employe.Photo_url;
+                    zStatut.Text = employe.Statut;
+                    zNumP.Text = employe.NumProjet.ToString();
+                    
+                }
+
+            }
+
+        }
         private async void ModE_Click(object sender, RoutedEventArgs e)
         {
 

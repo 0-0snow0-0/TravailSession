@@ -35,15 +35,15 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zId" Margin="0 0 5 0">Id</TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="ZNom">Nom</TextBlock>
+                        <TextBlock Grid.Column="1"  x:Name="zId" Margin="0 0 5 0"/>
+                        <TextBlock Grid.Column="2"  x:Name="ZNom"/>
                     </Grid>
 
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center">
 
-                    <TextBlock Grid.Column="1" x:Name="zAdresse"> adresse</TextBlock>
+                    <TextBlock Grid.Column="1" x:Name="zAdresse"/>
 
                 </StackPanel>
 
@@ -55,8 +55,8 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zNumT" Margin="0 0 5 0">NumTel</TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="zEmail">Email</TextBlock>
+                        <TextBlock Grid.Column="1"  x:Name="zNumT" Margin="0 0 5 0"/>
+                        <TextBlock Grid.Column="2"  x:Name="zEmail"/>
                     </Grid>
 
                 </StackPanel>
