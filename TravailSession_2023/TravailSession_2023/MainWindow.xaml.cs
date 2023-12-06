@@ -27,7 +27,7 @@ namespace TravailSession_2023
         public MainWindow()
         {
             this.InitializeComponent();
-            mainFrame.Navigate(typeof(ZoomE));
+            mainFrame.Navigate(typeof(PProjets), "En cours");
         }
 
         private void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -37,7 +37,7 @@ namespace TravailSession_2023
             switch (item.Name)
             {
                 case "Proj":
-                    mainFrame.Navigate(typeof(PProjets));
+                    mainFrame.Navigate(typeof(PProjets), "En cours");
                     break;
                 case "Client":
                     mainFrame.Navigate(typeof(PClients));

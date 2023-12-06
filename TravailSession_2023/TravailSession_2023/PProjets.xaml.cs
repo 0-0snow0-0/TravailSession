@@ -26,6 +26,20 @@ namespace TravailSession_2023
         public PProjets()
         {
             this.InitializeComponent();
+            gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsEnCours();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(e.Parameter.ToString() == "En cours")
+            {
+                gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsEnCours();
+            }
+
+            if (e.Parameter.ToString() == "Terminé")
+            {
+                gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsTermine();
+            }
         }
 
         private void gvProjets_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -35,6 +49,16 @@ namespace TravailSession_2023
             {
                 this.Frame.Navigate(typeof(ZoomP), index);
             }
+        }
+
+        private void btnEnCours_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(PProjets), "En cours");
+        }
+
+        private void btnTermine_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(PProjets), "Terminé");
         }
     }
 }

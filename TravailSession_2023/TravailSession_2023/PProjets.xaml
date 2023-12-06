@@ -11,7 +11,17 @@
 
     <Grid x:Name="gProjets"  Background="Honeydew">
 
-        <ScrollViewer Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="25">Projets en cours</TextBlock>
+        </StackPanel>
+
+        <ScrollViewer Margin="10" Grid.Row="1">
             <!--Foreground="CadetBlue"-->
             <GridView x:Name="gvProjets" SelectionChanged="gvProjets_SelectionChanged">
                 <GridView.ItemTemplate>
@@ -41,22 +51,22 @@
                             </StackPanel>
 
                             <!--titre-->
-                            <TextBlock  Text="{x:Bind  Titre}"
+                            <TextBlock  Text="{x:Bind  TitreString}"
                                         Grid.Row="1"
                                         FontSize="20"/>
 
                             <!--nom du client-->
-                            <TextBlock  Text="{x:Bind Client}" 
+                            <TextBlock  Text="{x:Bind ClientString}" 
                                         Grid.Row="2"
                                         FontSize="20"/>
                             
                             <!--date début-->
-                            <TextBlock  Text="{x:Bind  DateDebut}"
+                            <TextBlock  Text="{x:Bind  DateDebutString}"
                                         Grid.Row="3"
                                         FontSize="20"/>
 
                             <!--budget-->
-                            <TextBlock  Text="{x:Bind  Budget}"
+                            <TextBlock  Text="{x:Bind  BudgetString}"
                                         Grid.Row="4"
                                         FontSize="20"/>
 
@@ -69,5 +79,10 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="btnEnCours" Click="btnEnCours_Click" Margin="0 0 30 0">En cours</Button>
+            <Button x:Name="btnTermine" Click="btnTermine_Click">Terminé</Button>            
+        </StackPanel>
     </Grid>
 </Page>
