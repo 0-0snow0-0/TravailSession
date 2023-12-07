@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock FontSize="25">Projets en cours</TextBlock>
+            <TextBlock FontSize="25" x:Name="tbxTitre" >Projets en cours</TextBlock>
         </StackPanel>
 
         <ScrollViewer Margin="10" Grid.Row="1">

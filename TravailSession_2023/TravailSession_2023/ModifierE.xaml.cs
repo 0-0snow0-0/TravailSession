@@ -33,6 +33,8 @@ namespace TravailSession_2023
         string photo_url;
         string statut;
         string numProjet;
+        Employe employe;
+
         public ModifierE()
         {
             this.InitializeComponent();
@@ -59,6 +61,7 @@ namespace TravailSession_2023
         public string Photo_url { get => photo_url; }
         public string Statut { get => statut; }
         public string NumProjet { get => numProjet;}
+        public Employe InEmploye { get => employe; set { employe = value; } }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

@@ -34,11 +34,13 @@ namespace TravailSession_2023
             if(e.Parameter.ToString() == "En cours")
             {
                 gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsEnCours();
+                tbxTitre.Text = "Projets en cours";
             }
 
             if (e.Parameter.ToString() == "Terminé")
             {
                 gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsTermine();
+                tbxTitre.Text = "Projets terminés";
             }
         }
 
