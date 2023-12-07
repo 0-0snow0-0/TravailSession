@@ -60,5 +60,10 @@ namespace TravailSession_2023
         {
             this.Frame.Navigate(typeof(PProjets), "Terminé");
         }
+
+        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -10,8 +10,30 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="gClients" Padding="15"  Background="#FFFFFF" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            <Grid>
 
-        <ScrollViewer Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock FontSize="25" Grid.Column="2" Foreground="#cbd3d5" FontWeight="Black"  >Nos Clients</TextBlock>
+                <Button x:Name="btnAjouter" Click="btnAjouter_Click" Grid.Column="5" Margin="0 0 0 0" Background="#4e6173" Foreground="#cbd3d5" FontSize="16">Ajouter</Button>
+            </Grid>
+        </StackPanel>
+
+        <ScrollViewer Margin="10" Grid.Row="1">
 
             <GridView x:Name="gvClients" SelectionChanged="gvClients_SelectionChanged" HorizontalAlignment="Center">
                 <GridView.ItemTemplate>
@@ -37,6 +59,8 @@
                                         <TextBlock  Text="{x:Bind Id}"
                                             HorizontalAlignment="Center"
                                             FontSize="20"
+                                            Foreground="#cbd3d5"
+                                            FontWeight="Black"
                                             />
 
                                         <!--nom-->
