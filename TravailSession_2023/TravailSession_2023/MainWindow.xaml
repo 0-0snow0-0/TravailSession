@@ -21,6 +21,12 @@
             <NavigationViewItem Content="Clients" x:Name="Client" Icon="People"/>
             <NavigationViewItem Content="Émployes" x:Name="Emp" Icon="People"/>
         </NavigationView.MenuItems>
+        <NavigationView.FooterMenuItems>
+            <NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="Contact" />
+            <NavigationViewItem Content="Se deconnecter"  x:Name="Logout" Icon="Contact" />
+            
+        </NavigationView.FooterMenuItems>
+
 
         <Frame x:Name="mainFrame" Grid.Row="1" />
     </NavigationView>

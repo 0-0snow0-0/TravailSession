@@ -45,6 +45,12 @@ namespace TravailSession_2023
                 case "Emp":
                     mainFrame.Navigate(typeof(PEmployes));
                     break;
+                case "Login":
+                    
+                    break;
+                case "Logout":
+                    
+                    break;
                 default:
                     mainFrame.Navigate(typeof(PProjets));
                     break;
