@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="gProjets"  Background="Honeydew">
+    <Grid x:Name="gProjets"  Background="#FFFFFF">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -23,66 +23,69 @@
 
         <ScrollViewer Margin="10" Grid.Row="1">
             <!--Foreground="CadetBlue"-->
-            <GridView x:Name="gvProjets" SelectionChanged="gvProjets_SelectionChanged">
+            <GridView x:Name="gvProjets" SelectionChanged="gvProjets_SelectionChanged" HorizontalAlignment="Center">
                 <GridView.ItemTemplate>
 
                     <DataTemplate x:DataType="local:Projet">
-                        <Grid Margin="25,15,25,10"   Padding="10,0,10,0" >
+                        <Border BorderBrush="#74858f" BorderThickness="5" Background="#4e6173" Margin="5" Padding="15" CornerRadius="10">
+                            <Grid Margin="25,15,25,10"   Padding="10,0,10,0" HorizontalAlignment="Center">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Row="0" HorizontalAlignment="Center">
-                                <!--numéro du projet-->
-                                <TextBlock  Text="{x:Bind NumProjet}"
-                                        Grid.Row="0"
-                                        FontSize="20"
-                                        FontWeight="Black"/>
-                            </StackPanel>
+                                <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+                                    <!--numéro du projet-->
+                                    <TextBlock  Text="{x:Bind NumProjet}"
+                                                Grid.Row="0"
+                                                FontSize="20"
+                                                FontWeight="Black"
+                                                Foreground="#9ab6c0"/>
+                                </StackPanel>
 
-                            <!--titre-->
-                            <TextBlock  Text="{x:Bind  TitreString}"
-                                        Grid.Row="1"
-                                        FontSize="20"/>
+                                <!--titre-->
+                                <TextBlock  Text="{x:Bind  TitreString}"
+                                            Grid.Row="1"
+                                            FontSize="20"
+                                            Foreground="#9ab6c0"/>
 
-                            <!--nom du client-->
-                            <TextBlock  Text="{x:Bind ClientString}" 
-                                        Grid.Row="2"
-                                        FontSize="20"/>
+                                <!--nom du client-->
+                                <TextBlock  Text="{x:Bind ClientString}" 
+                                            Grid.Row="2"
+                                            FontSize="20"
+                                            Foreground="#9ab6c0"/>
                             
-                            <!--date début-->
-                            <TextBlock  Text="{x:Bind  DateDebutString}"
-                                        Grid.Row="3"
-                                        FontSize="20"/>
+                                <!--date début-->
+                                <TextBlock  Text="{x:Bind  DateDebutString}"
+                                            Grid.Row="3"
+                                            FontSize="20"
+                                            Foreground="#9ab6c0"/>
 
-                            <!--budget-->
-                            <TextBlock  Text="{x:Bind  BudgetString}"
-                                        Grid.Row="4"
-                                        FontSize="20"/>
+                                <!--budget-->
+                                <TextBlock  Text="{x:Bind  BudgetString}"
+                                            Grid.Row="4"
+                                            FontSize="20"
+                                            Foreground="#9ab6c0"/>
 
-
-
-
-
-                        </Grid>
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="btnEnCours" Click="btnEnCours_Click" Margin="0 0 30 0">En cours</Button>
-            <Button x:Name="btnTermine" Click="btnTermine_Click">Terminé</Button>            
+            <Button x:Name="btnEnCours" Click="btnEnCours_Click" Margin="0 0 30 0" Background="#4e6173" Foreground="#cbd3d5" FontSize="16">En cours</Button>
+            <Button x:Name="btnTermine" Click="btnTermine_Click" Background="#4e6173" Foreground="#cbd3d5" FontSize="16">Terminé</Button>            
         </StackPanel>
     </Grid>
 </Page>

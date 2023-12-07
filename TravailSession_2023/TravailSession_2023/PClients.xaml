@@ -9,52 +9,57 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="gClients"  Background="LightCyan">
+    <Grid x:Name="gClients" Padding="15"  Background="#FFFFFF" >
 
         <ScrollViewer Margin="10" >
-            <!--Foreground="CadetBlue"-->
-            <GridView x:Name="gvClients" SelectionChanged="gvClients_SelectionChanged">
+
+            <GridView x:Name="gvClients" SelectionChanged="gvClients_SelectionChanged" HorizontalAlignment="Center">
                 <GridView.ItemTemplate>
 
                     <DataTemplate x:DataType="local:Client">
-                        <Grid Margin="25,15,25,10"   Padding="10,0,10,0" >
+                        <Border BorderBrush="#74858f" BorderThickness="5" Background="#4e6173" Margin="5" Padding="15" CornerRadius="10">
+                            <Grid Margin="25,15,25,15"   Padding="50,0,50,10"   HorizontalAlignment="Center">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Row="0">
-                                <!--identifiant-->
-                                <TextBlock  Text="{x:Bind Id}"
-                                    Grid.Column="0"
-                                    FontSize="20"/>
+                                <StackPanel Grid.Row="1" Grid.Column="1">
+                                        <!--identifiant-->
+                                        <TextBlock  Text="{x:Bind Id}"
+                                            HorizontalAlignment="Center"
+                                            FontSize="20"
+                                            />
 
-                                <!--nom-->
-                                <TextBlock  Text="{x:Bind Nom}" 
-                                    Grid.Column="1"
-                                    FontSize="20"/>
-                            </StackPanel>
+                                        <!--nom-->
+                                        <TextBlock  Text="{x:Bind Nom}" 
+                                                    HorizontalAlignment="Left"
+                                                    IsTextScaleFactorEnabled="True"
+                                                    TextWrapping="Wrap"
+                                                    FontSize="20"
+                                                    Foreground="#cbd3d5"/>  
+                                </StackPanel>
 
 
 
-                            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
-                                <!--numTel-->
-                                <TextBlock  Text="{x:Bind  NumTel}"
-                                
-                                FontSize="20"
-                                FontWeight="Black"/>
-                            </StackPanel>
-
-                        </Grid>
+                                <StackPanel Grid.Row="2" Grid.Column="1" >
+                                        <!--numTel-->
+                                        <TextBlock  Text="{x:Bind  NumTel}"
+                                        FontSize="20"
+                                        HorizontalAlignment="Left"
+                                        Foreground="#cbd3d5"/>
+                                </StackPanel>
+                        
+                                </Grid>
+                            </Border>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
