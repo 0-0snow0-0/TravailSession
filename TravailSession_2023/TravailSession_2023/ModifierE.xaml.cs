@@ -34,16 +34,16 @@ namespace TravailSession_2023
         string statut;
         string numProjet;
         Employe employe;
+        ObservableCollection<Projet> listeProjetsEnCours;
 
         public ModifierE()
         {
-            this.InitializeComponent();
-
-            //A voir si ça marche :)
-            ObservableCollection<Projet> listeProjetsEnCours = SingletonProjets.getInstance().getListeProjetsEnCours();
+            this.InitializeComponent();  
+            
+            listeProjetsEnCours = SingletonProjets.getInstance().getListeProjetsEnCours();
             foreach(Projet projet in listeProjetsEnCours)
             {
-                string item = "Projet : " + projet.Titre + " - " + projet + NumProjet;
+                string item = "Projet : " + projet.Titre + " - " + projet.NumProjet;
                 cNumP.Items.Add(item);
             }
 
@@ -61,7 +61,58 @@ namespace TravailSession_2023
         public string Photo_url { get => photo_url; }
         public string Statut { get => statut; }
         public string NumProjet { get => numProjet;}
-        public Employe InEmploye { get => employe; set { employe = value; } }
+        public Employe InEmploye 
+        {
+            get => employe; 
+            set 
+            { 
+                employe = value;
+
+                matricule = employe.Matricule;
+                tbxMatricule.Text = matricule;
+                tbxMatricule.IsReadOnly = true;
+
+                nom = employe.Nom;
+                tbxNom.Text = nom;
+
+                prenom = employe.Prenom;
+                tbxPrenom.Text = prenom;
+
+                dateNaissance = employe.DateNaissance;
+                dtDateN.SelectedDate = dateNaissance;
+
+                email = employe.Email;
+                tbxEmail.Text = email;
+
+                adresse = employe.Adresse;
+                tbxAdresse.Text = adresse;
+
+                dateEmbauche = employe.DateEmbauche;
+                dtDateE.SelectedDate = dateEmbauche;
+
+                tauxHoraire = employe.TauxHoraire;
+                tbxTauxH.Text = tauxHoraire.ToString();
+
+                photo_url = employe.Photo_url;
+                tbxPhotoUrl.Text = photo_url;
+
+                statut = employe.Statut;
+                cStatut.SelectedValue = statut;
+
+                numProjet = employe.NumProjet;
+
+                string sProjet = "";
+                foreach(Projet projet in listeProjetsEnCours)
+                {
+                    if(projet.NumProjet == numProjet) 
+                    {
+                        sProjet = "Projet : " + projet.Titre + " - " + projet.NumProjet;
+                    }
+                }
+
+                cNumP.SelectedItem = sProjet;
+            } 
+        }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
