@@ -21,7 +21,7 @@
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Projets" x:Name="Proj" Icon="People" Background="#acdbdb"/>
             <NavigationViewItem Content="Clients" x:Name="Client" Icon="People" Background="#cbd3d5"/>
-            <NavigationViewItem Content="Émployes" x:Name="Emp" Icon="People" Background="#9ab6c0"/>
+            <NavigationViewItem Content="Employes" x:Name="Emp" Icon="People" Background="#9ab6c0"/>
         </NavigationView.MenuItems> 
         <NavigationView.FooterMenuItems>
             <NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="Contact"  Foreground="White" Background="#b0b9a6"/>

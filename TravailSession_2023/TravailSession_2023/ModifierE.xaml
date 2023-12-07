@@ -66,7 +66,7 @@
             </StackPanel>
 
             <StackPanel Margin="0 10">
-                <ComboBox Header="Numero du Projet Actif" x:Name="cNumP" Margin="0 5 0 5">
+                <ComboBox Header="Projet Actif" x:Name="cNumP" Margin="0 5 0 5">
                     
                 </ComboBox>                
                 <TextBlock x:Name="eNumP" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un numéro de projet</TextBlock>

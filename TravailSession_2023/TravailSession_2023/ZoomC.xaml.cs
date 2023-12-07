@@ -33,6 +33,8 @@ namespace TravailSession_2023
             this.InitializeComponent();
         }
 
+        Client client;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is not null)
@@ -41,7 +43,7 @@ namespace TravailSession_2023
                 if (index >= 0)
                 {
 
-                    Client client = SingletonClients.getInstance().getClient(index);
+                    client = SingletonClients.getInstance().getClient(index);
 
                     zId.Text = client.Id.ToString();
                     zNom.Text = client.Nom;
@@ -62,6 +64,7 @@ namespace TravailSession_2023
         private async void ModC_Click(object sender, RoutedEventArgs e)
         {
             ModifierC dialog = new ModifierC();
+            dialog.InClient = client;
             dialog.XamlRoot = gZoomC.XamlRoot;
             dialog.Title = "Modification de l'employe";
             dialog.PrimaryButtonText = "Oui";

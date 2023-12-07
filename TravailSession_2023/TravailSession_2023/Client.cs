@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TravailSession_2023
 {
-    class Client : INotifyPropertyChanged
+    public class Client : INotifyPropertyChanged
     {
         int id;
         string nom;

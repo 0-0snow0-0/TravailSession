@@ -11,12 +11,32 @@
 
     <ScrollViewer Margin="10" Padding="5">
         <StackPanel >
-            
-            <TextBox Header="Id" x:Name="tbxId" Margin="0 0 0 5"/>
-            <TextBox Header="Nom" x:Name="tbxNom" Margin="0 5 0 5"/>
-            <TextBox Header="Adresse" x:Name="tbxAdresse" Margin="0 5 0 5"/>
-            <TextBox Header="Numero de Telephone" x:Name="tbxNumTel" Margin="0 5 0 5"/>
-            <TextBox Header="Courriel" x:Name="tbxEmail" Margin="0 5 0 5"/>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Id" x:Name="tbxId" Margin="0 0 0 5"/>
+                <TextBlock x:Name="eId" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un Id</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Nom" x:Name="tbxNom" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eNom" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un nom</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Adresse" x:Name="tbxAdresse" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eAdresse" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer une adresse</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Numero de Telephone" x:Name="tbxNumTel" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eNumTel" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un numéro de téléphone</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Courriel" x:Name="tbxEmail" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eEmail" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer une adresse courriel</TextBlock>
+            </StackPanel>
+
 
         </StackPanel>
     </ScrollViewer>

@@ -195,12 +195,6 @@ namespace TravailSession_2023
                 eStatut.Visibility = Visibility.Visible;
             }
 
-            if (cStatut.SelectedIndex <= -1)
-            {
-                erreur = true;
-                eStatut.Visibility = Visibility.Visible;
-            }
-
             if (cNumP.SelectedIndex <= -1)
             {
                 erreur = true;
@@ -219,7 +213,19 @@ namespace TravailSession_2023
                 tauxHoraire = double.Parse(tbxTauxH.Text);
                 photo_url = tbxPhotoUrl.Text;
                 statut = cStatut.SelectedItem.ToString();
-                numProjet = cNumP.SelectedItem.ToString();
+
+                
+                foreach (Projet projet in listeProjetsEnCours)
+                {
+                    if (projet.NumProjet == cNumP.SelectedItem.ToString())
+                    {
+                        numProjet = projet.NumProjet;
+                    }
+                }
+
+                employe = new Employe(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo_url, statut, numProjet);
+
+                SingletonEmployes.getInstance().modifierEmploye(employe);
             }
             else
             {

@@ -25,6 +25,9 @@ namespace TravailSession_2023
         string adresse;
         string numTel;
         string email;
+
+        Client client;
+
         public ModifierC()
         {
             this.InitializeComponent();
@@ -36,13 +39,84 @@ namespace TravailSession_2023
         public string NumTel { get => numTel; }
         public string Email { get => email; }
 
+        public Client InClient
+        {
+            get => client;
+            set
+            {
+                client = value;
+
+                id = client.Id;
+                tbxId.Text = id.ToString();
+                tbxId.IsReadOnly = true;
+
+                nom = client.Nom;
+                tbxNom.Text = nom;
+
+                adresse = client.Adresse;
+                tbxAdresse.Text = adresse;
+
+                numTel = client.NumTel;
+                tbxNumTel.Text = numTel;
+
+                email = client.Email;
+                tbxEmail.Text = email;
+            }
+        }
+
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            id = int.Parse(tbxId.Text);
-            nom = tbxNom.Text;
-            adresse = tbxAdresse.Text;
-            numTel = tbxNumTel.Text;
-            email = tbxEmail.Text;
+            eId.Visibility = Visibility.Collapsed;
+            eNom.Visibility = Visibility.Collapsed;
+            eAdresse.Visibility = Visibility.Collapsed;
+            eNumTel.Visibility = Visibility.Collapsed;
+            eEmail.Visibility = Visibility.Collapsed;
+
+            bool erreur = false;
+
+            if(tbxId.Text == "")
+            {
+                erreur = true;
+                eId.Visibility = Visibility.Visible;
+            }
+
+            if (tbxNom.Text == "")
+            {
+                erreur = true;
+                eNom.Visibility = Visibility.Visible;
+            }
+
+            if (tbxAdresse.Text == "")
+            {
+                erreur = true;
+                eAdresse.Visibility = Visibility.Visible;
+            }
+
+            if (tbxNumTel.Text == "")
+            {
+                erreur = true;
+                eNumTel.Visibility = Visibility.Visible;
+            }
+
+            if (tbxEmail.Text == "")
+            {
+                erreur = true;
+                eEmail.Visibility = Visibility.Visible;
+            }
+
+            if(!erreur)
+            {
+                id = int.Parse(tbxId.Text);
+                nom = tbxNom.Text;
+                adresse = tbxAdresse.Text;
+                numTel = tbxNumTel.Text;
+                email = tbxEmail.Text;
+            }
+            else
+            {
+                args.Cancel = true;
+            }
+            
             
         }
     }

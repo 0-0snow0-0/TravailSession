@@ -83,20 +83,22 @@ namespace TravailSession_2023
             if (resultat == ContentDialogResult.Primary)
             {
                 //Continue here 
-                zPrenom.Text = "Prenom : " + dialog.Prenom ;
-                zNom.Text = "Nom : " + dialog.Nom ;
-                zMatricule.Text = "Matricule : " + dialog.Matricule;
-                zDateN.Text = "Date de Naissance : " + dialog.DateNaissance;
-                zEmail.Text = "Courriel : " + dialog.Email;
-                zAdresse.Text = "Adresse : " + dialog.Adresse;
-                zDateE.Text = "Date d'embauche : " + dialog.DateEmbauche;
-                zTauxH.Text = "Taux x Horaire : " + dialog.TauxHoraire;
-                zPhotoURL.Text = "Photo : " + dialog.Photo_url;
-                zStatut.Text = "Statut : " + dialog.Statut;
-                zNumP.Text = "Numero de projet : " + dialog.NumProjet;
+                employe = SingletonEmployes.getInstance().getEmploye(index);
+
+                zPrenom.Text = employe.Prenom;
+                zNom.Text = employe.Nom;
+                zMatricule.Text = employe.Matricule.ToString();
+                zDateN.Text = employe.DateNaissance.ToString();
+                zEmail.Text = employe.Email;
+                zAdresse.Text = employe.Adresse;
+                zDateE.Text = employe.DateEmbauche.ToString();
+                zTauxH.Text = employe.TauxHoraire.ToString();
+                zPhotoURL.Text = employe.Photo_url;
+                zStatut.Text = employe.Statut;
+                zNumP.Text = employe.NumProjet.ToString();
 
                 //Uri uri = new Uri(listeE[index].Illustration);
-               // rImage.Source = new BitmapImage(uri);
+                // rImage.Source = new BitmapImage(uri);
             }
 
            
