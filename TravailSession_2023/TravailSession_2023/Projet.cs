@@ -14,13 +14,13 @@ namespace TravailSession_2023
         string titre;
         DateTime dateDebut;
         string description;
-        int budget;
+        long budget;
         int nbrEmprequis;
         double totalSalaire;
         int client;
         string statut;
 
-        public Projet(string numProjet, string titre, DateTime dateDebut, string description, int budget, int nbrEmpRequis, double totalSalaire, int client, string statut) 
+        public Projet(string numProjet, string titre, DateTime dateDebut, string description, long budget, int nbrEmpRequis, double totalSalaire, int client, string statut) 
         { 
             this.numProjet = numProjet;
             this.titre = titre;
@@ -51,10 +51,20 @@ namespace TravailSession_2023
             set { titre = value; }
         }
 
+        public string TitreString
+        {
+            get { return "Nom projet : " + titre; }            
+        }
+
         public DateTime DateDebut
         {
             get { return dateDebut; }
             set {  dateDebut = value; }
+        }
+
+        public string DateDebutString
+        {
+            get { return "Date D. : " + dateDebut.ToString("yyyy/MM/dd"); }            
         }
 
         public string Description
@@ -63,10 +73,14 @@ namespace TravailSession_2023
             set { description = value; }
         }
 
-        public int Budget
+        public long Budget
         {
             get { return budget; }
             set { Budget = value; }
+        }
+        public string BudgetString
+        {
+            get { return "Budget : " + budget + "$"; }           
         }
 
         public int NbrEmpRequis
@@ -85,6 +99,10 @@ namespace TravailSession_2023
         {
             get { return client; }
             set {  client = value; }
+        }
+        public string ClientString
+        {
+            get { return "Num. Client : " + client; }            
         }
 
         public string Statut

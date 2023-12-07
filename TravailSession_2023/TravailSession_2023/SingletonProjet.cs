@@ -29,15 +29,23 @@ namespace TravailSession_2023
             return instance;
         }
 
+
         public ObservableCollection<Projet> getListeProjets()
         {
             return listeProjets;
         }
+        
 
         public ObservableCollection<Projet> getListeProjetsEnCours()
-        {
+        {            
             showProjetsEnCours();
             return listeProjets;                       
+        }
+
+        public ObservableCollection<Projet> getListeProjetsTermine()
+        {
+            showProjetsTermine();
+            return listeProjets;
         }
 
         public Projet getProjet(int index)
@@ -138,11 +146,13 @@ namespace TravailSession_2023
                 }
             }
         }
-
+        // Problème de convertion DBNull
         public void showProjetsEnCours()
         {
+            listeProjets.Clear();
+
             try
-            {
+            {                
                 MySqlCommand commande = new MySqlCommand("show_projets_en_cours");
                 commande.Connection = connection;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
@@ -155,7 +165,42 @@ namespace TravailSession_2023
                 while (r.Read())
                 {
                     /*Si la conversion ne marche pas. Peut être que les dates doivent êtres convertient en string first*/
-                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString());
+                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString(), Convert.ToDateTime(r["dateDebut"]), r["description"].ToString(), Convert.ToInt64(r["budget"]), Convert.ToInt16(r["nbrEmpRequis"]), Convert.ToDouble(r["totalSalaire"]), Convert.ToInt16(r["client"]), r["statut"].ToString());
+                    listeProjets.Add(projet);
+                }
+
+                r.Close();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine(ex.Message);
+                    connection.Close();
+                }
+            }
+        }
+
+        public void showProjetsTermine()
+        {
+            listeProjets.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("show_projets_termine");
+                commande.Connection = connection;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                connection.Open();
+                commande.Prepare();
+
+                MySqlDataReader r = commande.ExecuteReader();
+
+                while (r.Read())
+                {
+                    /*Si la conversion ne marche pas. Peut être que les dates doivent êtres convertient en string first*/
+                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString(), Convert.ToDateTime(r["dateDebut"]), r["description"].ToString(), Convert.ToInt64(r["budget"]), Convert.ToInt16(r["nbrEmpRequis"]), Convert.ToDouble(r["totalSalaire"]), Convert.ToInt16(r["client"]), r["statut"].ToString());
                     listeProjets.Add(projet);
                 }
 
@@ -191,7 +236,7 @@ namespace TravailSession_2023
                 while (r.Read())
                 {
                     /*Si la conversion ne marche pas. Peut être que les dates doivent êtres convertient en string first*/
-                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString(), Convert.ToDateTime(r["dateDebut"]), r["dateNaissance"].ToString(), Convert.ToInt16(r["budget"]), Convert.ToInt16(r["nbrEmpRequis"]), Convert.ToDouble(r["totalSalaire"]), Convert.ToInt16(r["client"]), r["statut"].ToString());
+                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString(), Convert.ToDateTime(r["dateDebut"]), r["desription"].ToString(), Convert.ToInt16(r["budget"]), Convert.ToInt16(r["nbrEmpRequis"]), Convert.ToDouble(r["totalSalaire"]), Convert.ToInt16(r["client"]), r["statut"].ToString());
                     listeProjets.Add(projet);
                 }
 
