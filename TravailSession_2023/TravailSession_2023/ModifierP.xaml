@@ -20,9 +20,8 @@
             <TextBox Header="Total Salaire" x:Name="tbxTotalSalaire" Margin="0 5 0 5"/>
             <TextBox Header="Client" x:Name="tbxClient" Margin="0 5 0 5"/>
             <ComboBox SelectedItem="cSelectedS" Header="Statut" x:Name="cStatut" Margin="0 5 0 5">
-                <x:String>Permanent</x:String>
-                <x:String>journalier </x:String>
-                <x:String>temp partiel</x:String>
+                <x:String>En cours</x:String>
+                <x:String>Terminé</x:String>
             </ComboBox>
         </StackPanel>
     </ScrollViewer>

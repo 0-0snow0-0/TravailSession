@@ -24,11 +24,12 @@ namespace TravailSession_2023
         string titre;
         DateTime dateDebut;
         string description;
-        int budget;
+        long budget;
         int nbrEmprequis;
         double totalSalaire;
         int client;
         string statut;
+        Projet projet;
         public ModifierP()
         {
             this.InitializeComponent();
@@ -38,12 +39,46 @@ namespace TravailSession_2023
         public string Titre { get => titre; }
         public DateTime DateDebut { get => dateDebut; }
         public string Description { get => description; }
-        public int Budget { get => budget; }
+        public long Budget { get => budget; }
         public int NbrEmpRequis { get => nbrEmprequis; }
         public double TotalSalaire { get => totalSalaire; }
         public int Client { get => client; }
         public string Statut { get => statut; }
-       
+        public Projet InProjet 
+        {
+            get => projet;
+            set 
+            {
+                projet = value;
+
+                numProjet = projet.NumProjet;
+                tbxNumProjet.Text = numProjet;
+                
+                titre = projet.Titre;
+                tbxTitre.Text = titre;
+
+                dateDebut = projet.DateDebut;
+                dtDateDebut.SelectedDate = dateDebut;
+
+                description = projet.Description;
+                tbxDescription.Text = description;
+
+                budget = projet.Budget;
+                tbxBudget.Text = budget.ToString();
+
+                nbrEmprequis = projet.NbrEmpRequis;
+                tbxNbrEmpRequis.Text = nbrEmprequis.ToString();
+
+                totalSalaire = projet.TotalSalaire;
+                tbxTotalSalaire.Text = totalSalaire.ToString();
+
+                client = projet.Client;
+                tbxClient.Text = client.ToString();
+
+                statut = projet.Statut;
+                cStatut.SelectedValue = statut;
+            }
+        }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {

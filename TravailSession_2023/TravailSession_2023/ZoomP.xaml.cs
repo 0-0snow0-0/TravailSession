@@ -31,7 +31,9 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
         }
+        Boolean nePasFermer = true;
 
+        Projet projet;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is not null)
@@ -40,12 +42,12 @@ namespace TravailSession_2023
                 if (index >= 0)
                 {
 
-                    Projet projet = SingletonProjets.getInstance().getProjet(index);
+                    projet = SingletonProjets.getInstance().getProjet(index);
 
                     zNumP.Text = projet.NumProjet;
                     zTitre.Text = projet.Titre;
                     zDateD.Text = projet.DateDebut.ToString();
-                    ZBudget.Text = projet.Budget.ToString();
+                    zBudget.Text = projet.Budget.ToString();
                     zDescription.Text = projet.Description;
                     zTotalS.Text = projet.TotalSalaire.ToString();
                     zNbrER.Text = projet.NbrEmpRequis.ToString();
@@ -56,8 +58,35 @@ namespace TravailSession_2023
             }
 
         }
-        private void Mod_Click(object sender, RoutedEventArgs e)
+        private async void Mod_Click(object sender, RoutedEventArgs e)
         {
+            ModifierP dialog = new ModifierP();
+            dialog.InProjet = projet;
+            dialog.XamlRoot = gZoomP.XamlRoot;
+            dialog.Title = "Modification d'un projet";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+                 
+                zNumP.Text = "Numero du projet : " + dialog.NumProjet;
+                zTitre.Text = "Titre : " + dialog.Titre;
+                zDateD.Text = "Matricule : " + dialog.DateDebut;
+                zBudget.Text = "Date de Naissance : " + dialog.Budget;
+                zDescription.Text = "Courriel : " + dialog.Description;
+                zTotalS.Text = "Adresse : " + dialog.TotalSalaire;
+                zNbrER.Text = "Date d'embauche : " + dialog.NbrEmpRequis;
+                zClient.Text = "Taux x Horaire : " + dialog.Client;
+                zStatut.Text = "Statut : " + dialog.Statut;
+
+              
+            }
 
         }
 

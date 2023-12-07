@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <ScrollViewer>
     <Border BorderThickness="5" CornerRadius="10" BorderBrush="Gray"  Margin="300 100 300 100" Padding="20">
-         <Grid >
+            <Grid x:Name="gZoomP">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -50,7 +50,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="1"  x:Name="zDateD"/>
-                        <TextBlock Grid.Column="2"  x:Name="ZBudget"/>
+                        <TextBlock Grid.Column="2"  x:Name="zBudget"/>
                     </Grid>
                 </StackPanel>
 
