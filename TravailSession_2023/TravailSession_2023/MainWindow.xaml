@@ -24,8 +24,8 @@
             <NavigationViewItem Content="Émployes" x:Name="Emp" Icon="People" Background="#9ab6c0"/>
         </NavigationView.MenuItems>
         <NavigationView.FooterMenuItems>
-            <NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="Contact" Background="#b0b9a6"/>
-            <NavigationViewItem Content="Se deconnecter"  x:Name="Logout" Icon="Contact" Background="#be4650" />
+            <NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="Contact"  Foreground="White" Background="#b0b9a6"/>
+            <NavigationViewItem Content="Se deconnecter"  x:Name="Logout" Icon="Contact" Foreground="White" Background="#843c41" />
             
         </NavigationView.FooterMenuItems>
 
