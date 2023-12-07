@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TravailSession_2023
 {
-    class Employe : INotifyPropertyChanged
+    public class Employe : INotifyPropertyChanged
     {        
         string matricule;
         string nom;

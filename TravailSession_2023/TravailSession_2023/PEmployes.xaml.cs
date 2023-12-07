@@ -26,6 +26,7 @@ namespace TravailSession_2023
         public PEmployes()
         {
             this.InitializeComponent();
+            gvEmployes.ItemsSource = SingletonEmployes.getInstance().getListeEmployes();
         }
 
         private void gvEmployes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -33,7 +34,7 @@ namespace TravailSession_2023
             int index = gvEmployes.SelectedIndex;
             if (index >= 0)
             {
-                this.Frame.Navigate(typeof(ZoomE), index);
+                this.Frame.Navigate(typeof(ZoomE), index);                
             }
         }
     }

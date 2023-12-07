@@ -33,6 +33,8 @@ namespace TravailSession_2023
         }
         Boolean nePasFermer = true;
 
+        Employe employe;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is not null)
@@ -41,7 +43,7 @@ namespace TravailSession_2023
                 if (index >= 0)
                 {
 
-                    Employe employe = SingletonEmployes.getInstance().getEmploye(index);
+                    employe = SingletonEmployes.getInstance().getEmploye(index);
 
                     zPrenom.Text = employe.Prenom;
                     zNom.Text = employe.Nom;
@@ -64,8 +66,9 @@ namespace TravailSession_2023
         {
 
             ModifierE dialog = new ModifierE();
+            dialog.InEmploye = employe;
             dialog.XamlRoot = gZoomE.XamlRoot;
-            dialog.Title = "Modification de l'employe";
+            dialog.Title = "Modification de l'employe";            
             dialog.PrimaryButtonText = "Oui";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Primary;
