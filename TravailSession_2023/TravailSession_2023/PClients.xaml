@@ -29,7 +29,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock FontSize="25" Grid.Column="2" Foreground="#cbd3d5" FontWeight="Black"  >Nos Clients</TextBlock>
-                <Button x:Name="btnAjouter" Click="btnAjouter_Click" Grid.Column="5" Margin="0 0 0 0" Background="#cbd3d5" Foreground="#4e6173" FontSize="16">Ajouter</Button>
+                <Button x:Name="btnAjouter" Click="btnAjouter_Click" Grid.Column="5"  Background="#cbd3d5" Foreground="#4e6173" FontSize="16">Ajouter</Button>
             </Grid>
         </StackPanel>
 
