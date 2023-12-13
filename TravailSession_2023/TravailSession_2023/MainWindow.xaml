@@ -19,15 +19,17 @@
                 BackRequested="navView_BackRequested">
 
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Projets" x:Name="Proj" Icon="People" Background="#acdbdb"/>
+            <NavigationViewItem Content="Projets" x:Name="Proj" Icon="Priority" Background="#acdbdb"/>
             <NavigationViewItem Content="Clients" x:Name="Client" Icon="People" Background="#cbd3d5"/>
             <NavigationViewItem Content="Employes" x:Name="Emp" Icon="People" Background="#9ab6c0"/>
+            <NavigationViewItemSeparator   Margin=" 0 15 0 15 " />
+            <NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="OpenPane"  Foreground="White" Background="#b0b9a6"/>
         </NavigationView.MenuItems> 
-        <NavigationView.FooterMenuItems>
-            <NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="Contact"  Foreground="White" Background="#b0b9a6"/>
-            <NavigationViewItem Content="Se deconnecter"  x:Name="Logout" Icon="Contact" Foreground="White" Background="#843c41" />
+        
+            <!--<NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="OpenPane"  Foreground="White" Background="#b0b9a6"/>-->
+            <!--<NavigationViewItem Content="Se deconnecter"  x:Name="Logout" Icon="ClosePane" Foreground="White" Background="#843c41" />-->
             
-        </NavigationView.FooterMenuItems>
+        
 
 
         <Frame x:Name="mainFrame" Grid.Row="1" />

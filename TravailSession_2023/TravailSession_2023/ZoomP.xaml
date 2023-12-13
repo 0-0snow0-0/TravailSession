@@ -8,100 +8,123 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer>
-    <Border BorderThickness="5" CornerRadius="10" BorderBrush="Gray"  Margin="300 100 300 100" Padding="20">
-            <Grid x:Name="gZoomP">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+    
+    <Grid Background="#FFFFFF">
+        <ScrollViewer Margin="10">
+            <Border  BorderBrush="#acdbdb" BorderThickness="5" Background="#9ab6c0" CornerRadius="10" Margin="300 100 300 100" Padding="20" >
+                <Grid x:Name="gZoomP" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    </Grid.RowDefinitions>  
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center">
-                    
-                        <TextBlock Grid.Column="1" x:Name="zNumP"/>
-                   
-            
-                </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center">
 
-                <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center">
+                        <TextBlock Grid.Row="1"
+                                   x:Name="zNumP"
+                                   Foreground="#4e6173"
+                                   FontWeight="Black"/>
 
-                    <TextBlock Grid.Column="1" x:Name="zTitre"/>
 
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zDateD"/>
-                        <TextBlock Grid.Column="2"  x:Name="zBudget"/>
-                    </Grid>
-                </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center">
 
-                <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
+                        <TextBlock Grid.Row="2"
+                                   x:Name="zTitre"
+                                   Foreground="#4e6173"/>
 
-                    <TextBlock Grid.Column="1" x:Name="zDescription"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center">
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" x:Name="zTotalS"/>
-                        <TextBlock Grid.Column="2" x:Name="zNbrER"/>
-                    </Grid>
-                </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zDateD"
+                                       Foreground="#4e6173"/>
+                            <TextBlock Grid.Column="2"
+                                       x:Name="zBudget"
+                                       Foreground="#4e6173"/>
+                        </Grid>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center">
 
-                        <TextBlock Grid.Column="1" x:Name="zClient"/>
-                        <TextBlock Grid.Column="2" x:Name="zStatut"/>
-                    </Grid>
-                </StackPanel>
-        
-                <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"
+                                   x:Name="zDescription"
+                                   Foreground="#4e6173"/>
+                    </StackPanel>
 
-                        <Button x:Name="Mod" Grid.Column="1" Margin="0 0 10 0"  Click="Mod_Click">Modifier</Button>
-                        <Button x:Name="Sup" Grid.Column="2" Click="Sup_Click">Supprimer</Button>
-                        
-                    </Grid>
-                </StackPanel>
+                    <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center">
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zTotalS"
+                                       Foreground="#4e6173"/>
+                            <TextBlock Grid.Column="2"
+                                       x:Name="zNbrER"
+                                       Foreground="#4e6173"/>
+                        </Grid>
+                    </StackPanel>
 
-            </Grid>
-    </Border>
-   </ScrollViewer>
+                    <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zClient"
+                                       Foreground="#4e6173"/>
+                            <TextBlock Grid.Column="2"
+                                       x:Name="zStatut"
+                                       Foreground="#4e6173"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="Mod" Grid.Column="1" Margin="0 0 10 0"  Click="Mod_Click" Background="#4e6173" Foreground="#acdbdb">Modifier</Button>
+                            <Button x:Name="Sup" Grid.Column="2" Click="Sup_Click" Background="#4e6173" Foreground="#acdbdb">Supprimer</Button>
+
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+        </ScrollViewer>
+    </Grid>
+    
 </Page>

@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="gProjets"  Background="#FFFFFF">
+    <Grid x:Name="gProjets"  Background="#FFF">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -31,7 +31,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock FontSize="25" Grid.Column="2" x:Name="tbxTitre" Foreground="#9ab6c0"  FontWeight="Black" >Projets en cours</TextBlock>
-                <Button x:Name="btnAjouter" Click="btnAjouter_Click" Grid.Column="5" Margin="0 0 0 0" Background="#4e6173" Foreground="#cbd3d5" FontSize="16">Ajouter</Button>
+                <Button x:Name="btnAjouter" Click="btnAjouter_Click" Grid.Column="5" Margin="0 0 0 0" Background="#acdbdb" Foreground="#4e6173" FontSize="16">Ajouter</Button>
             </Grid>
         </StackPanel>
 
@@ -41,7 +41,7 @@
                 <GridView.ItemTemplate>
 
                     <DataTemplate x:DataType="local:Projet">
-                        <Border BorderBrush="#74858f" BorderThickness="5" Background="#4e6173" Margin="5" Padding="15" CornerRadius="10">
+                        <Border BorderBrush="#74858f" BorderThickness="5" Background="#4e6173" Margin="5" Padding="15" Width="310" Height="220" CornerRadius="10" >
                             <Grid Margin="25,15,25,10"   Padding="10,0,10,0" HorizontalAlignment="Center">
 
                                 <Grid.RowDefinitions>
@@ -52,10 +52,7 @@
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
+                                
 
                                 <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                                     <!--numéro du projet-->
@@ -70,6 +67,7 @@
                                 <TextBlock  Text="{x:Bind  TitreString}"
                                             Grid.Row="2"
                                             FontSize="20"
+                                            TextWrapping="WrapWholeWords"
                                             Foreground="#9ab6c0"/>
 
                                 <!--nom du client-->
@@ -98,8 +96,8 @@
         </ScrollViewer>
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="btnEnCours" Click="btnEnCours_Click" Margin="0 0 30 0" Background="#4e6173" Foreground="#cbd3d5" FontSize="16">En cours</Button>
-            <Button x:Name="btnTermine" Click="btnTermine_Click" Background="#4e6173" Foreground="#cbd3d5" FontSize="16">Terminé</Button>            
+            <Button x:Name="btnEnCours" Click="btnEnCours_Click" Margin="0 0 30 0" Background="#acdbdb" Foreground="#4e6173" FontSize="16">En cours</Button>
+            <Button x:Name="btnTermine" Click="btnTermine_Click" Background="#acdbdb" Foreground="#4e6173" FontSize="16">Terminé</Button>            
         </StackPanel>
     </Grid>
 </Page>
