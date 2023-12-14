@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,9 +39,17 @@ namespace TravailSession_2023
             }
         }
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
+            AjoutE dialog = new AjoutE();
+            //dialog.InClient = client;
+            dialog.XamlRoot = gEmployes.XamlRoot;
+            dialog.Title = "Ajout d'un client";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
+            ContentDialogResult resultat = await dialog.ShowAsync();
         }
     }
 }

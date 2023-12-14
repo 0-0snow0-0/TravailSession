@@ -51,11 +51,13 @@ namespace TravailSession_2023
 
             bool erreur = false;
 
+            /* Est laissé vide car généré aléatoirement dans BD
             if (tbxId.Text == "")
             {
                 erreur = true;
                 eId.Visibility = Visibility.Visible;
             }
+            */
 
             if (tbxNom.Text == "")
             {
@@ -83,13 +85,14 @@ namespace TravailSession_2023
 
             if (!erreur)
             {
-                id = int.Parse(tbxId.Text);
+                id = 1;
                 nom = tbxNom.Text;
                 adresse = tbxAdresse.Text;
                 numTel = tbxNumTel.Text;
                 email = tbxEmail.Text;
 
                 Client client = new Client(id, nom, adresse, numTel, email);
+                SingletonClients.getInstance().ajouterClient(client);
             }
             else
             {
