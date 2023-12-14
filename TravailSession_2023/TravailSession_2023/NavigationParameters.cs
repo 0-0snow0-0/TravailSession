@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TravailSession_2023
 {
-    internal class SingletonAdmin
+    class NavigationParameters
     {
-        public static bool LoggedIn { get; set; } = false;
+        public bool LoggedIn { get; set; }
+        public int SelectedIndex { get; set; }
     }
 }

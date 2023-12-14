@@ -36,6 +36,13 @@ namespace TravailSession_2023
             {
                 this.Frame.Navigate(typeof(ZoomC), index);
             }
+            //NavigationParameters parameters = new NavigationParameters
+            //{
+            //    LoggedIn = SingletonAdmin.LoggedIn,
+            //    SelectedIndex = index
+            //};
+
+            //this.Frame.Navigate(typeof(ZoomC), parameters);
         }
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)

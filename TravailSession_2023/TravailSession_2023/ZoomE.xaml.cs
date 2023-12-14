@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using static System.Net.Mime.MediaTypeNames;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -56,11 +57,17 @@ namespace TravailSession_2023
                     zPhotoURL.Text = employe.Photo_url;
                     zStatut.Text = employe.Statut;
                     zNumP.Text = employe.NumProjet.ToString();
-                    
+
+                    if (SingletonAdmin.LoggedIn == false) { ModE.IsEnabled = ConditionToEnableButton(); }
                 }
 
             }
 
+        }
+        //Could move this into the SingletonAdmin
+        private bool ConditionToEnableButton()
+        {
+            return SingletonAdmin.LoggedIn;
         }
         private async void ModE_Click(object sender, RoutedEventArgs e)
         {

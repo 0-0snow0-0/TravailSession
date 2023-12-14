@@ -37,6 +37,9 @@ namespace TravailSession_2023
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+
+
             if (e.Parameter is not null)
             {
                 index = (int)e.Parameter;
@@ -50,10 +53,21 @@ namespace TravailSession_2023
                     zAdresse.Text = client.Adresse;
                     zNumT.Text = client.NumTel;
                     zEmail.Text = client.Email;
+
+                    if (SingletonAdmin.LoggedIn == false) {ModC.IsEnabled = ConditionToEnableButton(); }
+                    
                 }
 
             }
 
+            
+
+        }
+
+        //Could move this into the SingletonAdmin
+        private bool ConditionToEnableButton()
+        {
+            return SingletonAdmin.LoggedIn;
         }
 
         private void Sup_Click(object sender, RoutedEventArgs e)

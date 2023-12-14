@@ -15,6 +15,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -53,10 +54,18 @@ namespace TravailSession_2023
                     zNbrER.Text = projet.NbrEmpRequis.ToString();
                     zClient.Text = projet.Client.ToString();
                     zStatut.Text = projet.Statut;
+
+                    if (SingletonAdmin.LoggedIn == false) { Mod.IsEnabled = ConditionToEnableButton(); }
                 }
 
             }
 
+        }
+
+        //Could move this into the SingletonAdmin
+        private bool ConditionToEnableButton()
+        {
+            return SingletonAdmin.LoggedIn;
         }
         private async void Mod_Click(object sender, RoutedEventArgs e)
         {
