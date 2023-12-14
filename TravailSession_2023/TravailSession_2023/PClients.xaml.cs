@@ -45,9 +45,18 @@ namespace TravailSession_2023
             //this.Frame.Navigate(typeof(ZoomC), parameters);
         }
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
+            AjoutC dialog = new AjoutC();
+            //dialog.InClient = client;
+            dialog.XamlRoot = gClients.XamlRoot;
+            dialog.Title = "Ajout d'un client";
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
+            ContentDialogResult resultat = await dialog.ShowAsync();
+            
         }
     }
 }
