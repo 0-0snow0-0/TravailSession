@@ -9,120 +9,221 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ScrollViewer>
-        <Border BorderThickness="5" CornerRadius="10" BorderBrush="Gray"  Margin="300 100 300 100" Padding="20">
-            <Grid x:Name="gZoomE">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+    <Grid Background="#FFFFFF">
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zPrenom" Margin="0 0 5 0"/>
-                        <TextBlock Grid.Column="2"  x:Name="zNom"/>
-                    </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-                </StackPanel>
+        <ScrollViewer Grid.Row="1" Grid.Column="1">
+            <Border BorderThickness="5" CornerRadius="10" BorderBrush="#acdbdb" Background="#9ab6c0" Padding="20">
+                <Grid x:Name="gZoomE">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
 
-                <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zMatricule" Margin="0 0 5 0"/>
-                        <TextBlock Grid.Column="2"  x:Name="zDateN"/>
-                    </Grid>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center"  Margin="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zPrenom"
+                                       Margin="0 0 5 0"
+                                       TextWrapping="Wrap"
+                                       Foreground="#4e6173"
+                                       FontWeight="Black"
+                                       FontSize="15"/>
+                            
+                            <TextBlock Grid.Column="3"
+                                       x:Name="zNom"
+                                       TextWrapping="Wrap"
+                                       Margin="5 0 0 0"
+                                       Foreground="#4e6173"
+                                       FontWeight="Black"
+                                       FontSize="15"/>
+                        </Grid>
 
-                <StackPanel Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zEmail" Margin="0 0 5 0"/>
-                        <TextBlock Grid.Column="2"  x:Name="zAdresse"/>
-                    </Grid>
+                    </StackPanel>
 
-                </StackPanel>
-                
-                <StackPanel Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zDateE" Margin="0 0 5 0"/>
-                        <TextBlock Grid.Column="2"  x:Name="zTauxH"/>
-                    </Grid>
+                    <StackPanel Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center"  Margin="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Foreground="#4e6173"
+                                       Margin="0 0 5 0"
+                                       FontWeight="Black">Matricule :</TextBlock>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zMatricule"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       Margin="0 0 10 0" />
+                            <TextBlock Grid.Column="2"
+                                       Foreground="#4e6173"
+                                       Margin="10 0 5 0"
+                                       FontWeight="Black">Date de naissance :</TextBlock>
+                            <TextBlock Grid.Column="3"
+                                       x:Name="zDateN"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       TextWrapping="WrapWholeWords"
+                                       Margin="5 0 0 0"/>
+                        </Grid>
 
-                </StackPanel>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Center">
+                    <StackPanel Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Center"  Margin="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Foreground="#4e6173"
+                                       Margin="0 0 5 0"
+                                       FontWeight="Black">Adresse :</TextBlock>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zAdresse"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       Margin="0 0 10 0"/>
+                            <TextBlock Grid.Column="2"
+                                       Foreground="#4e6173"
+                                       Margin="10 0 5 0"
+                                       FontWeight="Black">Courriel :</TextBlock>
+                            <TextBlock Grid.Column="3"
+                                       x:Name="zEmail"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       TextWrapping="Wrap"
+                                       Margin="5 0 0 0"/>
+                        </Grid>
 
-                    <TextBlock Grid.Column="1" x:Name="zPhotoURL"/>
+                    </StackPanel>
 
-                </StackPanel>
+                    <StackPanel Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Center"  Margin="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Foreground="#4e6173"
+                                       Margin="0 0 5 0"
+                                       FontWeight="Black">Date d'embauche :</TextBlock>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zDateE"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       TextWrapping="WrapWholeWords"
+                                       Margin="0 0 10 0"/>
+                            <TextBlock Grid.Column="2"
+                                       Foreground="#4e6173"
+                                       Margin="10 0 5 0"
+                                       FontWeight="Black">Taux horaire :</TextBlock>
+                            <TextBlock Grid.Column="3"
+                                       x:Name="zTauxH"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       Margin="5 0 0 0"/>
+                        </Grid>
 
-                <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1"  x:Name="zStatut"></TextBlock>
-                        <TextBlock Grid.Column="2"  x:Name="zNumP"/>
-                    </Grid>
-                </StackPanel>
+                    </StackPanel>
 
-               
+                    <StackPanel Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Center"  Margin="2">
 
-                <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"
+                                   x:Name="zPhotoURL"
+                                   Foreground="#4e6173"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"
+                                   FontSize="15"
+                                   Margin="5 0 0 0"/>
 
-                        <Button x:Name="ModE" Grid.Column="1" Margin="0 0 10 0"  Click="ModE_Click">Modifier</Button>
-                        <Button x:Name="Sup" Grid.Column="2" Click="Sup_Click">Supprimer</Button>
+                    </StackPanel>
 
-                    </Grid>
-                </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center"  Margin="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Foreground="#4e6173"
+                                       Margin="0 0 5 0"
+                                       FontWeight="Black">Statut :</TextBlock>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="zStatut"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       Margin="0 0 10 0"/>
+                            <TextBlock Grid.Column="2"
+                                       Foreground="#4e6173"
+                                       Margin="10 0 5 0"
+                                       FontWeight="Black">Taux horaire :</TextBlock>
+                            <TextBlock Grid.Column="3"
+                                       x:Name="zNumP"
+                                       Foreground="#4e6173"
+                                       FontWeight="SemiBold"
+                                       Margin="5 0 0 0"/>
+                        </Grid>
+                    </StackPanel>
 
-            </Grid>
-        </Border>
-    </ScrollViewer>
+
+
+                    <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" Margin="2 10 2 2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="ModE" Grid.Column="1" Margin="0 0 10 0"  Click="ModE_Click">Modifier</Button>
+                            <Button x:Name="Sup" Grid.Column="2" Click="Sup_Click">Supprimer</Button>
+
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+        </ScrollViewer>
+    </Grid>
 </Page>
