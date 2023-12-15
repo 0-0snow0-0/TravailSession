@@ -9,7 +9,20 @@
     mc:Ignorable="d"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
-    <Grid>
-
-    </Grid>
+    <ScrollViewer Margin="10" Padding="5">
+        <StackPanel >
+            <TextBox Header="Numero du Projet" x:Name="tbxNumProjet" Margin="0 0 0 5"/>
+            <TextBox Header="Titre" x:Name="tbxTitre" Margin="0 5 0 5"/>
+            <DatePicker Header="Date Debut" x:Name="dtDateDebut" Margin="0 5 0 5"/>
+            <TextBox Header="Description" x:Name="tbxDescription" Margin="0 5 0 5"/>
+            <TextBox Header="Budget" x:Name="tbxBudget" Margin="0 5 0 5"/>
+            <TextBox Header="Nombre d'employe requis" x:Name="tbxNbrEmpRequis" Margin="0 5 0 5"/>
+            <TextBox Header="Total Salaire" x:Name="tbxTotalSalaire" Margin="0 5 0 5"/>
+            <TextBox Header="Client" x:Name="tbxClient" Margin="0 5 0 5"/>
+            <ComboBox SelectedItem="cSelectedS" Header="Statut" x:Name="cStatut" Margin="0 5 0 5">
+                <x:String>En cours</x:String>
+                <x:String>Terminé</x:String>
+            </ComboBox>
+        </StackPanel>
+    </ScrollViewer>
 </ContentDialog>

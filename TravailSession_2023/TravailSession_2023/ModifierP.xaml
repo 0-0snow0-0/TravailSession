@@ -11,18 +11,64 @@
 
     <ScrollViewer Margin="10" Padding="5">
         <StackPanel >
-            <TextBox Header="Numero du Projet" x:Name="tbxNumProjet" Margin="0 0 0 5"/>
-            <TextBox Header="Titre" x:Name="tbxTitre" Margin="0 5 0 5"/>
-            <DatePicker Header="Date Debut" x:Name="dtDateDebut" Margin="0 5 0 5"/>
-            <TextBox Header="Description" x:Name="tbxDescription" Margin="0 5 0 5"/>
-            <TextBox Header="Budget" x:Name="tbxBudget" Margin="0 5 0 5"/>
-            <TextBox Header="Nombre d'employe requis" x:Name="tbxNbrEmpRequis" Margin="0 5 0 5"/>
-            <TextBox Header="Total Salaire" x:Name="tbxTotalSalaire" Margin="0 5 0 5"/>
-            <TextBox Header="Client" x:Name="tbxClient" Margin="0 5 0 5"/>
-            <ComboBox SelectedItem="cSelectedS" Header="Statut" x:Name="cStatut" Margin="0 5 0 5">
-                <x:String>En cours</x:String>
-                <x:String>Terminé</x:String>
-            </ComboBox>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Numero du Projet" x:Name="tbxNumProjet" Margin="0 0 0 5" IsReadOnly="True" PlaceholderText="Est généré par la BD"/>
+                <TextBlock x:Name="eNumP" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un numéro de projet</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Titre" x:Name="tbxTitre" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eTitre" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un titre</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <DatePicker Header="Date Debut" x:Name="dtDateDebut" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eDateD" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez choisir une date</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Description" x:Name="tbxDescription" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eDescription" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer une description</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Budget" x:Name="tbxBudget" Margin="0 5 0 5"/>
+                <TextBlock x:Name="eBudget" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un budget</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <ComboBox Header="Nombre d'employe requis" x:Name="cbxNbrEmpRequis" Margin="0 5 0 5">
+                    <x:String>1</x:String>
+                    <x:String>2</x:String>
+                    <x:String>3</x:String>
+                    <x:String>4</x:String>
+                    <x:String>5</x:String>
+                </ComboBox>
+                <TextBlock x:Name="eNbrEmpRequis" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez choisir un nombre d'employé à assigner au projet</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <TextBox Header="Total Salaire" x:Name="tbxTotalSalaire" Margin="0 5 0 5" IsReadOnly="True"/>
+                <TextBlock x:Name="eTotalSalaire" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un budget</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <ComboBox Header="Client" x:Name="cbxClient" Margin="0 5 0 5">
+                    
+                </ComboBox>
+                <TextBlock x:Name="eClient" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez choisir le client du projet</TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="0 10">
+                <ComboBox SelectedItem="cSelectedS" Header="Statut" x:Name="cStatut" Margin="0 5 0 5">
+                    <x:String>En cours</x:String>
+                    <x:String>Terminé</x:String>
+                </ComboBox>
+                <TextBlock x:Name="eStatut" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez choisir le statut du projet</TextBlock>
+            </StackPanel>
+
+            
         </StackPanel>
     </ScrollViewer>
 </ContentDialog>

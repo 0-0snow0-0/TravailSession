@@ -13,7 +13,7 @@
         <StackPanel >
 
             <StackPanel Margin="0 10">
-                <TextBox Header="Matricule" x:Name="tbxMatricule" Margin="0 5 0 5"/>
+                <TextBox Header="Matricule" x:Name="tbxMatricule" Margin="0 5 0 5" IsReadOnly="True" PlaceholderText="Est généré par la BD"/>
                 <TextBlock x:Name="eMatricule" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un matricule</TextBlock>
             </StackPanel>
 
@@ -67,7 +67,7 @@
 
             <StackPanel Margin="0 10">
                 <ComboBox Header="Projet Actif" x:Name="cNumP" Margin="0 5 0 5">
-
+                    <x:String></x:String>
                 </ComboBox>
                 <TextBlock x:Name="eNumP" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un numéro de projet</TextBlock>
             </StackPanel>

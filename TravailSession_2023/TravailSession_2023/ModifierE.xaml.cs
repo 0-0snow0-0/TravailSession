@@ -47,7 +47,7 @@ namespace TravailSession_2023
                 cNumP.Items.Add(item);
             }
 
-            listeProjetsEnCours = SingletonProjets.getInstance().getListeProjets();
+            //listeProjetsEnCours = SingletonProjets.getInstance().getListeProjets();
         }
 
         public string Matricule { get => matricule; }
@@ -181,6 +181,12 @@ namespace TravailSession_2023
                     eTauxH.Text = "Le taux horaire minimum est de 15$";
                     eTauxH.Visibility = Visibility.Visible;
                 }
+            }
+            else
+            {
+                erreur = true;
+                eTauxH.Text = "Veuillez entrer une valeur numérique";
+                eTauxH.Visibility= Visibility.Visible;
             }
 
             if (tbxPhotoUrl.Text == "")

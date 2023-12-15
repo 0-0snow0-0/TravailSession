@@ -42,7 +42,7 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
 
-            dtDateE.Date = DateTime.Now;            
+            dtDateE.Date = DateTime.Now; 
 
             listeProjetsEnCours = SingletonProjets.getInstance().getListeProjetsEnCours();
             foreach (Projet projet in listeProjetsEnCours)
@@ -83,6 +83,7 @@ namespace TravailSession_2023
             eDateN.Text = "Veuillez choisir un date";
             eTauxH.Text = "Veuillez entrer un taux horaire";
             eDateE.Text = "Veuillez choisir un date";
+            eStatut.Text = "Veuillez choisir un statut";
 
             bool erreur = false;
 
@@ -103,7 +104,7 @@ namespace TravailSession_2023
                 erreur = true;
                 eDateN.Visibility = Visibility.Visible;
             }
-            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-18))
+            else if (dtDateN.SelectedDate > DateTime.Now.AddYears(-18))
             {
                 erreur = true;
                 eDateN.Text = "L'employé ne peux pas avoir en dessous de 18 ans";
@@ -127,7 +128,7 @@ namespace TravailSession_2023
                 erreur = true;
                 eDateE.Visibility = Visibility.Visible;
             }
-            else if (dtDateN.SelectedDate > DateTime.Now)
+            else if (dtDateE.SelectedDate > DateTime.Now)
             {
                 erreur = true;
                 eDateE.Text = "L'employé ne peux pas être engagé pour une date futur";
@@ -162,6 +163,12 @@ namespace TravailSession_2023
                 erreur = true;
                 eStatut.Visibility = Visibility.Visible;
             }
+            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-18))
+            {
+                erreur = true;
+                eStatut.Text = "L'employé ne peut pas avoir le statut permanent s'il travail à la company depuis moins de 3 ans ";
+                eStatut.Visibility = Visibility.Visible;
+            }
 
             if (cNumP.SelectedIndex <= -1)
             {
@@ -171,7 +178,7 @@ namespace TravailSession_2023
 
             if (!erreur)
             {
-                matricule = tbxMatricule.Text;
+                matricule = "";
                 nom = tbxNom.Text;
                 prenom = tbxPrenom.Text;
                 dateNaissance = Convert.ToDateTime(dtDateN.Date.DateTime);//dateNaissance = dtDateN.Date.ToString("yyyy-MM-dd");
@@ -193,7 +200,7 @@ namespace TravailSession_2023
 
                 employe = new Employe(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo_url, statut, numProjet);
 
-                SingletonEmployes.getInstance().modifierEmploye(employe);
+                SingletonEmployes.getInstance().ajouterEmployes(employe);
             }
             else
             {
