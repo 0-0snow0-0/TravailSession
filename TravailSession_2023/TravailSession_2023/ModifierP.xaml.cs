@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -81,9 +82,9 @@ namespace TravailSession_2023
                 string sNumEmpRequis = "";
                 for(int i = 0; i<5; i++)
                 {
-                    if(nbrEmprequis == i)
+                    if(nbrEmprequis == i+1)
                     {
-                        sNumEmpRequis = i.ToString();
+                        sNumEmpRequis = (i+1).ToString();
                     }
                 }                
                 cbxNbrEmpRequis.SelectedItem = sNumEmpRequis;
@@ -92,15 +93,15 @@ namespace TravailSession_2023
                 tbxTotalSalaire.Text = totalSalaire.ToString();
 
 
+                
                 string sClient = "";
                 foreach (Client client in listeClients)
                 {
-                    if (client.Id.ToString() == cbxClient.SelectedItem.ToString())
+                    if (client.Id == projet.Client)
                     {
-                        sClient = client.Id.ToString();
+                        sClient = client.Nom;
                     }
                 }
-
                 client = projet.Client;
                 cbxClient.SelectedItem = sClient;
 
@@ -186,17 +187,34 @@ namespace TravailSession_2023
                 cStatut.Visibility = Visibility.Visible;
             }
 
-            /*
-            numProjet = tbxNumProjet.Text;
-            titre = tbxTitre.Text;
-            //dateDebut = SelectedDate(dtDateDebut).ToString();
-            description = tbxDescription.Text;
-            budget = int.Parse(tbxBudget.Text);
-            nbrEmprequis = int.Parse(tbxNbrEmpRequis.Text);
-            totalSalaire = Double.Parse(tbxTotalSalaire.Text);
-            client = int.Parse(tbxClient.Text);
-            statut = cStatut.SelectedItem.ToString();
-            */
+            if (!erreur)
+            {
+                numProjet = "";
+                titre = tbxTitre.Text;
+                dateDebut = Convert.ToDateTime(dtDateDebut.SelectedDate);
+                description = tbxDescription.Text;
+                budget = Convert.ToInt32(tbxBudget.Text);
+                nbrEmprequis = Convert.ToInt16(cbxNbrEmpRequis.SelectedItem);
+                totalSalaire = 0;                
+
+                foreach (Client client1 in listeClients)
+                {
+                    if (client1.Nom == cbxClient.SelectedItem.ToString())
+                    {
+                        client = client1.Id;
+                    }
+                }                
+                statut = cStatut.SelectedItem.ToString();
+               
+                Projet projet = new Projet(numProjet, titre, dateDebut, description, budget, nbrEmprequis, totalSalaire, client, statut);
+
+                SingletonProjets.getInstance().ajouterProjets(projet);
+            }
+            else
+            {
+                args.Cancel = true;
+            }
+            
         }
     }
 }

@@ -223,7 +223,7 @@ namespace TravailSession_2023
                 
                 foreach (Projet projet in listeProjetsEnCours)
                 {
-                    if (projet.NumProjet == cNumP.SelectedItem.ToString())
+                    if (cNumP.SelectedItem.ToString().Contains(projet.NumProjet))
                     {
                         numProjet = projet.NumProjet;
                     }

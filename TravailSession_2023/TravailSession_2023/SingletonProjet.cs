@@ -65,7 +65,7 @@ namespace TravailSession_2023
                 commande.Parameters.AddWithValue("titre_projet", projet.Titre);
                 commande.Parameters.AddWithValue("dateDebut_projet", projet.DateDebut);
                 commande.Parameters.AddWithValue("description_projet", projet.Description);
-                commande.Parameters.AddWithValue("budge_projett", projet.Budget);
+                commande.Parameters.AddWithValue("budget_projet", projet.Budget);
                 commande.Parameters.AddWithValue("nbrEmpRequis_projet", projet.NbrEmpRequis);
                 commande.Parameters.AddWithValue("totalSalaire_projet", projet.TotalSalaire);
                 commande.Parameters.AddWithValue("client_projet", projet.Client);

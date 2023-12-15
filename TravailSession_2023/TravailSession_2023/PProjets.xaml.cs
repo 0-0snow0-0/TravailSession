@@ -63,9 +63,18 @@ namespace TravailSession_2023
             this.Frame.Navigate(typeof(PProjets), "Terminé");
         }
 
-        private void btnAjouter_Click(object sender, RoutedEventArgs e)
+        private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
+            AjoutP dialog = new AjoutP();            
+            dialog.XamlRoot = gProjets.XamlRoot;
+            dialog.Title = "Ajout d'un projet";
+            dialog.PrimaryButtonText = "Ajouter";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            this.Frame.Navigate(typeof(PProjets), "En cours");
         }
     }
 }

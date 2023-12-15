@@ -51,7 +51,7 @@ namespace TravailSession_2023
             //dialog.InClient = client;
             dialog.XamlRoot = gClients.XamlRoot;
             dialog.Title = "Ajout d'un client";
-            dialog.PrimaryButtonText = "Oui";
+            dialog.PrimaryButtonText = "Ajouter";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Primary;
 
