@@ -70,10 +70,50 @@ namespace TravailSession_2023
             return SingletonAdmin.LoggedIn;
         }
 
-        private void Sup_Click(object sender, RoutedEventArgs e)
+        private async void Sup_Click(object sender, RoutedEventArgs e)
         {
+            bool sup = false;
+            string errorMessage = "";
 
+            ConfirmDialog dialog = new ConfirmDialog();
+            dialog.ObjectType = "client";
+            dialog.XamlRoot = gZoomC.XamlRoot;
+            dialog.Title = "Suppresion du client " + client.Id;
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            sup = dialog.Confirm;
+
+            if(sup)
+            {
+                errorMessage = SingletonClients.getInstance().supprimerClient(client);
+            }
+
+            if(errorMessage != "Ok") 
+            {
+                ErrorDialog dialogE = new ErrorDialog();
+                dialogE.ErrorMessage = errorMessage;
+                dialogE.XamlRoot = gZoomC.XamlRoot;
+                dialogE.Title = "Erreur SQL";
+                dialogE.PrimaryButtonText = "Ok";
+                dialogE.CloseButtonText = "Annuler";
+                dialogE.DefaultButton = ContentDialogButton.Primary;
+
+                ContentDialogResult resultE = await dialogE.ShowAsync();
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(PClients));
+            }
         }
+
+        
+
+
+
 
         private async void ModC_Click(object sender, RoutedEventArgs e)
         {

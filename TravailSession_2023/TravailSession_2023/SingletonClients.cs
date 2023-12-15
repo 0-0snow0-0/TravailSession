@@ -100,7 +100,7 @@ namespace TravailSession_2023
             }
         }
 
-        public void supprimerClient(Client client) 
+        public string supprimerClient(Client client) 
         { 
             try
             {
@@ -116,6 +116,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -124,6 +125,7 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }   
 

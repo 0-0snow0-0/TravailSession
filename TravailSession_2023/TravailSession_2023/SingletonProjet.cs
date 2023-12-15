@@ -120,7 +120,7 @@ namespace TravailSession_2023
             }
         }
 
-        public void supprimerProjet(Projet projet)
+        public string supprimerProjet(Projet projet)
         {
             try
             {
@@ -136,6 +136,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -144,6 +145,7 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
         // Problème de convertion DBNull

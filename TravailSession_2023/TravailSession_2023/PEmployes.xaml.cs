@@ -44,7 +44,7 @@ namespace TravailSession_2023
             AjoutE dialog = new AjoutE();
             //dialog.InClient = client;
             dialog.XamlRoot = gEmployes.XamlRoot;
-            dialog.Title = "Ajout d'un client";
+            dialog.Title = "Ajout d'un employé";
             dialog.PrimaryButtonText = "Ajouter";
             dialog.CloseButtonText = "Annuler";
             dialog.DefaultButton = ContentDialogButton.Primary;

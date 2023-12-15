@@ -151,6 +151,12 @@ namespace TravailSession_2023
                     eTauxH.Visibility = Visibility.Visible;
                 }
             }
+            else
+            {
+                erreur = true;
+                eTauxH.Text = "Veuillez entrer une valeur numérique";
+                eTauxH.Visibility = Visibility.Visible;
+            }
 
             if (tbxPhotoUrl.Text == "")
             {
@@ -163,7 +169,7 @@ namespace TravailSession_2023
                 erreur = true;
                 eStatut.Visibility = Visibility.Visible;
             }
-            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-18))
+            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-18) && cStatut.SelectedItem == "Permanent")
             {
                 erreur = true;
                 eStatut.Text = "L'employé ne peut pas avoir le statut permanent s'il travail à la company depuis moins de 3 ans ";

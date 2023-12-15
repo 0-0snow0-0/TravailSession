@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -115,25 +116,42 @@ namespace TravailSession_2023
 
         private async void Sup_Click(object sender, RoutedEventArgs e)
         {
-            //base - Must implement the OK 
+            bool sup = false;
+            string errorMessage = "";
 
-            //SupprimerE dialog = new SupprimerE();
-            //dialog.XamlRoot = gZoomE.XamlRoot;
-            //dialog.Title = "Suppresion de l'employe";
-            //dialog.PrimaryButtonText = "Oui";
-            //dialog.CloseButtonText = "Annuler";
-            //dialog.DefaultButton = ContentDialogButton.Primary;
-            
-            //ContentDialogResult resultat = await dialog.ShowAsync();
+            ConfirmDialog dialog = new ConfirmDialog();
+            dialog.ObjectType = "employé";
+            dialog.XamlRoot = gZoomE.XamlRoot;
+            dialog.Title = "Suppresion de l'employé" + employe.Matricule;
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
-            //if (resultat == ContentDialogResult.Primary) 
-            //{
-               //Continue here 
-                
+            ContentDialogResult resultat = await dialog.ShowAsync();
 
-            //}
+            sup = dialog.Confirm;
 
-            //var result = await dialog.ShowAsync(); 
+            if (sup)
+            {
+                errorMessage = SingletonEmployes.getInstance().supprimerEmploye(employe);
+            }
+
+            if (errorMessage != "Ok")
+            {
+                ErrorDialog dialogE = new ErrorDialog();
+                dialogE.ErrorMessage = errorMessage;
+                dialogE.XamlRoot = gZoomE.XamlRoot;
+                dialogE.Title = "Erreur SQL";
+                dialogE.PrimaryButtonText = "Ok";
+                dialogE.CloseButtonText = "Annuler";
+                dialogE.DefaultButton = ContentDialogButton.Primary;
+
+                ContentDialogResult resultE = await dialogE.ShowAsync();
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(PEmployes));
+            }
 
         }
     }

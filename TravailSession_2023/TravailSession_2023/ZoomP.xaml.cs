@@ -99,9 +99,44 @@ namespace TravailSession_2023
 
         }
 
-        private void Sup_Click(object sender, RoutedEventArgs e)
+        private async void Sup_Click(object sender, RoutedEventArgs e)
         {
+            bool sup = false;
+            string errorMessage = "";
 
+            ConfirmDialog dialog = new ConfirmDialog();
+            dialog.ObjectType = "projet";
+            dialog.XamlRoot = gZoomP.XamlRoot;
+            dialog.Title = "Suppresion du projet" + projet.NumProjet;
+            dialog.PrimaryButtonText = "Oui";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            sup = dialog.Confirm;
+
+            if (sup)
+            {
+                errorMessage = SingletonProjets.getInstance().supprimerProjet(projet);
+            }
+
+            if (errorMessage != "Ok")
+            {
+                ErrorDialog dialogE = new ErrorDialog();
+                dialogE.ErrorMessage = errorMessage;
+                dialogE.XamlRoot = gZoomP.XamlRoot;
+                dialogE.Title = "Erreur SQL";
+                dialogE.PrimaryButtonText = "Ok";
+                dialogE.CloseButtonText = "Annuler";
+                dialogE.DefaultButton = ContentDialogButton.Primary;
+
+                ContentDialogResult resultE = await dialogE.ShowAsync();
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(PProjets), "En cours");
+            }
         }
     }
 }

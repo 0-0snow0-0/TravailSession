@@ -112,7 +112,7 @@ namespace TravailSession_2023
             }
         }
 
-        public void supprimerEmploye(Employe employe)
+        public string supprimerEmploye(Employe employe)
         {
             try
             {
@@ -128,6 +128,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -136,6 +137,8 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+
+                return ex.Message;
             }
         }
 

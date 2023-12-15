@@ -15,7 +15,9 @@
     <None Remove="AjoutC.xaml" />
     <None Remove="AjoutE.xaml" />
     <None Remove="AjoutP.xaml" />
+    <None Remove="ConfirmDialog.xaml" />
     <None Remove="Connexion.xaml" />
+    <None Remove="ErrorDialog.xaml" />
     <None Remove="ModifierC.xaml" />
     <None Remove="ModifierE.xaml" />
     <None Remove="ModifierP.xaml" />
@@ -51,6 +53,16 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ErrorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="ConfirmDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AjoutC.xaml">
