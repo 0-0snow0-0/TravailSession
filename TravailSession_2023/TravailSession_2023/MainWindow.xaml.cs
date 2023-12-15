@@ -30,7 +30,15 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
             SingletonAdmin.LoggedIn = false;
-            mainFrame.Navigate(typeof(PProjets), "En cours");
+            if (SingletonAdmin.LoggedIn == false) 
+            {
+                //ShowLoginDialog(); 
+            }
+            else 
+            {
+                mainFrame.Navigate(typeof(PProjets), "En cours");
+            }
+            
 
         }
 
@@ -79,10 +87,27 @@ namespace TravailSession_2023
                     break;
             }
         }
-        // Login successful, update the button appearance or perform other actions
-        // Disable the "Login" button, for example
-        // You can customize the appearance of other UI elements based on the login status
+        private async void ShowLoginDialog(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            Connexion dialog = new Connexion();
+            //dialog.InClient = client;
+            dialog.XamlRoot = navView.XamlRoot;
+            dialog.Title = "Connexion";
+            dialog.PrimaryButtonText = "Continuer";
+            dialog.CloseButtonText = "Annuler";
+            dialog.DefaultButton = ContentDialogButton.Primary;
 
+            ContentDialogResult resultat = await dialog.ShowAsync();
+
+            if (resultat == ContentDialogResult.Primary)
+            {
+
+                SingletonAdmin.LoggedIn = true;
+
+            }
+            else { SingletonAdmin.LoggedIn = false; }
+
+        }
         private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             if (mainFrame.CanGoBack)
