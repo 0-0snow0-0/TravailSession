@@ -55,12 +55,38 @@ namespace TravailSession_2023
                     zClient.Text = projet.Client.ToString();
                     zStatut.Text = projet.Statut;
 
+                    switch(projet.NbrEmpRequis)
+                    {
+                        case 5: 
+                            emp5.Visibility = Visibility.Visible;
+                            goto case 4;
+                        case 4:
+                            emp4.Visibility = Visibility.Visible;
+                            goto case 3;
+                        case 3:
+                            emp3.Visibility = Visibility.Visible;
+                            goto case 2;
+                        case 2:
+                            emp2.Visibility = Visibility.Visible;
+                            goto case 1;
+                        case 1:
+                            emp1.Visibility = Visibility.Visible;
+                            break;
+                        default:
+                            break;
+                    }
+
+                    for(int i = 0; i<projet.NbrEmpRequis; i++)
+                    {
+                        
+                    }
+
                     if (SingletonAdmin.LoggedIn == false) { Mod.IsEnabled = ConditionToEnableButton(); }
                 }
 
             }
 
-        }
+        }        
 
         //Could move this into the SingletonAdmin
         private bool ConditionToEnableButton()

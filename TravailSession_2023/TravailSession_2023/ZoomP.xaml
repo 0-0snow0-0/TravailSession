@@ -15,12 +15,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>            
         </Grid.ColumnDefinitions>
 
         <Grid  Grid.Row="1" Grid.Column="1">
@@ -187,6 +188,36 @@
                 </Grid>
             </Border>
         </ScrollViewer>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="emp1" Grid.Column="0" Visibility="Collapsed">
+                <TextBlock>Employé 1</TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="emp2" Grid.Column="1" Visibility="Collapsed">
+                <TextBlock>Employé 2</TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="emp3" Grid.Column="2" Visibility="Collapsed">
+                <TextBlock>Employé 3</TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="emp4" Grid.Column="3" Visibility="Collapsed">
+                <TextBlock>Employé 4</TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="emp5" Grid.Column="4" Visibility="Collapsed">
+                <TextBlock>Employé 5</TextBlock>
+            </StackPanel>
         </Grid>
         
     </Grid>
