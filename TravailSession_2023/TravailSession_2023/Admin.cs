@@ -10,25 +10,33 @@ namespace TravailSession_2023
 {
     class Admin : INotifyPropertyChanged
     {
-        string email;
+        string utilisateur;
         string password;
+        Boolean firstBoot;
 
-        public Admin(string email, string password) 
+        public Admin(string utilisateur, string password, Boolean firstBoot) 
         { 
-            this.email = email;
+            this.utilisateur = utilisateur;
             this.password = password;
+            this.firstBoot = firstBoot;
         }
 
-        public string Email
+        public string Utilisateur
         {
-            get { return email; }
-            set { email = value; }
+            get { return utilisateur; }
+            set { utilisateur = value; }
         }
 
         public string Password
         {
             get { return password; }
             set { password = value; }
+        }
+
+        public Boolean FirstBoot 
+        { 
+            get { return firstBoot; }
+            set{ firstBoot = false; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -29,10 +30,11 @@ namespace TravailSession_2023
         public MainWindow()
         {
             this.InitializeComponent();
-            SingletonAdmin.LoggedIn = false;
+           
             if (SingletonAdmin.LoggedIn == false) 
             {
                 //ShowLoginDialog(); 
+                mainFrame.Navigate(typeof(PProjets), "En cours");
             }
             else 
             {
@@ -62,24 +64,26 @@ namespace TravailSession_2023
                     mainFrame.Navigate(typeof(PEmployes));
                     break;
                 case "Login":
+                    await ShowLoginDialog();
 
-                    Connexion dialog = new Connexion();
-                    //dialog.InClient = client;
-                    dialog.XamlRoot = navView.XamlRoot;
-                    dialog.Title = "Connexion";
-                    dialog.PrimaryButtonText = "Continuer";
-                    dialog.CloseButtonText = "Annuler";
-                    dialog.DefaultButton = ContentDialogButton.Primary;
+                    //Connexion dialog = new Connexion();
 
-                    ContentDialogResult resultat = await dialog.ShowAsync();
+                    //dialog.XamlRoot = navView.XamlRoot;
+                    //dialog.Title = "Connexion";
+                    //dialog.PrimaryButtonText = "Continuer";
+                    //dialog.CloseButtonText = "Annuler";
+                    //dialog.DefaultButton = ContentDialogButton.Primary;
 
-                    if (resultat == ContentDialogResult.Primary)
-                    {
 
-                        SingletonAdmin.LoggedIn = true;
+                    //ContentDialogResult resultat = await dialog.ShowAsync();
 
-                    }
-                    else { SingletonAdmin.LoggedIn = false; }
+                    //if (resultat == ContentDialogResult.Primary)
+                    //{
+
+                    //   SingletonAdmin.LoggedIn = true;
+
+                    //}
+
 
                     break;
                 default:
@@ -87,10 +91,9 @@ namespace TravailSession_2023
                     break;
             }
         }
-        private async void ShowLoginDialog(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private async Task ShowLoginDialog()
         {
             Connexion dialog = new Connexion();
-            //dialog.InClient = client;
             dialog.XamlRoot = navView.XamlRoot;
             dialog.Title = "Connexion";
             dialog.PrimaryButtonText = "Continuer";
@@ -99,14 +102,11 @@ namespace TravailSession_2023
 
             ContentDialogResult resultat = await dialog.ShowAsync();
 
-            if (resultat == ContentDialogResult.Primary)
-            {
-
-                SingletonAdmin.LoggedIn = true;
-
-            }
-            else { SingletonAdmin.LoggedIn = false; }
-
+            // Handle the result if needed
+            // if (resultat == ContentDialogResult.Primary)
+            // {
+            //     SingletonAdmin.LoggedIn = true;
+            // }
         }
         private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
