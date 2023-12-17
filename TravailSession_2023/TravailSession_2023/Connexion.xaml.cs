@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -20,20 +21,27 @@ namespace TravailSession_2023
 {
     public sealed partial class Connexion : ContentDialog
     {
-        string nom;
-        string pwd;
+        string utilisateur;
+        string password;
+        Boolean firstBoot;
         public Connexion()
         {
             this.InitializeComponent();
         }
 
-        public string Nom { get => nom; }
-        public string Pwd { get => pwd; }
+        public string Utilisateur { get => utilisateur; }
+        public string Password { get => password; }
+        public Boolean FirstBoot { get => firstBoot; }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            nom = tbxNU.Text;
-            pwd = pwdMDP.Password;
+            utilisateur = tbxNU.Text;
+            password = pwdMDP.Password;
+
+            Admin admin = new Admin(utilisateur, password, firstBoot);
+            SingletonAdmin.LoggedIn = true;
+            SingletonAdmin.getInstance().activateAdmin(admin);
         }
+    
     }
 }
