@@ -40,7 +40,7 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
 
-            listeClients = SingletonClients.getInstance().getListeClients();
+            listeClients = SingletonClient.getInstance().getListeClients();
             foreach (Client client in listeClients)
             {
                 string item = client.Nom;
@@ -50,13 +50,13 @@ namespace TravailSession_2023
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            eNumP.Visibility = Visibility.Collapsed;
+            //eNumP.Visibility = Visibility.Collapsed;
             eTitre.Visibility = Visibility.Collapsed;
             eDateD.Visibility = Visibility.Collapsed;
             eDescription.Visibility = Visibility.Collapsed;
             eBudget.Visibility = Visibility.Collapsed;
             eNbrEmpRequis.Visibility = Visibility.Collapsed;
-            eTotalSalaire.Visibility = Visibility.Collapsed;
+            //eTotalSalaire.Visibility = Visibility.Collapsed;
             eClient.Visibility = Visibility.Collapsed;
             eStatut.Visibility = Visibility.Collapsed;
 

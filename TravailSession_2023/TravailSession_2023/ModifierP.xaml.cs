@@ -39,7 +39,7 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
 
-            listeClients = SingletonClients.getInstance().getListeClients();
+            listeClients = SingletonClient.getInstance().getListeClients();
             foreach (Client client in listeClients)
             {
                 string item = client.Nom;

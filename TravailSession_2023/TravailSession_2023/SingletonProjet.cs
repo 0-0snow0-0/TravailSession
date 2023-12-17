@@ -32,6 +32,7 @@ namespace TravailSession_2023
 
         public ObservableCollection<Projet> getListeProjets()
         {
+            reload();
             return listeProjets;
         }
         
@@ -218,7 +219,6 @@ namespace TravailSession_2023
                 }
             }
         }
-
 
         private void reload()
         {

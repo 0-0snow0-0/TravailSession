@@ -30,6 +30,45 @@ namespace TravailSession_2023
 
         public ObservableCollection<Employe> getListeEmployes()
         {
+            reload();
+            return listeEmployes;
+        }
+
+        public ObservableCollection<Employe> getListeEmployesPourProjet(Projet projet)
+        {     
+            listeEmployes.Clear();
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("show_employes_for_project");
+                commande.Connection = connection;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("in_numProjet", projet.NumProjet);
+
+                connection.Open();
+                commande.Prepare();
+
+                MySqlDataReader r = commande.ExecuteReader();
+
+                while (r.Read())
+                {
+                    /*Si la conversion ne marche pas. Peut être que les dates doivent êtres convertient en string first*/
+                    Employe employe = new Employe(r["matricule"].ToString(), r["nom"].ToString(), r["prenom"].ToString(), Convert.ToDateTime(r["dateNaissance"]), r["email"].ToString(), r["adresse"].ToString(), Convert.ToDateTime(r["dateEmbauche"]), Convert.ToDouble(r["tauxHoraire"]), r["photo_url"].ToString(), r["statut"].ToString(), r["numProjet"].ToString());
+                    listeEmployes.Add(employe);
+                }
+
+                r.Close();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine(ex.Message);
+                    connection.Close();
+                }
+            }
             return listeEmployes;
         }
 

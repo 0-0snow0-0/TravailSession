@@ -24,7 +24,7 @@
             <ColumnDefinition Width="*"/>            
         </Grid.ColumnDefinitions>
 
-        <Grid  Grid.Row="1" Grid.Column="1">
+        <Grid  Grid.Row="1" Grid.Column="1" Margin="0 0">
             <ScrollViewer Padding="10">
                     <Border  BorderBrush="#acdbdb" BorderThickness="5" Background="#9ab6c0" CornerRadius="10"  Padding="20" >
                         <Grid x:Name="gZoomP" >
@@ -55,6 +55,7 @@
                                    Foreground="#4e6173"
                                    FontWeight="Black"
                                     FontSize="18"
+                                   TextWrapping="Wrap"
                                    ></TextBlock>
 
 
@@ -190,33 +191,147 @@
         </ScrollViewer>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="3">
+         <!--Je n'ai pas trouvé de solution pour changé les propriété de ces objets par c#-->
+        <Grid Grid.ColumnSpan="3" Grid.Row="3" Padding="30 0 30 50" x:Name="gridEmp">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition x:Name="col1" Width="*"/>
+                <ColumnDefinition x:Name="col2" Width="*"/>
+                <ColumnDefinition x:Name="col3" Width="*"/>
+                <ColumnDefinition x:Name="col4" Width="*"/>
+                <ColumnDefinition x:Name="col5" Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel x:Name="emp1" Grid.Column="0" Visibility="Collapsed">
-                <TextBlock>Employé 1</TextBlock>
+            <StackPanel x:Name="emp1" Grid.Column="1" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="#acdbdb" BorderThickness="5" Background="#9ab6c0" CornerRadius="10"  Padding="15">
+                    <StackPanel>                        
+                        <TextBlock x:Name="nomEmp1" FontSize="20">Nom Employé</TextBlock>
+                        <TextBlock x:Name="matriculeEmp1" Foreground="Gray">Matricule</TextBlock>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="0 0 10 0">Heures t.</TextBlock>
+                                <TextBlock x:Name="tbHeures1">0</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Salaire</TextBlock>
+                                <TextBlock x:Name="tbSalaire1">0$</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        
+
+                        <StackPanel Orientation="Horizontal" Margin="0 10">
+                            <Button x:Name="btnModifier1" Click="btnModifier_Click" Margin="10 10 0 0">Modifier</Button>
+                            <Button x:Name="btnAjouter1" Click="btnAjouter_Click" Visibility="Collapsed">Ajouter Employer</Button>
+                        </StackPanel>
+                    </StackPanel>                    
+                </Border>                
             </StackPanel>
 
-            <StackPanel x:Name="emp2" Grid.Column="1" Visibility="Collapsed">
-                <TextBlock>Employé 2</TextBlock>
+            <StackPanel x:Name="emp2" Grid.Column="2" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="#acdbdb" BorderThickness="5" Background="#9ab6c0" CornerRadius="10"  Padding="15">
+                    <StackPanel>
+                        <TextBlock x:Name="nomEmp2" FontSize="20">Nom Employé</TextBlock>
+                        <TextBlock x:Name="matriculeEmp2" Foreground="Gray">Matricule</TextBlock>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="0 0 10 0">Heures t.</TextBlock>
+                                <TextBlock x:Name="tbHeures2">0</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Salaire</TextBlock>
+                                <TextBlock x:Name="tbSalaire2">0$</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 10">
+                            <Button x:Name="btnModifier2" Click="btnModifier_Click" Margin="10 10 0 0">Modifier</Button>
+                            <Button x:Name="btnAjouter2" Click="btnAjouter_Click" Visibility="Collapsed">Ajouter Employer</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
 
-            <StackPanel x:Name="emp3" Grid.Column="2" Visibility="Collapsed">
-                <TextBlock>Employé 3</TextBlock>
+            <StackPanel x:Name="emp3" Grid.Column="3" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="#acdbdb" BorderThickness="5" Background="#9ab6c0" CornerRadius="10"  Padding="15">
+                    <StackPanel>
+                        <TextBlock x:Name="nomEmp3" FontSize="20">Nom Employé</TextBlock>
+                        <TextBlock x:Name="matriculeEmp3" Foreground="Gray">Matricule</TextBlock>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="0 0 10 0">Heures t.</TextBlock>
+                                <TextBlock x:Name="tbHeures3">0</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Salaire</TextBlock>
+                                <TextBlock x:Name="tbSalaire3">0$</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 10">
+                            <Button x:Name="btnModifier3" Click="btnModifier_Click" Margin="10 10 0 0">Modifier</Button>
+                            <Button x:Name="btnAjouter3" Click="btnAjouter_Click" Visibility="Collapsed">Ajouter Employer</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
 
-            <StackPanel x:Name="emp4" Grid.Column="3" Visibility="Collapsed">
-                <TextBlock>Employé 4</TextBlock>
+            <StackPanel x:Name="emp4" Grid.Column="4" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="#acdbdb" BorderThickness="5" Background="#9ab6c0" CornerRadius="10"  Padding="15">
+                    <StackPanel>
+                        <TextBlock x:Name="nomEmp4" FontSize="20">Nom Employé</TextBlock>
+                        <TextBlock x:Name="matriculeEmp4" Foreground="Gray">Matricule</TextBlock>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="0 0 10 0">Heures t.</TextBlock>
+                                <TextBlock x:Name="tbHeures4">0</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Salaire</TextBlock>
+                                <TextBlock x:Name="tbSalaire4">0$</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 10">
+                            <Button x:Name="btnModifier4" Click="btnModifier_Click" Margin="10 10 0 0">Modifier</Button>
+                            <Button x:Name="btnAjouter4" Click="btnAjouter_Click" Visibility="Collapsed">Ajouter Employer</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
 
-            <StackPanel x:Name="emp5" Grid.Column="4" Visibility="Collapsed">
-                <TextBlock>Employé 5</TextBlock>
+            <StackPanel x:Name="emp5" Grid.Column="5" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="#acdbdb" BorderThickness="5" Background="#9ab6c0" CornerRadius="10"  Padding="15">
+                    <StackPanel>
+                        <TextBlock x:Name="nomEmp5"  FontSize="20">Nom Employé</TextBlock>
+                        <TextBlock x:Name="matriculeEmp5" Foreground="Gray">Matricule</TextBlock>
+
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="0 0 10 0">Heures t.</TextBlock>
+                                <TextBlock x:Name="tbHeures5" >0</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock>Salaire</TextBlock>
+                                <TextBlock x:Name="tbSalaire5">0$</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 10">
+                            <Button x:Name="btnModifier5" Click="btnModifier_Click" Margin="10 10 0 0">Modifier</Button>
+                            <Button x:Name="btnAjouter5" Click="btnAjouter_Click" Visibility="Collapsed">Ajouter Employer</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Grid>
         

@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace TravailSession_2023
 {
-    internal class SingletonClients
+    internal class SingletonClient
     {
         MySqlConnection connection = new MySqlConnection("Server=cours.cegep3r.info;Database=a2023_420325ri_fabeq7;Uid=1564431;Pwd=1564431");
 
         ObservableCollection<Client> listeClients;
-        static SingletonClients instance = null;
+        static SingletonClient instance = null;
 
-        public SingletonClients() 
+        public SingletonClient() 
         { 
             listeClients = new ObservableCollection<Client>();
             reload();
         }
 
-        public static SingletonClients getInstance()
+        public static SingletonClient getInstance()
         {
             if (instance == null)
-                instance = new SingletonClients();
+                instance = new SingletonClient();
             return instance;
         }
 

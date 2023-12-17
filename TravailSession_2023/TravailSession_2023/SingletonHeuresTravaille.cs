@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace TravailSession_2023
 {
-    internal class SingletonHeuresTravailles
+    internal class SingletonHeuresTravaille
     {
         MySqlConnection connection = new MySqlConnection("Server=cours.cegep3r.info;Database=a2023_420325ri_fabeq7;Uid=1564431;Pwd=1564431");
 
         ObservableCollection<HeuresTravaille> listeHeuresTravailles;
-        static SingletonHeuresTravailles instance = null;
+        static SingletonHeuresTravaille instance = null;
 
-        public SingletonHeuresTravailles()
+        public SingletonHeuresTravaille()
         {
             listeHeuresTravailles = new ObservableCollection<HeuresTravaille>();
             reload();
         }
 
-        public static SingletonHeuresTravailles getInstance()
+        public static SingletonHeuresTravaille getInstance()
         {
             if (instance == null)
-                instance = new SingletonHeuresTravailles();
+                instance = new SingletonHeuresTravaille();
             return instance;
         }
 
@@ -34,9 +34,57 @@ namespace TravailSession_2023
             return listeHeuresTravailles;
         }
 
+        /*
+        public ObservableCollection<HeuresTravaille> getListeEmployesPourProjet(Projet projet)
+        {
+
+        }
+        */
+
         public HeuresTravaille getHeuresTravaille(int index)
         {
             return listeHeuresTravailles[index];
+        }
+
+        public HeuresTravaille getHeuresTravaillePourProjet(Projet projet, string matricule)
+        {
+            listeHeuresTravailles.Clear();
+            HeuresTravaille ht = null;
+
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("show_all_heures_pour_projet");
+                commande.Connection = connection;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                commande.Parameters.AddWithValue("in_numProjet", projet.NumProjet);
+                commande.Parameters.AddWithValue("in_matricule", matricule);
+
+                connection.Open();
+                commande.Prepare();
+
+                MySqlDataReader r = commande.ExecuteReader();                
+                
+                while (r.Read()) 
+                {
+                    ht = new HeuresTravaille(r["numProjet"].ToString(), r["matricule"].ToString(), Convert.ToDouble(r["nbrHeures"]), Convert.ToDouble(r["salaireemploye"]));
+                }
+                
+                
+
+                r.Close();
+                connection.Close();
+                return ht;
+            }
+            catch (Exception ex)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine(ex.Message);
+                    connection.Close();
+                }
+                return ht;
+            }
         }
 
         public void ajouterHeuresTravailles(HeuresTravaille ht)

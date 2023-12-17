@@ -46,7 +46,7 @@ namespace TravailSession_2023
                 if (index >= 0)
                 {
 
-                    client = SingletonClients.getInstance().getClient(index);
+                    client = SingletonClient.getInstance().getClient(index);
 
                     zId.Text = client.Id.ToString();
                     zNom.Text = client.Nom;
@@ -89,7 +89,7 @@ namespace TravailSession_2023
 
             if(sup)
             {
-                errorMessage = SingletonClients.getInstance().supprimerClient(client);
+                errorMessage = SingletonClient.getInstance().supprimerClient(client);
             }
 
             if(errorMessage != "Ok") 

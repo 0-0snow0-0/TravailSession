@@ -26,7 +26,7 @@ namespace TravailSession_2023
         public PClients()
         {
             this.InitializeComponent();
-            gvClients.ItemsSource = SingletonClients.getInstance().getListeClients();
+            gvClients.ItemsSource = SingletonClient.getInstance().getListeClients();
         }
 
         private void gvClients_SelectionChanged(object sender, SelectionChangedEventArgs e)

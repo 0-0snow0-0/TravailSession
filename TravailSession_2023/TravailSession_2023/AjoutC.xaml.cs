@@ -92,7 +92,7 @@ namespace TravailSession_2023
                 email = tbxEmail.Text;
 
                 Client client = new Client(id, nom, adresse, numTel, email);
-                SingletonClients.getInstance().ajouterClient(client);
+                SingletonClient.getInstance().ajouterClient(client);
             }
             else
             {
