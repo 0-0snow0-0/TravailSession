@@ -40,12 +40,10 @@ namespace TravailSession_2023
         {
             if (e.Parameter is not null)
             {
-                if(index !< 0)
-                    index = (int)e.Parameter;
+                index = (int)e.Parameter;
 
                 if (index >= 0)
-                {
-
+                {                    
                     projet = SingletonProjets.getInstance().getProjet(index);
 
                     zNumP.Text = projet.NumProjet;
@@ -280,6 +278,7 @@ namespace TravailSession_2023
             dialog.DefaultButton = ContentDialogButton.Primary;
 
             ContentDialogResult result = await dialog.ShowAsync();
+            SingletonProjets.getInstance().reload();
             this.Frame.Navigate(typeof(ZoomP), index);
         }
 
@@ -294,6 +293,7 @@ namespace TravailSession_2023
             dialog.DefaultButton = ContentDialogButton.Primary;
 
             ContentDialogResult result = await dialog.ShowAsync();
+            SingletonProjets.getInstance().reload();
             this.Frame.Navigate(typeof(ZoomP), index);
         }
 

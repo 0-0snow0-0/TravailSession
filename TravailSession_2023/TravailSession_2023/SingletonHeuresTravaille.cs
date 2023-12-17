@@ -177,7 +177,7 @@ namespace TravailSession_2023
         }
 
 
-        private void reload()
+        public void reload()
         {
             listeHeuresTravailles.Clear();
 

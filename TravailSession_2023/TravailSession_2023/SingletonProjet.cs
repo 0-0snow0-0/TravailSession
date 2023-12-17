@@ -220,7 +220,7 @@ namespace TravailSession_2023
             }
         }
 
-        private void reload()
+        public void reload()
         {
             listeProjets.Clear();
 
@@ -238,7 +238,7 @@ namespace TravailSession_2023
                 while (r.Read())
                 {
                     /*Si la conversion ne marche pas. Peut être que les dates doivent êtres convertient en string first*/
-                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString(), Convert.ToDateTime(r["dateDebut"]), r["desription"].ToString(), Convert.ToInt16(r["budget"]), Convert.ToInt16(r["nbrEmpRequis"]), Convert.ToDouble(r["totalSalaire"]), Convert.ToInt16(r["client"]), r["statut"].ToString());
+                    Projet projet = new Projet(r["numProjet"].ToString(), r["titre"].ToString(), Convert.ToDateTime(r["dateDebut"]), r["description"].ToString(), Convert.ToInt16(r["budget"]), Convert.ToInt16(r["nbrEmpRequis"]), Convert.ToDouble(r["totalSalaire"]), Convert.ToInt16(r["client"]), r["statut"].ToString());
                     listeProjets.Add(projet);
                 }
 
