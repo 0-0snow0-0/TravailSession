@@ -93,14 +93,10 @@ namespace TravailSession_2023
                 PerformLogout();
                 
             }
-            else
-            {
-                //error could not login
-            }
+            
         }
         
         private void PerformLogin()
-
         {
             ShowLogoutMessageDialog();
 
@@ -124,41 +120,35 @@ namespace TravailSession_2023
             Login.Background = brush;
 
         }
-        private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
-        {
-            if (mainFrame.CanGoBack)
-                mainFrame.GoBack();
-        }
         private async void ShowLogoutMessageDialog()
         {
-
             ContentDialog logoutDialog = new ContentDialog();
             logoutDialog.XamlRoot = navView.XamlRoot;
             logoutDialog.Title = "Déconnexion réussie";
             logoutDialog.CloseButtonText = "OK";
             logoutDialog.Content = "Vous êtes maintenant déconnecté.";
 
-
-            var result = await logoutDialog.ShowAsync();
-
-            // Set LoggedIn to false after the user closes the logout dialog
+            var resultat = await logoutDialog.ShowAsync();
+            
             SingletonAdmin.LoggedIn = false;
         }
 
         private async void ShowLoginMessageDialog()
         {
-
             ContentDialog loginDialog = new ContentDialog();
             loginDialog.XamlRoot = navView.XamlRoot;
             loginDialog.Title = "Connexion réussie";
             loginDialog.CloseButtonText = "OK";
             loginDialog.Content = "Vous êtes maintenant connecté.";
 
+            var resultat = await loginDialog.ShowAsync();
 
-            var result = await loginDialog.ShowAsync();
-
-            // Set LoggedIn to false after the user closes the logout dialog
             SingletonAdmin.LoggedIn = true;
+        }
+        private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (mainFrame.CanGoBack)
+                mainFrame.GoBack();
         }
     }
 }

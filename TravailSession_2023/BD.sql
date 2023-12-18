@@ -206,7 +206,7 @@
     DROP PROCEDURE IF EXISTS activate_admin;
 
     DELIMITER //
-    CREATE PROCEDURE activate_admin(IN username_a VARCHAR(100), password_a VARCHAR(50))
+    CREATE PROCEDURE activate_admin(IN username_a VARCHAR(100), password_a VARCHAR(255))
     BEGIN
         INSERT INTO admin (username, password)
         VALUES (username_a, password_a);
@@ -214,10 +214,10 @@
     DELIMITER ;
 
 /*Veryfication ADMIN - JF*/
-DROP PROCEDURE IF EXISTS verify_admin;
+/* DROP PROCEDURE IF EXISTS verify_admin;
 
 DELIMITER //
-CREATE PROCEDURE verify_admin(IN username_a VARCHAR(100), IN password_a VARCHAR(50), OUT result_message VARCHAR(255))
+CREATE PROCEDURE verify_admin(IN username_a VARCHAR(100), IN password_a VARCHAR(255), OUT result_message VARCHAR(255))
 BEGIN
     DECLARE user_count INT;
 
@@ -233,6 +233,19 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Échec de la connexion: Mot de passe ou nom d''utilisateur invalide';
     END IF;
+END //
+
+DELIMITER ; */
+
+DROP PROCEDURE IF EXISTS verify_admin;
+DELIMITER //
+CREATE PROCEDURE verify_admin(IN username_a VARCHAR(100), IN password_a VARCHAR(50))
+BEGIN
+
+    SELECT username, password
+    FROM admin
+    WHERE username = username_a AND password = password_a;
+
 END //
 
 DELIMITER ;

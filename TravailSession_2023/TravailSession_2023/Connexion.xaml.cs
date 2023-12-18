@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.WindowsAppSDK.Runtime.Packages;
 using Google.Protobuf.WellKnownTypes;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -45,7 +46,7 @@ namespace TravailSession_2023
         public string Utilisateur { get => utilisateur; }
         public string Password { get => password; }
 
-        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async  void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             
             if (check) 
@@ -101,7 +102,7 @@ namespace TravailSession_2023
                         dialog.PrimaryButtonText = "Ok";
                         dialog.CloseButtonText = "Ok";
 
-                        ContentDialogResult resultat = await dialog.ShowAsync();
+                        var resultat = await dialog.ShowAsync();
 
                         args.Cancel = true;
                     }
@@ -138,20 +139,16 @@ namespace TravailSession_2023
 
                         try
                         {
-                        Admin admin = new Admin(utilisateur, password);
-                        SingletonAdmin.getInstance().validationAdmin(admin);
+                            Admin admin = new Admin(utilisateur, password);
+                            SingletonAdmin.getInstance().validationAdmin(admin);
+                        //Does not work
 
                         }
                         catch (Exception ex)
                         {
-                            ErrorDialog dialog = new ErrorDialog();
-                            dialog.XamlRoot = stkConnexion.XamlRoot;
-                            dialog.ErrorMessage = ex.Message;
-                            dialog.Title = "Erreur";
-                            dialog.PrimaryButtonText = "Ok";
-                            dialog.CloseButtonText = "Ok";
 
-                            ContentDialogResult resultat = await dialog.ShowAsync();
+                           await ShowVerifyMessageDialog();
+                            Console.WriteLine(ex.Message);
 
                             args.Cancel = true;
                         }
@@ -160,12 +157,27 @@ namespace TravailSession_2023
                     {
                         args.Cancel = true;
                     }
-                }
+            }
             
 
            
         }
-    
 
+
+        private async Task ShowVerifyMessageDialog()
+        {
+            // Create and configure the secondary dialog
+            ErrorDialog dialog = new ErrorDialog();
+            dialog.XamlRoot = stkConnexion.XamlRoot;
+            dialog.ErrorMessage = "Échec de la connexion: Mot de passe ou nom d''utilisateur invalide";
+            dialog.Title = "Erreur";
+            dialog.PrimaryButtonText = "Ok";
+            dialog.CloseButtonText = "Close";
+
+            // Show the secondary dialog
+            await dialog.ShowAsync();
+        }
+
+       
     }
 }

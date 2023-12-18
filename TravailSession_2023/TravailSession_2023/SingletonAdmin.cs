@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TravailSession_2023
 {
     internal class SingletonAdmin
@@ -108,7 +109,6 @@ namespace TravailSession_2023
                 {
                     if (connection.State == System.Data.ConnectionState.Open)
                     {
-                        
                         Console.WriteLine(ex.Message);
                         connection.Close();
                     }
@@ -117,50 +117,43 @@ namespace TravailSession_2023
 
         }
 
-        
 
-       
+        public string messageE;
+
         public void validationAdmin(Admin admin)
         {
-            
-            
-                try
-                {
-                    MySqlCommand commande = new MySqlCommand("verify_admin");
-                    commande.Connection = connection;
-                    commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    commande.Parameters.AddWithValue("username_a", admin.Utilisateur);
-                    commande.Parameters.AddWithValue("password_a", genererSHA256(admin.Password));
 
-                    //commande.Parameters.Add(new MySqlParameter("result_message", MySqlDbType.VarChar, 255));
-                    //commande.Parameters["result_message"].Direction = ParameterDirection.Output;
+            try
+            {
+                MySqlCommand commande = new MySqlCommand("verify_admin");
+                commande.Connection = connection;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    connection.Open();
-                    commande.Prepare();
-                    commande.ExecuteNonQuery();
+                commande.Parameters.AddWithValue("username_a", admin.Utilisateur);
+                commande.Parameters.AddWithValue("password_a", genererSHA256(admin.Password));
 
-                    //string resultMessage = commande.Parameters["result_message"].Value.ToString();
 
-                    //if (resultMessage != "Login successful")
-                    //{
-                      //  throw new Exception(resultMessage); // Throw an exception if login fails
-                    //}
-                    //else
-                    //{
-                     //   LoggedIn = true;
-                   // }
+                connection.Open();
+                commande.Prepare();
+                commande.ExecuteNonQuery();
 
-                    connection.Close();
+
+
+                connection.Close();
                 SingletonAdmin.LoggedIn = true;
             }
-                catch (Exception ex) 
+            catch (Exception ex)
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
                 {
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
-            
-            
+
+                throw;
+            }
+
         }
 
         private string genererSHA256(string texte)
@@ -172,9 +165,13 @@ namespace TravailSession_2023
             foreach (Byte b in bytes)
                 sb.Append(b.ToString("x2"));
 
-            return sb.ToString();
-        }
+            string hashedPassword = sb.ToString();
 
+            // Log or print the length of the hashed password for debugging
+            Console.WriteLine($"Length of Hashed Password: {hashedPassword.Length}");
+
+            return hashedPassword;
+        }
 
     }
 }
