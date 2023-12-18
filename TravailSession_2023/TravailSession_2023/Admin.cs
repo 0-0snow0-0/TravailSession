@@ -12,13 +12,12 @@ namespace TravailSession_2023
     {
         string utilisateur;
         string password;
-        Boolean firstBoot;
+       
 
-        public Admin(string utilisateur, string password, Boolean firstBoot) 
+        public Admin(string utilisateur, string password) 
         { 
             this.utilisateur = utilisateur;
             this.password = password;
-            this.firstBoot = firstBoot;
         }
 
         public string Utilisateur
@@ -33,11 +32,6 @@ namespace TravailSession_2023
             set { password = value; }
         }
 
-        public Boolean FirstBoot 
-        { 
-            get { return firstBoot; }
-            set{ firstBoot = false; }
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

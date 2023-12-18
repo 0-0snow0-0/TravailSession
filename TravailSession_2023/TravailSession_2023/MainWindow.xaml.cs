@@ -33,17 +33,15 @@ namespace TravailSession_2023
         {
             this.InitializeComponent();
 
-            if (SingletonAdmin.LoggedIn == false)
-            {
-                //ShowLoginDialog(); 
-                mainFrame.Navigate(typeof(PProjets), "En cours");
-            }
-            else
-            {
-                mainFrame.Navigate(typeof(PProjets), "En cours");
-            }
+            mainFrame.Navigate(typeof(PProjets), "En cours");
+            
+        }
 
-
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            bool admin = false;
+            admin = SingletonAdmin.getInstance().checkAdmin();
+            await ShowLoginDialog(admin);
         }
 
         private async void navView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -68,7 +66,7 @@ namespace TravailSession_2023
                     }
                     else 
                     {
-                        await ShowLoginDialog();
+                        await ShowLoginDialog(false);
                     }
                     
 
@@ -78,10 +76,11 @@ namespace TravailSession_2023
                     break;
             }
         }
-        private async Task ShowLoginDialog()
+        private async Task ShowLoginDialog(bool admin)
         {
             Connexion dialog = new Connexion();
             dialog.XamlRoot = navView.XamlRoot;
+            dialog.Check = admin;
             dialog.Title = "Connexion";
             dialog.PrimaryButtonText = "Continuer";
             dialog.CloseButtonText = "Annuler";
@@ -104,6 +103,7 @@ namespace TravailSession_2023
 
         {
             ShowLogoutMessageDialog();
+
             Login.Content = "Connexion";
 
             Windows.UI.Color color = Windows.UI.Color.FromArgb(0xFF, 0xB0, 0xB9, 0xA6);
@@ -111,9 +111,12 @@ namespace TravailSession_2023
 
             Login.Background = brush;
 
+            this.mainFrame.Navigate(typeof(PProjets), "En cours");
+
         }
-        private void PerformLogout()
+        private void PerformLogout() 
         {
+            ShowLoginMessageDialog();
             Login.Content = "Déconnexion";
 
             Windows.UI.Color color = Windows.UI.Color.FromArgb(0xFF, 0x84, 0x3C, 0x41);
@@ -140,6 +143,22 @@ namespace TravailSession_2023
 
             // Set LoggedIn to false after the user closes the logout dialog
             SingletonAdmin.LoggedIn = false;
+        }
+
+        private async void ShowLoginMessageDialog()
+        {
+
+            ContentDialog loginDialog = new ContentDialog();
+            loginDialog.XamlRoot = navView.XamlRoot;
+            loginDialog.Title = "Connexion réussie";
+            loginDialog.CloseButtonText = "OK";
+            loginDialog.Content = "Vous êtes maintenant connecté.";
+
+
+            var result = await loginDialog.ShowAsync();
+
+            // Set LoggedIn to false after the user closes the logout dialog
+            SingletonAdmin.LoggedIn = true;
         }
     }
 }

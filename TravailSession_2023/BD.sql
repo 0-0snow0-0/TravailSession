@@ -65,7 +65,7 @@
     /*J'ai enleve username puisque je le trouvais redondant*/
     CREATE TABLE admin (
         username VARCHAR(100) PRIMARY KEY,
-        password VARCHAR(50),
+        password VARCHAR(100),
         firstBoot BOOLEAN
     );
 

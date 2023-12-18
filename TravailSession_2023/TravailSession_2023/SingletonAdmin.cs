@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,8 +31,6 @@ namespace TravailSession_2023
             return instance;
         }
 
-        int countL = 0;
-
         public static bool LoggedIn
         { get; set; } = false;
 
@@ -42,10 +43,48 @@ namespace TravailSession_2023
         {
             return User[index];
         }
+
+        public bool checkAdmin() 
+        {
+            try 
+            {
+                MySqlCommand commande = new MySqlCommand("show_admin");
+                commande.Connection = connection;
+                commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                connection.Open();
+                commande.Prepare();
+
+                MySqlDataReader r = commande.ExecuteReader();
+
+
+                int check = -1;
+                while (r.Read()) 
+                {
+                    check = Convert.ToInt16(r["count"]);
+                }
+                r.Close();
+                connection.Close();
+
+                if (check == 0) 
+                { return true; }
+                else { return false; }
+                
+            }
+            catch (Exception e) 
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine(e.Message);
+                    connection.Close();
+                }
+                return false; 
+            }
+        }
+
         public void activateAdmin(Admin admin)
         {
-            if (countL == 0 && admin.FirstBoot != true)
-            {
+            
                 try
                 {
 
@@ -53,39 +92,38 @@ namespace TravailSession_2023
                     commande.Connection = connection;
                     commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    commande.Parameters.AddWithValue("email_a", admin.Utilisateur);
-                    commande.Parameters.AddWithValue("password_a", admin.Password);
-                    commande.Parameters.AddWithValue("firstBoot_a", admin.FirstBoot);
-
+                    commande.Parameters.AddWithValue("username_a", admin.Utilisateur);
+                    commande.Parameters.AddWithValue("password_a", genererSHA256(admin.Password));
+                
+                   
                     connection.Open();
                     commande.Prepare();
                     commande.ExecuteNonQuery();
-                    countL++;
+                    
                     connection.Close();
 
-
+                    SingletonAdmin.LoggedIn = true;
                 }
                 catch (Exception ex)
                 {
                     if (connection.State == System.Data.ConnectionState.Open)
                     {
-                        countL = 0;
+                        
                         Console.WriteLine(ex.Message);
                         connection.Close();
                     }
                 }
-            }
-            else { validationAdmin(admin); }
+            
 
         }
 
         
 
        
-    public void validationAdmin(Admin admin)
+        public void validationAdmin(Admin admin)
         {
-            if (countL > 0) 
-            {
+            
+            
                 try
                 {
                     MySqlCommand commande = new MySqlCommand("verify_admin");
@@ -93,33 +131,50 @@ namespace TravailSession_2023
                     commande.CommandType = System.Data.CommandType.StoredProcedure;
 
                     commande.Parameters.AddWithValue("username_a", admin.Utilisateur);
-                    commande.Parameters.AddWithValue("password_a", admin.Password);
+                    commande.Parameters.AddWithValue("password_a", genererSHA256(admin.Password));
 
-                    commande.Parameters.Add(new MySqlParameter("result_message", MySqlDbType.VarChar, 255));
-                    commande.Parameters["result_message"].Direction = ParameterDirection.Output;
+                    //commande.Parameters.Add(new MySqlParameter("result_message", MySqlDbType.VarChar, 255));
+                    //commande.Parameters["result_message"].Direction = ParameterDirection.Output;
 
                     connection.Open();
                     commande.Prepare();
                     commande.ExecuteNonQuery();
 
-                    string resultMessage = commande.Parameters["result_message"].Value.ToString();
+                    //string resultMessage = commande.Parameters["result_message"].Value.ToString();
 
-                    if (resultMessage != "Login successful")
-                    {
-                        throw new Exception(resultMessage); // Throw an exception if login fails
-                    }
+                    //if (resultMessage != "Login successful")
+                    //{
+                      //  throw new Exception(resultMessage); // Throw an exception if login fails
+                    //}
+                    //else
+                    //{
+                     //   LoggedIn = true;
+                   // }
 
                     connection.Close();
-                }
+                SingletonAdmin.LoggedIn = true;
+            }
                 catch (Exception ex) 
                 {
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
-            }
+            
             
         }
-       
-        
+
+        private string genererSHA256(string texte)
+        {
+            var sha256 = SHA256.Create();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(texte));
+
+            StringBuilder sb = new StringBuilder();
+            foreach (Byte b in bytes)
+                sb.Append(b.ToString("x2"));
+
+            return sb.ToString();
+        }
+
+
     }
 }

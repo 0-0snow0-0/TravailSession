@@ -10,7 +10,7 @@
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <ScrollViewer Margin="10" Padding="5">
-        <StackPanel >
+        <StackPanel x:Name="stkConnexion">
 
             <StackPanel Margin="0 10">
                 <TextBox Header="Nom d'utilisateur" x:Name="tbxNU" Margin="0 0 0 5"/>
@@ -21,7 +21,12 @@
                 <PasswordBox Header="Mot de Passe" x:Name="pwdMDP" Margin="0 5 0 5"/>
                 <TextBlock x:Name="eMDP" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer votre mot de passe</TextBlock>
             </StackPanel>
-
+            
+            <StackPanel Margin="0 10">
+                <PasswordBox Header="Confirmation de mot de Passe" x:Name="pwdCMDP" Margin="0 5 0 5" Visibility="Collapsed"/>
+                <TextBlock x:Name="eCMDP" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer la confirmation mot de passe</TextBlock>
+            </StackPanel>
         </StackPanel>
+        
     </ScrollViewer>
 </ContentDialog>
