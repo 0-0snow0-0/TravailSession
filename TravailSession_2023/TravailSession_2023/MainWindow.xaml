@@ -25,13 +25,7 @@
             <NavigationViewItemSeparator   Margin=" 0 15 0 15 " />
             <NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="OpenPane"  Foreground="White" Background="#b0b9a6"/>
         </NavigationView.MenuItems> 
-        
-            <!--<NavigationViewItem Content="Se connecter"  x:Name="Login"  Icon="OpenPane"  Foreground="White" Background="#b0b9a6"/>-->
-            <!--<NavigationViewItem Content="Se deconnecter"  x:Name="Logout" Icon="ClosePane" Foreground="White" Background="#843c41" />-->
             
-        
-
-
         <Frame x:Name="mainFrame" Grid.Row="1" />
     </NavigationView>
 </Window>

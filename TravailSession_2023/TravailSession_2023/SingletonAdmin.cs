@@ -3,6 +3,7 @@ using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace TravailSession_2023
         public SingletonAdmin()
         {
             User = new ObservableCollection<Admin>();
-           
+
         }
         public static SingletonAdmin getInstance()
         {
@@ -27,8 +28,11 @@ namespace TravailSession_2023
             return instance;
         }
 
-        public static bool LoggedIn { get; set; } = false;
-        
+        int countL = 0;
+
+        public static bool LoggedIn
+        { get; set; } = false;
+
         public ObservableCollection<Admin> getAdmin()
         {
             return User;
@@ -40,10 +44,11 @@ namespace TravailSession_2023
         }
         public void activateAdmin(Admin admin)
         {
-            
-            try
-            {   if (admin.FirstBoot != true)
+            if (countL == 0 && admin.FirstBoot != true)
+            {
+                try
                 {
+
                     MySqlCommand commande = new MySqlCommand("activate_admin");
                     commande.Connection = connection;
                     commande.CommandType = System.Data.CommandType.StoredProcedure;
@@ -55,25 +60,65 @@ namespace TravailSession_2023
                     connection.Open();
                     commande.Prepare();
                     commande.ExecuteNonQuery();
+                    countL++;
+                    connection.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    if (connection.State == System.Data.ConnectionState.Open)
+                    {
+                        countL = 0;
+                        Console.WriteLine(ex.Message);
+                        connection.Close();
+                    }
+                }
+            }
+            else { validationAdmin(admin); }
+
+        }
+
+        
+
+       
+    public void validationAdmin(Admin admin)
+        {
+            if (countL > 0) 
+            {
+                try
+                {
+                    MySqlCommand commande = new MySqlCommand("verify_admin");
+                    commande.Connection = connection;
+                    commande.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    commande.Parameters.AddWithValue("username_a", admin.Utilisateur);
+                    commande.Parameters.AddWithValue("password_a", admin.Password);
+
+                    commande.Parameters.Add(new MySqlParameter("result_message", MySqlDbType.VarChar, 255));
+                    commande.Parameters["result_message"].Direction = ParameterDirection.Output;
+
+                    connection.Open();
+                    commande.Prepare();
+                    commande.ExecuteNonQuery();
+
+                    string resultMessage = commande.Parameters["result_message"].Value.ToString();
+
+                    if (resultMessage != "Login successful")
+                    {
+                        throw new Exception(resultMessage); // Throw an exception if login fails
+                    }
 
                     connection.Close();
                 }
-                else 
-                {
-                    Console.WriteLine("Activation already performed.");
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                if (connection.State == System.Data.ConnectionState.Open)
+                catch (Exception ex) 
                 {
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
             }
+            
         }
-
        
         
     }
