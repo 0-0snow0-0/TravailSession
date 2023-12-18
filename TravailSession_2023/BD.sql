@@ -201,18 +201,42 @@
     end //
     DELIMITER ;
 
-/*SETTING FIRST TIME BOOT ADMIN*/
+/*SETTING FIRST TIME BOOT ADMIN - JF*/
 
     DROP PROCEDURE IF EXISTS activate_admin;
 
     DELIMITER //
-    CREATE PROCEDURE activate_admin(IN email_a VARCHAR(100), password_a VARCHAR(50))
+    CREATE PROCEDURE activate_admin(IN username_a VARCHAR(100), password_a VARCHAR(50))
     BEGIN
-        UPDATE admin
-        SET username = email_a, password = password_a, firstBoot = true
-        WHERE firstBoot = false;
-    end //
+        INSERT INTO admin (username, password)
+        VALUES (username_a, password_a);
+    END //
     DELIMITER ;
+
+/*Veryfication ADMIN - JF*/
+DROP PROCEDURE IF EXISTS verify_admin;
+
+DELIMITER //
+CREATE PROCEDURE verify_admin(IN username_a VARCHAR(100), IN password_a VARCHAR(50), OUT result_message VARCHAR(255))
+BEGIN
+    DECLARE user_count INT;
+
+    SELECT COUNT(*)
+    INTO user_count
+    FROM admin
+    WHERE username = username_a AND password = password_a;
+
+    IF user_count > 0 THEN
+        SET result_message = 'Connexion réussie';
+    ELSE
+        SET result_message = 'Échec de la connexion';
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Échec de la connexion: Mot de passe ou nom d''utilisateur invalide';
+    END IF;
+END //
+
+DELIMITER ;
+
 
 /*CREATION DES PROCEDURES D'AFFICHAGES*/
 
