@@ -45,6 +45,7 @@ namespace TravailSession_2023
             m_window.Activate();
         }
 
-        private Window m_window;
+        //Changé pour importation
+        public Window m_window;
     }
 }

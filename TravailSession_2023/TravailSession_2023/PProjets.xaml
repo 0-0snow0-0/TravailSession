@@ -97,7 +97,8 @@
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="btnEnCours" Click="btnEnCours_Click" Margin="0 0 30 0" Background="#acdbdb" Foreground="#4e6173" FontSize="16">En cours</Button>
-            <Button x:Name="btnTermine" Click="btnTermine_Click" Background="#acdbdb" Foreground="#4e6173" FontSize="16">Terminé</Button>            
+            <Button x:Name="btnTermine" Click="btnTermine_Click" Margin="0 0 30 0" Background="#acdbdb" Foreground="#4e6173" FontSize="16">Terminé</Button>
+            <Button x:Name="btnExporation" Click="btnExporation_Click" Background="#acdbdb" Foreground="#4e6173" FontSize="16">Exporter les projets</Button>
         </StackPanel>
     </Grid>
 </Page>

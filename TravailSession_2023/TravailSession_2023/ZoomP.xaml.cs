@@ -66,7 +66,7 @@ namespace TravailSession_2023
                             emp5.Visibility = Visibility.Visible; 
                             if(lenghtEmp >= 5)
                             {
-                                nomEmp5.Text = listeEmployes[4].Nom;
+                                nomEmp5.Text = listeEmployes[4].Prenom + " " + listeEmployes[4].Nom;
                                 matriculeEmp5.Text = listeEmployes[4].Matricule;
 
                                 HeuresTravaille ht = SingletonHeuresTravaille.getInstance().getHeuresTravaillePourProjet(projet, listeEmployes[4].Matricule);
@@ -84,7 +84,7 @@ namespace TravailSession_2023
                             emp4.Visibility = Visibility.Visible;
                             if (lenghtEmp >= 4)
                             {
-                                nomEmp4.Text = listeEmployes[3].Nom;
+                                nomEmp4.Text = listeEmployes[3].Prenom + " " + listeEmployes[3].Nom;
                                 matriculeEmp4.Text = listeEmployes[3].Matricule;
 
                                 HeuresTravaille ht = SingletonHeuresTravaille.getInstance().getHeuresTravaillePourProjet(projet, listeEmployes[3].Matricule);
@@ -102,7 +102,7 @@ namespace TravailSession_2023
                             emp3.Visibility = Visibility.Visible;
                             if (lenghtEmp >= 3)
                             {
-                                nomEmp3.Text = listeEmployes[2].Nom;
+                                nomEmp3.Text = listeEmployes[2].Prenom + " " + listeEmployes[2].Nom;
                                 matriculeEmp3.Text = listeEmployes[2].Matricule;
 
                                 HeuresTravaille ht = SingletonHeuresTravaille.getInstance().getHeuresTravaillePourProjet(projet, listeEmployes[2].Matricule);
@@ -120,7 +120,7 @@ namespace TravailSession_2023
                             emp2.Visibility = Visibility.Visible;
                             if (lenghtEmp >= 2)
                             {
-                                nomEmp2.Text = listeEmployes[1].Nom;
+                                nomEmp2.Text = listeEmployes[1].Prenom + " " + listeEmployes[1].Nom;
                                 matriculeEmp2.Text = listeEmployes[1].Matricule;
 
                                 HeuresTravaille ht = SingletonHeuresTravaille.getInstance().getHeuresTravaillePourProjet(projet, listeEmployes[1].Matricule);
@@ -138,7 +138,7 @@ namespace TravailSession_2023
                             emp1.Visibility = Visibility.Visible;
                             if (lenghtEmp >= 1)
                             {
-                                nomEmp1.Text = listeEmployes[0].Nom;
+                                nomEmp1.Text = listeEmployes[0].Prenom + " " + listeEmployes[0].Nom;
                                 matriculeEmp1.Text = listeEmployes[0].Matricule;
 
                                 HeuresTravaille ht = SingletonHeuresTravaille.getInstance().getHeuresTravaillePourProjet(projet, listeEmployes[0].Matricule);
