@@ -54,7 +54,11 @@ namespace TravailSession_2023
                     zNumT.Text = client.NumTel;
                     zEmail.Text = client.Email;
 
-                    if (SingletonAdmin.LoggedIn == false) {ModC.IsEnabled = ConditionToEnableButton(); }
+                    if (SingletonAdmin.getInstance().LoggedIn == false) 
+                    {
+                        ModC.IsEnabled = false;
+                        Sup.IsEnabled = false; 
+                    }
                     
                 }
 
@@ -64,12 +68,7 @@ namespace TravailSession_2023
 
         }
 
-        //Could move this into the SingletonAdmin
-        private bool ConditionToEnableButton()
-        {
-            return SingletonAdmin.LoggedIn;
-        }
-
+        
         private async void Sup_Click(object sender, RoutedEventArgs e)
         {
             bool sup = false;

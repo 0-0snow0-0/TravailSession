@@ -27,6 +27,11 @@ namespace TravailSession_2023
         public PProjets()
         {
             this.InitializeComponent();
+            if (SingletonAdmin.getInstance().LoggedIn == false)
+            {
+                btnAjouter.IsEnabled = false;   
+            }
+            
             gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsEnCours();
         }
 

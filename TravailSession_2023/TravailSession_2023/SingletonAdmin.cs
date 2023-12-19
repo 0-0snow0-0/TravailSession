@@ -32,7 +32,7 @@ namespace TravailSession_2023
             return instance;
         }
 
-        public static bool LoggedIn
+        public bool LoggedIn //change back and only use it in the singleton
         { get; set; } = false;
 
         public ObservableCollection<Admin> getAdmin()
@@ -103,7 +103,7 @@ namespace TravailSession_2023
                     
                     connection.Close();
 
-                    SingletonAdmin.LoggedIn = true;
+                    SingletonAdmin.getInstance().LoggedIn = true;
                 }
                 catch (Exception ex)
                 {
@@ -118,7 +118,7 @@ namespace TravailSession_2023
         }
 
 
-        public string messageE;
+        //public string messageE;
 
         public void validationAdmin(Admin admin)
         {
@@ -141,7 +141,7 @@ namespace TravailSession_2023
 
 
                 connection.Close();
-                SingletonAdmin.LoggedIn = true;
+                SingletonAdmin.getInstance().LoggedIn = true;
             }
             catch (Exception ex)
             {

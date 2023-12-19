@@ -147,7 +147,7 @@ namespace TravailSession_2023
                         catch (Exception ex)
                         {
 
-                           await ShowVerifyMessageDialog();
+                           //await ShowVerifyMessageDialog();
                             Console.WriteLine(ex.Message);
 
                             args.Cancel = true;
@@ -164,19 +164,19 @@ namespace TravailSession_2023
         }
 
 
-        private async Task ShowVerifyMessageDialog()
-        {
-            // Create and configure the secondary dialog
-            ErrorDialog dialog = new ErrorDialog();
-            dialog.XamlRoot = stkConnexion.XamlRoot;
-            dialog.ErrorMessage = "Échec de la connexion: Mot de passe ou nom d''utilisateur invalide";
-            dialog.Title = "Erreur";
-            dialog.PrimaryButtonText = "Ok";
-            dialog.CloseButtonText = "Close";
+        //private async Task ShowVerifyMessageDialog()
+        //{
+        //    // Create and configure the secondary dialog
+        //    ErrorDialog dialog = new ErrorDialog();
+        //    dialog.XamlRoot = stkConnexion.XamlRoot;
+        //    dialog.ErrorMessage = "Échec de la connexion: Mot de passe ou nom d''utilisateur invalide";
+        //    dialog.Title = "Erreur";
+        //    dialog.PrimaryButtonText = "Ok";
+        //    dialog.CloseButtonText = "Close";
 
-            // Show the secondary dialog
-            await dialog.ShowAsync();
-        }
+        //    // Show the secondary dialog
+        //    await dialog.ShowAsync();
+        //}
 
        
     }

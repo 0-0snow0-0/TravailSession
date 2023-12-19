@@ -26,7 +26,12 @@ namespace TravailSession_2023
         public PClients()
         {
             this.InitializeComponent();
+            if (SingletonAdmin.getInstance().LoggedIn == false)
+            {
+                btnAjouter.IsEnabled = false;
+            }
             gvClients.ItemsSource = SingletonClient.getInstance().getListeClients();
+
         }
 
         private void gvClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
