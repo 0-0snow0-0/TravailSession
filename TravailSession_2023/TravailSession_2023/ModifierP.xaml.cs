@@ -35,6 +35,8 @@ namespace TravailSession_2023
         Projet projet;
         ObservableCollection<Client> listeClients;
 
+        string erreurMsg;
+
         public ModifierP()
         {
             this.InitializeComponent();
@@ -107,7 +109,15 @@ namespace TravailSession_2023
 
                 statut = projet.Statut;
                 cStatut.SelectedValue = statut;
+                if (statut == "Terminé")
+                    cStatut.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public string ErreurMsg
+        {
+            get => erreurMsg;
+            set => erreurMsg = value;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -121,6 +131,9 @@ namespace TravailSession_2023
             eTotalSalaire.Visibility = Visibility.Collapsed;
             eClient.Visibility = Visibility.Collapsed;
             eStatut.Visibility = Visibility.Collapsed;
+
+            eBudget.Text = "Veuillez entrer un budget";
+            eNbrEmpRequis.Text = "Veuillez choisir un nombre d'employé à assigner au projet";
 
             bool erreur = false;
 
@@ -151,7 +164,7 @@ namespace TravailSession_2023
             }
             else if (Int32.TryParse(tbxBudget.Text, out iBudget))
             {
-                if(iBudget > 0) 
+                if(iBudget < 0) 
                 {
                     erreur = true;
                     eBudget.Text = "Veuillez entrer un budget non négatif";
@@ -168,6 +181,12 @@ namespace TravailSession_2023
             if(cbxNbrEmpRequis.SelectedIndex == -1) 
             {
                 erreur = true;
+                eNbrEmpRequis.Visibility = Visibility.Visible;
+            }
+            else if(Convert.ToInt16(cbxNbrEmpRequis.SelectedItem) < nbrEmprequis)
+            {
+                erreur = true;
+                eNbrEmpRequis.Text = "Ne peux pas diminuer le nombre d'employés requis";
                 eNbrEmpRequis.Visibility = Visibility.Visible;
             }
 
@@ -188,10 +207,9 @@ namespace TravailSession_2023
             }
 
             if (!erreur)
-            {
-                numProjet = "";
+            {                
                 titre = tbxTitre.Text;
-                dateDebut = Convert.ToDateTime(dtDateDebut.SelectedDate);
+                dateDebut = Convert.ToDateTime(dtDateDebut.Date.DateTime);
                 description = tbxDescription.Text;
                 budget = Convert.ToInt32(tbxBudget.Text);
                 nbrEmprequis = Convert.ToInt16(cbxNbrEmpRequis.SelectedItem);
@@ -208,7 +226,7 @@ namespace TravailSession_2023
                
                 Projet projet = new Projet(numProjet, titre, dateDebut, description, budget, nbrEmprequis, totalSalaire, client, statut);
 
-                SingletonProjets.getInstance().ajouterProjets(projet);
+                ErreurMsg = SingletonProjets.getInstance().modifierProjet(projet);                
             }
             else
             {

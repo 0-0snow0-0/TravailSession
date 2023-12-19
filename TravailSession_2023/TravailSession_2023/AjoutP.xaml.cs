@@ -36,6 +36,8 @@ namespace TravailSession_2023
         Projet projet;
         ObservableCollection<Client> listeClients;
 
+        string erreurMsg;
+
         public AjoutP()
         {
             this.InitializeComponent();
@@ -47,6 +49,13 @@ namespace TravailSession_2023
                 cbxClient.Items.Add(item);
             }
         }
+
+        public string ErreurMsg
+        {
+            get => erreurMsg;
+            set => erreurMsg = value;
+        }
+
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
@@ -146,7 +155,7 @@ namespace TravailSession_2023
 
                 Projet projet = new Projet(numProjet, titre, dateDebut, description, budget, nbrEmprequis, totalSalaire, client, statut);
 
-                SingletonProjets.getInstance().ajouterProjets(projet);
+                ErreurMsg = SingletonProjets.getInstance().ajouterProjets(projet);
             }
             else
             {

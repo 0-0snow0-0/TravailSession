@@ -13,13 +13,13 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>            
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>            
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -57,7 +57,7 @@
                                        Margin="0 0 5 0"
                                        TextWrapping="Wrap"
                                        Foreground="#4e6173"
-                                       FontWeight="Black"
+                                       FontWeight="SemiBold"
                                        FontSize="15"/>
                             
                             <TextBlock Grid.Column="3"
@@ -65,7 +65,7 @@
                                        TextWrapping="Wrap"
                                        Margin="5 0 0 0"
                                        Foreground="#4e6173"
-                                       FontWeight="Black"
+                                       FontWeight="SemiBold"
                                        FontSize="15"/>
                         </Grid>
 
@@ -161,21 +161,8 @@
                                        FontWeight="SemiBold"
                                        Margin="5 0 0 0"/>
                         </Grid>
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Center"  Margin="2">
-
-                        <TextBlock Grid.Column="1"
-                                   x:Name="zPhotoURL"
-                                   Foreground="#4e6173"
-                                   FontWeight="SemiBold"
-                                   TextWrapping="Wrap"
-                                   FontSize="15"
-                                   Margin="5 0 0 0"/>
-
-                    </StackPanel>
-
+                    </StackPanel>  
+                    
                     <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center"  Margin="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -196,7 +183,7 @@
                             <TextBlock Grid.Column="2"
                                        Foreground="#4e6173"
                                        Margin="10 0 5 0"
-                                       FontWeight="Black">Taux horaire :</TextBlock>
+                                       FontWeight="Black">Numéro de projet :</TextBlock>
                             <TextBlock Grid.Column="3"
                                        x:Name="zNumP"
                                        Foreground="#4e6173"
@@ -205,9 +192,15 @@
                         </Grid>
                     </StackPanel>
 
+                    <StackPanel Grid.Row="7" Grid.Column="1"  HorizontalAlignment="Center"  Margin="2">
+
+                        <Image Grid.Column="1" x:Name="zPhotoURL" Margin="5 20 0 20" MaxWidth="400" MaxHeight="400"/>
+
+                    </StackPanel>
 
 
-                    <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" Margin="2 10 2 2">
+
+                    <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" Margin="2 10 2 2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>

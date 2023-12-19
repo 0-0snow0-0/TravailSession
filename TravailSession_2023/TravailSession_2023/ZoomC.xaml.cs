@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.WindowsAppSDK.Runtime.Packages;
+using MySqlX.XDevAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -93,18 +94,29 @@ namespace TravailSession_2023
 
             if(errorMessage != "Ok") 
             {
-                ErrorDialog dialogE = new ErrorDialog();
-                dialogE.ErrorMessage = errorMessage;
-                dialogE.XamlRoot = gZoomC.XamlRoot;
-                dialogE.Title = "Erreur SQL";
-                dialogE.PrimaryButtonText = "Ok";
-                dialogE.CloseButtonText = "Annuler";
-                dialogE.DefaultButton = ContentDialogButton.Primary;
+                if (errorMessage != "")
+                {
+                    ErrorDialog dialogE = new ErrorDialog();
+                    dialogE.ErrorMessage = errorMessage;
+                    dialogE.XamlRoot = gZoomC.XamlRoot;
+                    dialogE.Title = "Erreur SQL";
+                    dialogE.PrimaryButtonText = "Ok";
+                    dialogE.CloseButtonText = "Annuler";
+                    dialogE.DefaultButton = ContentDialogButton.Primary;
 
-                ContentDialogResult resultE = await dialogE.ShowAsync();
+                    ContentDialogResult resultE = await dialogE.ShowAsync();
+                }
             }
             else
             {
+                ContentDialog dialog1 = new ContentDialog();
+                dialog1.XamlRoot = gZoomC.XamlRoot;
+                dialog1.Title = "Succès";
+                dialog1.Content = "Client supprimé avec succès.";
+                dialog1.CloseButtonText = "Ok";
+
+                ContentDialogResult resultat1 = await dialog1.ShowAsync();
+
                 this.Frame.Navigate(typeof(PClients));
             }
         }
@@ -116,27 +128,46 @@ namespace TravailSession_2023
 
         private async void ModC_Click(object sender, RoutedEventArgs e)
         {
-            ModifierC dialog = new ModifierC();
-            dialog.InClient = client;
-            dialog.XamlRoot = gZoomC.XamlRoot;
-            dialog.Title = "Modification de l'employe";
-            dialog.PrimaryButtonText = "Oui";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-
-            ContentDialogResult resultat = await dialog.ShowAsync();
-
-           
-
-            if (resultat == ContentDialogResult.Primary)
+            try
             {
-                
-                zId.Text = "Prenom : " + dialog.Id;
-                zNom.Text = "Nom : " + dialog.Nom;
-                zAdresse.Text = "Adresse : " + dialog.Adresse;
-                zNumT.Text = "" + dialog.NumTel;
-                zEmail.Text = "Courriel : " + dialog.Email;
+                ModifierC dialog = new ModifierC();
+                dialog.InClient = client;
+                dialog.XamlRoot = gZoomC.XamlRoot;
+                dialog.Title = "Modification du client";
+                dialog.PrimaryButtonText = "Modifier";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+
+                if (dialog.ErreurMsg != "Ok" && dialog.ErreurMsg != null)
+                    throw new Exception(dialog.ErreurMsg);
+                else if (resultat.ToString() != "None")
+                {
+                    ContentDialog dialog1 = new ContentDialog();
+
+                    dialog1.XamlRoot = gZoomC.XamlRoot;
+                    dialog1.Title = "Succès";
+                    dialog1.Content = "Client modifié avec succès";
+                    dialog1.CloseButtonText = "Ok";
+
+
+                    ContentDialogResult resultat1 = await dialog1.ShowAsync();
+                    this.Frame.Navigate(typeof(ZoomC), index);
+                }
+            }    
+            catch
+            (Exception ex)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = gZoomC.XamlRoot;
+                dialog.Title = "Erreur";
+                dialog.Content = ex.Message;
+                dialog.CloseButtonText = "Ok";
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
             }
+
         }
     }
 }

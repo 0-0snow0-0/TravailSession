@@ -77,7 +77,7 @@ namespace TravailSession_2023
             return listeEmployes[index];
         }
 
-        public void ajouterEmployes(Employe employe)
+        public string ajouterEmployes(Employe employe)
         {
             try
             {
@@ -103,18 +103,20 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
                 if (connection.State == System.Data.ConnectionState.Open)
-                {
-                    Console.WriteLine(ex.Message);
-                    connection.Close();
+                {                    
+                    connection.Close();                    
                 }
-            }
+
+                return ex.Message;
+            }            
         }
 
-        public void modifierEmploye(Employe employe)
+        public string modifierEmploye(Employe employe)
         {
             try
             {
@@ -140,14 +142,16 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
                 if (connection.State == System.Data.ConnectionState.Open)
-                {
-                    Console.WriteLine(ex.Message);
+                {                    
                     connection.Close();
                 }
+
+                return ex.Message;
             }
         }
 
@@ -172,8 +176,7 @@ namespace TravailSession_2023
             catch (Exception ex)
             {
                 if (connection.State == System.Data.ConnectionState.Open)
-                {
-                    Console.WriteLine(ex.Message);
+                {                    
                     connection.Close();
                 }
 

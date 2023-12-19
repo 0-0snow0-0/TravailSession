@@ -12,7 +12,7 @@
     <ScrollViewer Margin="10" Padding="5">
         <StackPanel >
 
-            <StackPanel Margin="0 10">
+            <StackPanel Margin="0 10" Visibility="Collapsed">
                 <TextBox Header="Numero du Projet" x:Name="tbxNumProjet" Margin="0 0 0 5" IsReadOnly="True" PlaceholderText="Est généré par la BD"/>
                 <TextBlock x:Name="eNumP" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un numéro de projet</TextBlock>
             </StackPanel>
@@ -32,12 +32,12 @@
                 <TextBlock x:Name="eDescription" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer une description</TextBlock>
             </StackPanel>
 
-            <StackPanel Margin="0 10">
+            <StackPanel Margin="0 10" >
                 <TextBox Header="Budget" x:Name="tbxBudget" Margin="0 5 0 5"/>
                 <TextBlock x:Name="eBudget" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un budget</TextBlock>
             </StackPanel>
 
-            <StackPanel Margin="0 10">
+            <StackPanel Margin="0 10" >
                 <ComboBox Header="Nombre d'employe requis" x:Name="cbxNbrEmpRequis" Margin="0 5 0 5">
                     <x:String>1</x:String>
                     <x:String>2</x:String>
@@ -48,9 +48,9 @@
                 <TextBlock x:Name="eNbrEmpRequis" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez choisir un nombre d'employé à assigner au projet</TextBlock>
             </StackPanel>
 
-            <StackPanel Margin="0 10">
+            <StackPanel Margin="0 10" Visibility="Collapsed">
                 <TextBox Header="Total Salaire" x:Name="tbxTotalSalaire" Margin="0 5 0 5" IsReadOnly="True"/>
-                <TextBlock x:Name="eTotalSalaire" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un budget</TextBlock>
+                <TextBlock x:Name="eTotalSalaire" FontSize="11" Foreground="Red" Visibility="Collapsed">Veuillez entrer un salaire total</TextBlock>
             </StackPanel>
 
             <StackPanel Margin="0 10">

@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using MySqlX.XDevAPI;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,15 +45,28 @@ namespace TravailSession_2023
                 index = (int)e.Parameter;
 
                 if (index >= 0)
-                {                    
+                {             
+                    
+                    
                     projet = SingletonProjets.getInstance().getProjet(index);
+
+                    if (projet.Statut == "Terminé")
+                    {
+                        Mod.Visibility = Visibility.Collapsed;
+                        btnAjouter1.Visibility = Visibility.Collapsed;
+                        btnAjouter2.Visibility = Visibility.Collapsed;
+                        btnAjouter3.Visibility = Visibility.Collapsed;
+                        btnAjouter4.Visibility = Visibility.Collapsed;
+                        btnAjouter5.Visibility = Visibility.Collapsed;
+                        
+                    }
 
                     zNumP.Text = projet.NumProjet;
                     zTitre.Text = projet.Titre;
-                    zDateD.Text = projet.DateDebut.ToString();
-                    zBudget.Text = projet.Budget.ToString();
+                    zDateD.Text = projet.DateDebut.ToString("dd/MM/yyyy");
+                    zBudget.Text = projet.Budget.ToString() + "$";
                     zDescription.Text = projet.Description;
-                    zTotalS.Text = projet.TotalSalaire.ToString();
+                    zTotalS.Text = projet.TotalSalaire.ToString() + "$";
                     zNbrER.Text = projet.NbrEmpRequis.ToString();
                     zClient.Text = projet.Client.ToString();
                     zStatut.Text = projet.Statut;  
@@ -77,9 +91,15 @@ namespace TravailSession_2023
                             }
                             else
                             {
-                                btnAjouter5.Visibility = Visibility.Visible;
+                                if(projet.Statut != "Terminé")                                              
+                                    btnAjouter5.Visibility = Visibility.Visible;                                
+                                btnEnlever5.Visibility = Visibility.Collapsed;
                                 btnModifier5.Visibility = Visibility.Collapsed;
+                                if(projet.Statut == "Terminé")
+                                    btnEnlever5.Visibility = Visibility.Collapsed;
                             }
+                            if (projet.Statut == "Terminé")
+                                btnEnlever1.Visibility = Visibility.Collapsed;
                             goto case 4;
                         case 4:
                             emp4.Visibility = Visibility.Visible;
@@ -95,9 +115,15 @@ namespace TravailSession_2023
                             }
                             else
                             {
-                                btnAjouter4.Visibility = Visibility.Visible;
+                                if (projet.Statut != "Terminé")
+                                    btnAjouter4.Visibility = Visibility.Visible;
+                                btnEnlever4.Visibility = Visibility.Collapsed;
                                 btnModifier4.Visibility = Visibility.Collapsed;
+                                if (projet.Statut == "Terminé")
+                                    btnEnlever5.Visibility = Visibility.Collapsed;
                             }
+                            if (projet.Statut == "Terminé")
+                                btnEnlever1.Visibility = Visibility.Collapsed;
                             goto case 3;
                         case 3:
                             emp3.Visibility = Visibility.Visible;
@@ -113,9 +139,15 @@ namespace TravailSession_2023
                             }
                             else
                             {
-                                btnAjouter3.Visibility = Visibility.Visible;
+                                if (projet.Statut != "Terminé")
+                                    btnAjouter3.Visibility = Visibility.Visible;
+                                btnEnlever3.Visibility = Visibility.Collapsed;
                                 btnModifier3.Visibility = Visibility.Collapsed;
+                                if (projet.Statut == "Terminé")
+                                    btnEnlever5.Visibility = Visibility.Collapsed;
                             }
+                            if (projet.Statut == "Terminé")
+                                btnEnlever1.Visibility = Visibility.Collapsed;
                             goto case 2;
                         case 2:
                             emp2.Visibility = Visibility.Visible;
@@ -131,9 +163,15 @@ namespace TravailSession_2023
                             }
                             else
                             {
-                                btnAjouter2.Visibility = Visibility.Visible;
+                                if (projet.Statut != "Terminé")
+                                    btnAjouter2.Visibility = Visibility.Visible;
+                                btnEnlever2.Visibility = Visibility.Collapsed;
                                 btnModifier2.Visibility = Visibility.Collapsed;
+                                if (projet.Statut == "Terminé")
+                                    btnEnlever5.Visibility = Visibility.Collapsed;
                             }
+                            if (projet.Statut == "Terminé")
+                                btnEnlever1.Visibility = Visibility.Collapsed;
                             goto case 1;
                         case 1:
                             emp1.Visibility = Visibility.Visible;
@@ -149,9 +187,13 @@ namespace TravailSession_2023
                             }
                             else
                             {
-                                btnAjouter1.Visibility = Visibility.Visible;
-                                btnModifier1.Visibility = Visibility.Collapsed;
+                                if (projet.Statut != "Terminé")
+                                    btnAjouter1.Visibility = Visibility.Visible;
+                                btnEnlever1.Visibility = Visibility.Collapsed;
+                                btnModifier1.Visibility = Visibility.Collapsed;                                
                             }
+                            if (projet.Statut == "Terminé")
+                                btnEnlever1.Visibility = Visibility.Collapsed;
                             break;
                         default:
                             break;
@@ -166,12 +208,12 @@ namespace TravailSession_2023
                     {
                         Mod.IsEnabled = false;
                         Sup.IsEnabled = false;
-                        btnModifier1.IsEnabled = false; btnAjouter1.IsEnabled = false;
-                        btnModifier2.IsEnabled = false; btnAjouter2.IsEnabled = false;
-                        btnModifier3.IsEnabled = false; btnAjouter3.IsEnabled = false;
-                        btnModifier4.IsEnabled = false; btnAjouter4.IsEnabled = false;
-                        btnModifier5.IsEnabled = false; btnAjouter5.IsEnabled = false;
-                    }
+                        btnModifier1.IsEnabled = false; btnAjouter1.IsEnabled = false; btnEnlever1.IsEnabled = false;
+                        btnModifier2.IsEnabled = false; btnAjouter2.IsEnabled = false; btnEnlever2.IsEnabled = false;
+                        btnModifier3.IsEnabled = false; btnAjouter3.IsEnabled = false; btnEnlever3.IsEnabled = false;
+                        btnModifier4.IsEnabled = false; btnAjouter4.IsEnabled = false; btnEnlever4.IsEnabled = false;
+                        btnModifier5.IsEnabled = false; btnAjouter5.IsEnabled = false; btnEnlever5.IsEnabled = false;
+                    } 
                 }
 
             }
@@ -187,32 +229,41 @@ namespace TravailSession_2023
         }
         private async void Mod_Click(object sender, RoutedEventArgs e)
         {
-            ModifierP dialog = new ModifierP();
-            dialog.InProjet = projet;
-            dialog.XamlRoot = gZoomP.XamlRoot;
-            dialog.Title = "Modification d'un projet";
-            dialog.PrimaryButtonText = "Oui";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-
-            ContentDialogResult resultat = await dialog.ShowAsync();
-
             
-
-            if (resultat == ContentDialogResult.Primary)
+            try 
             {
-                 
-                zNumP.Text = "Numero du projet : " + dialog.NumProjet;
-                zTitre.Text = "Titre : " + dialog.Titre;
-                zDateD.Text = "Matricule : " + dialog.DateDebut;
-                zBudget.Text = "Date de Naissance : " + dialog.Budget;
-                zDescription.Text = "Courriel : " + dialog.Description;
-                zTotalS.Text = "Adresse : " + dialog.TotalSalaire;
-                zNbrER.Text = "Date d'embauche : " + dialog.NbrEmpRequis;
-                zClient.Text = "Taux x Horaire : " + dialog.Client;
-                zStatut.Text = "Statut : " + dialog.Statut;
+                ModifierP dialog = new ModifierP();
+                dialog.InProjet = projet;
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Modification d'un projet";
+                dialog.PrimaryButtonText = "Oui";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
 
-              
+                ContentDialogResult resultat = await dialog.ShowAsync();
+                if (dialog.ErreurMsg != "Ok" && dialog.ErreurMsg != null)
+                    throw new Exception(dialog.ErreurMsg);
+                else if(resultat.ToString() != "None")
+                {
+                    ContentDialog dialog1 = new ContentDialog();
+                    dialog1.XamlRoot = gZoomP.XamlRoot;
+                    dialog1.Title = "Succès !";
+                    dialog1.Content = "Projet modifié avec succès";
+                    dialog1.CloseButtonText = "Ok";
+
+                    ContentDialogResult resultat1 = await dialog1.ShowAsync();
+                    this.Frame.Navigate(typeof(PProjets), "En cours");
+                }
+            }
+            catch (Exception ex)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Erreur";
+                dialog.Content = ex.Message;
+                dialog.CloseButtonText = "Ok";
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
             }
 
         }
@@ -241,15 +292,19 @@ namespace TravailSession_2023
 
             if (errorMessage != "Ok")
             {
-                ErrorDialog dialogE = new ErrorDialog();
-                dialogE.ErrorMessage = errorMessage;
-                dialogE.XamlRoot = gZoomP.XamlRoot;
-                dialogE.Title = "Erreur SQL";
-                dialogE.PrimaryButtonText = "Ok";
-                dialogE.CloseButtonText = "Annuler";
-                dialogE.DefaultButton = ContentDialogButton.Primary;
+                if(errorMessage != "")
+                {
+                    ErrorDialog dialogE = new ErrorDialog();
+                    dialogE.ErrorMessage = errorMessage;
+                    dialogE.XamlRoot = gZoomP.XamlRoot;
+                    dialogE.Title = "Erreur SQL";
+                    dialogE.PrimaryButtonText = "Ok";
+                    dialogE.CloseButtonText = "Annuler";
+                    dialogE.DefaultButton = ContentDialogButton.Primary;
 
-                ContentDialogResult resultE = await dialogE.ShowAsync();
+                    ContentDialogResult resultE = await dialogE.ShowAsync();
+                }
+                
             }
             else
             {
@@ -259,54 +314,171 @@ namespace TravailSession_2023
 
         private async void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            char index1 = ((Button)sender).Name.ElementAt(11); 
-            Convert.ToInt32(index1);
-            string matricule = null;
-            
-            switch(index1) 
+            try
             {
-                case '1':
-                    matricule = matriculeEmp1.Text; break;
-                case '2':
-                    matricule = matriculeEmp2.Text; break;
-                case '3':
-                    matricule = matriculeEmp3.Text; break;
-                case '4':
-                    matricule = matriculeEmp4.Text; break;
-                case '5':
-                    matricule = matriculeEmp5.Text; break;
+                char index1 = ((Button)sender).Name.ElementAt(11);                
+                string matricule = null;
 
+                switch (index1)
+                {
+                    case '1':
+                        matricule = matriculeEmp1.Text; break;
+                    case '2':
+                        matricule = matriculeEmp2.Text; break;
+                    case '3':
+                        matricule = matriculeEmp3.Text; break;
+                    case '4':
+                        matricule = matriculeEmp4.Text; break;
+                    case '5':
+                        matricule = matriculeEmp5.Text; break;
+
+                }
+
+                ModifierH dialog = new ModifierH();
+                dialog.NumProjet = projet.NumProjet;
+                dialog.Matricule = matricule;
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Modif des heures travaillés";
+                dialog.PrimaryButtonText = "Modifier";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+                if (dialog.ErreurMsg != "Ok" && dialog.ErreurMsg != null)
+                    throw new Exception(dialog.ErreurMsg);
+                else if(resultat.ToString() != "None")
+                {
+                    ContentDialog dialog1 = new ContentDialog();
+                    dialog1.XamlRoot = gZoomP.XamlRoot;
+                    dialog1.Title = "Succès";
+                    dialog1.Content = "Heures de l'employé modifié avec succès.";
+                    dialog1.CloseButtonText = "Ok";
+
+                    ContentDialogResult resultat1 = await dialog1.ShowAsync();
+                    //Retourne sur page des projets, sinon pas capable de faire updater l'affichage du total salaire
+                    this.Frame.Navigate(typeof(ZoomP), index);
+                }
             }
+            catch (Exception ex) 
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Erreur";
+                dialog.Content = ex.Message;
+                dialog.CloseButtonText = "Ok";
 
-            ModifierH dialog = new ModifierH();
-            dialog.NumProjet = projet.NumProjet;
-            dialog.Matricule = matricule;
-            dialog.XamlRoot = gZoomP.XamlRoot;
-            dialog.Title = "Modif des heures travaillés";
-            dialog.PrimaryButtonText = "Modifier";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-
-            ContentDialogResult result = await dialog.ShowAsync();
-            SingletonProjets.getInstance().reload();
-            this.Frame.Navigate(typeof(ZoomP), index);
+                ContentDialogResult resultat = await dialog.ShowAsync();
+            }            
         }
 
         private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            AjoutH dialog = new AjoutH();
-            dialog.Projet = projet;
-            dialog.XamlRoot = gZoomP.XamlRoot;
-            dialog.Title = "Ajout employé au projet";
-            dialog.PrimaryButtonText = "Ajouter";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Primary;
+            try
+            {
+                AjoutH dialog = new AjoutH();
+                dialog.Projet = projet;
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Ajout employé au projet";
+                dialog.PrimaryButtonText = "Ajouter";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
 
-            ContentDialogResult result = await dialog.ShowAsync();
-            SingletonProjets.getInstance().reload();
-            this.Frame.Navigate(typeof(ZoomP), index);
+                ContentDialogResult resultat = await dialog.ShowAsync();
+                if (dialog.ErreurMsg != "Ok" && dialog.ErreurMsg != null)
+                    throw new Exception(dialog.ErreurMsg);
+                else if(resultat.ToString() != "None")
+                {
+                    ContentDialog dialog1 = new ContentDialog();
+                    dialog1.XamlRoot = gZoomP.XamlRoot;
+                    dialog1.Title = "Succès";
+                    dialog1.Content = "Employé lié au projet avec succès.";
+                    dialog1.CloseButtonText = "Ok";
+
+                    ContentDialogResult resultat1 = await dialog1.ShowAsync();
+                    this.Frame.Navigate(typeof(ZoomP), index);
+                }
+                
+                
+            }
+            catch (Exception ex) 
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Erreur";
+                dialog.Content = ex.Message;
+                dialog.CloseButtonText = "Ok";
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+            }
         }
 
-        
+        private async void btnEnlever_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                char index1 = ((Button)sender).Name.ElementAt(10);
+                string numProjet = projet.NumProjet;
+                string matricule = null;
+                string erreurMsg = null;
+
+                switch (index1)
+                {
+                    case '1':
+                        matricule = matriculeEmp1.Text; break;
+                    case '2':
+                        matricule = matriculeEmp2.Text; break;
+                    case '3':
+                        matricule = matriculeEmp3.Text; break;
+                    case '4':
+                        matricule = matriculeEmp4.Text; break;
+                    case '5':
+                        matricule = matriculeEmp5.Text; break;
+
+                }
+
+
+                ConfirmDialog dialog = new ConfirmDialog();
+                dialog.ObjectType = "employé - projet";
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Enlevé";
+                dialog.PrimaryButtonText = "Enlever";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+
+                if (dialog.Confirm)
+                {
+                    HeuresTravaille ht = new HeuresTravaille(matricule, numProjet, 0, 0);
+                    erreurMsg = SingletonHeuresTravaille.getInstance().supprimerHeuresTravaille(ht);
+                }
+
+                if (erreurMsg != "Ok" && erreurMsg != null)
+                    throw new Exception((erreurMsg));
+                else if (resultat.ToString() != "None")
+                {
+                    ContentDialog dialog1 = new ContentDialog();
+                    dialog1.XamlRoot = gZoomP.XamlRoot;
+                    dialog1.Title = "Succès";
+                    dialog1.Content = "Liaison enlevé avec succès.";
+                    dialog1.CloseButtonText = "Ok";
+
+                    ContentDialogResult resultat1 = await dialog1.ShowAsync();
+                    this.Frame.Navigate(typeof(PProjets), "En cours");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = gZoomP.XamlRoot;
+                dialog.Title = "Erreur";
+                dialog.Content = ex.Message;
+                dialog.CloseButtonText = "Ok";
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+            }
+        }
     }
 }

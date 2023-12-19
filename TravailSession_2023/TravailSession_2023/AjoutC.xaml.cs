@@ -29,6 +29,8 @@ namespace TravailSession_2023
         string adresse;
         string numTel;
         string email;
+        string erreurMsg;
+        
 
         public AjoutC()
         {
@@ -40,6 +42,12 @@ namespace TravailSession_2023
         public string Adresse { get => adresse; }
         public string NumTel { get => numTel; }
         public string Email { get => email; }
+
+        public string ErreurMsg
+        {
+            get => erreurMsg;
+            set => erreurMsg = value;
+        }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
@@ -92,7 +100,7 @@ namespace TravailSession_2023
                 email = tbxEmail.Text;
 
                 Client client = new Client(id, nom, adresse, numTel, email);
-                SingletonClient.getInstance().ajouterClient(client);
+                ErreurMsg = SingletonClient.getInstance().ajouterClient(client);
             }
             else
             {

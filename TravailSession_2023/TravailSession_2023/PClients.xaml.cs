@@ -52,16 +52,43 @@ namespace TravailSession_2023
 
         private async void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            AjoutC dialog = new AjoutC();
-            //dialog.InClient = client;
-            dialog.XamlRoot = gClients.XamlRoot;
-            dialog.Title = "Ajout d'un client";
-            dialog.PrimaryButtonText = "Ajouter";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Primary;
+            try
+            {
+                AjoutC dialog = new AjoutC();
+                //dialog.InClient = client;
+                dialog.XamlRoot = gClients.XamlRoot;
+                dialog.Title = "Ajout d'un client";
+                dialog.PrimaryButtonText = "Ajouter";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
 
-            ContentDialogResult resultat = await dialog.ShowAsync();
-            
+                ContentDialogResult resultat = await dialog.ShowAsync();
+
+                if (dialog.ErreurMsg != "Ok" && dialog.ErreurMsg != null)
+                    throw new Exception(dialog.ErreurMsg);
+                else if (resultat.ToString() != "None")
+                {
+                    ContentDialog dialog1 = new ContentDialog();
+                    dialog1.XamlRoot = gClients.XamlRoot;
+                    dialog1.Title = "Succès";
+                    dialog1.Content = "Client ajouté avec succès.";
+                    dialog1.CloseButtonText = "Ok";
+
+                    ContentDialogResult resultat1 = await dialog1.ShowAsync();                    
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = gClients.XamlRoot;
+                dialog.Title = "Erreur";
+                dialog.Content = ex.Message;
+                dialog.CloseButtonText = "Ok";
+
+                ContentDialogResult resultat = await dialog.ShowAsync();
+            }
         }
     }
 }

@@ -87,19 +87,16 @@ namespace TravailSession_2023
             }
         }
 
-        public void ajouterHeuresTravailles(HeuresTravaille ht)
+        public string ajouterHeuresTravailles(HeuresTravaille ht)
         {
             try
             {
-                MySqlCommand commande = new MySqlCommand("insert_heure");
+                MySqlCommand commande = new MySqlCommand("link_employe_projet");
                 commande.Connection = connection;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                commande.Parameters.AddWithValue("numProjet_h", ht.NumProjet);
-                commande.Parameters.AddWithValue("matricule_h", ht.Matricule);
-                commande.Parameters.AddWithValue("nbrHeures_h", ht.NbrHeures);
-                commande.Parameters.AddWithValue("salaireEmploye_h", ht.SalaireEmploye);
-                
+                commande.Parameters.AddWithValue("i_numProjet", ht.NumProjet);
+                commande.Parameters.AddWithValue("i_matricule", ht.Matricule);
 
                 connection.Open();
                 commande.Prepare();
@@ -107,6 +104,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -115,10 +113,11 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
 
-        public void modifierHeuresTravaille(HeuresTravaille ht)
+        public string modifierHeuresTravaille(HeuresTravaille ht)
         {
             try
             {
@@ -136,7 +135,7 @@ namespace TravailSession_2023
                 commande.ExecuteNonQuery();
 
                 connection.Close();
-                reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -145,19 +144,20 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
 
-        public void supprimerHeuresTravaille(HeuresTravaille ht)
+        public string supprimerHeuresTravaille(HeuresTravaille ht)
         {
             try
             {
-                MySqlCommand commande = new MySqlCommand("supprimer_heure");
+                MySqlCommand commande = new MySqlCommand("unlink_employe_projet");
                 commande.Connection = connection;
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
-                commande.Parameters.AddWithValue("numProjet_heure", ht.NumProjet);
-                commande.Parameters.AddWithValue("matricule_heure", ht.Matricule);
+                commande.Parameters.AddWithValue("i_numProjet", ht.NumProjet);
+                commande.Parameters.AddWithValue("i_matricule", ht.Matricule);
 
                 connection.Open();
                 commande.Prepare();
@@ -165,6 +165,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -173,6 +174,7 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
 

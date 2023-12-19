@@ -38,6 +38,8 @@ namespace TravailSession_2023
         Employe employe;
         ObservableCollection<Projet> listeProjetsEnCours;
 
+        string erreurMsg;
+
         public AjoutE()
         {
             this.InitializeComponent();
@@ -65,6 +67,12 @@ namespace TravailSession_2023
         public string Photo_url { get => photo_url; }
         public string Statut { get => statut; }
         public string NumProjet { get => numProjet; }
+
+        public string ErreurMsg 
+        { 
+            get => erreurMsg;
+            set => erreurMsg = value;
+        }
         
        
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -91,7 +99,7 @@ namespace TravailSession_2023
             {
                 erreur = true;
                 ePrenom.Visibility = Visibility.Visible;
-            }
+            }            
 
             if (tbxNom.Text == "")
             {
@@ -160,6 +168,7 @@ namespace TravailSession_2023
                 {
                     erreur = true;
                     eTauxH.Text = "Le taux horaire maximum est de 60$";
+                    eTauxH.Visibility = Visibility.Visible;
                 }
             }
             else
@@ -180,7 +189,7 @@ namespace TravailSession_2023
                 erreur = true;
                 eStatut.Visibility = Visibility.Visible;
             }
-            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-3) && cStatut.SelectedItem == "Permanent")
+            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-3) && cStatut.SelectedItem.ToString() == "Permanent")
             {
                 erreur = true;
                 eStatut.Text = "L'employé ne peut pas avoir le statut permanent s'il travail à la company depuis moins de 3 ans ";
@@ -220,7 +229,7 @@ namespace TravailSession_2023
 
                 employe = new Employe(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo_url, statut, numProjet);
 
-                SingletonEmployes.getInstance().ajouterEmployes(employe);
+                ErreurMsg = SingletonEmployes.getInstance().ajouterEmployes(employe);                
             }
             else
             {

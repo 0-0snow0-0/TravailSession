@@ -56,6 +56,7 @@ namespace TravailSession_2023
                 eNU.Visibility = Visibility.Collapsed;
                 eMDP.Visibility = Visibility.Collapsed;
                 eCMDP.Visibility = Visibility.Collapsed;
+                eNU.Text = "Veuillez entrer votre nom d'utilisateur";
                 eCMDP.Text = "Veuillez entrer la confirmation mot de passe";
                 bool erreur = false;
 
@@ -64,12 +65,19 @@ namespace TravailSession_2023
                     erreur = true;
                     eNU.Visibility = Visibility.Visible;
                 }
+                else if (tbxNU.Text.Length > 100)
+                {
+                    erreur = true;
+                    eNU.Text = "Entré trop longue, veuillez raccourcir";
+                    eNU.Visibility = Visibility.Visible;
+                }
 
                 if (pwdMDP.Password == "")
                 {
                     erreur = true;
                     eMDP.Visibility = Visibility.Visible;
-                }
+                }                
+
                 if (pwdCMDP.Password == "")
                 {
                     erreur = true;
@@ -115,19 +123,17 @@ namespace TravailSession_2023
                 }
 
             }
-            else {
+            else {                
                     eNU.Visibility = Visibility.Collapsed;
-                    eMDP.Visibility = Visibility.Collapsed;
-                    eNU.Text = "Le nom d'utilisateur est invalide";
-                    eMDP.Text = "Le mot de passe est invalide";
+                    eMDP.Visibility = Visibility.Collapsed;                    
+                    eMDP.Text = "Veuillez entrer votre mot de passe";
 
-                bool erreur = false;
+                    bool erreur = false;
 
                     if (tbxNU.Text == "")
                     {
                         erreur = true;
                         eNU.Visibility = Visibility.Visible;
-
                     }
 
                     if (pwdMDP.Password == "")
@@ -145,24 +151,12 @@ namespace TravailSession_2023
                         {
                             Admin admin = new Admin(utilisateur, password);
                             SingletonAdmin.getInstance().validationAdmin(admin);
-
-                            
-                            
-
-                    }
+                        }
                         catch (Exception ex)
                         {
-
-                           
-                            Console.WriteLine(ex.Message);
-                            tbxNU.Text = "";
-                            pwdMDP.Password = "";
-                            eNU.Visibility = Visibility.Visible;
-                            eNU.Text = "Le nom d'utilisateur est invalide";
+                            eMDP.Text = "La connexion à échouer, veuillez réessayer";
                             eMDP.Visibility = Visibility.Visible;
-                            eMDP.Text = "Le mot de passe est invalide";
                             args.Cancel = true;
-                           
                         }
                     }
                     else

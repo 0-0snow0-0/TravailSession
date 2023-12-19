@@ -51,10 +51,17 @@ namespace TravailSession_2023
 
         public Projet getProjet(int index)
         {
-            return listeProjets[index];
+            try
+            {
+                return listeProjets[index];
+            }
+            catch
+            {
+                return listeProjets[index - 1];
+            }
         }
 
-        public void ajouterProjets(Projet projet)
+        public string ajouterProjets(Projet projet)
         {
             try
             {
@@ -78,6 +85,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -86,10 +94,11 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
 
-        public void modifierProjet(Projet projet)
+        public string modifierProjet(Projet projet)
         {
             try
             {
@@ -98,10 +107,13 @@ namespace TravailSession_2023
                 commande.CommandType = System.Data.CommandType.StoredProcedure;
 
                 commande.Parameters.AddWithValue("numProjet_projet", projet.NumProjet);
-                commande.Parameters.AddWithValue("titre_projet", projet.Titre);                
+                commande.Parameters.AddWithValue("titre_projet", projet.Titre);
+                commande.Parameters.AddWithValue("dateDebut_projet", projet.DateDebut);
                 commande.Parameters.AddWithValue("description_projet", projet.Description);
                 commande.Parameters.AddWithValue("budget_projet", projet.Budget);
                 commande.Parameters.AddWithValue("nbrEmpRequis_projet", projet.NbrEmpRequis);
+                commande.Parameters.AddWithValue("totalSalaire_projet", projet.TotalSalaire);
+                commande.Parameters.AddWithValue("client_projet", projet.Client);
                 commande.Parameters.AddWithValue("statut_projet", projet.Statut);
 
                 connection.Open();
@@ -109,7 +121,8 @@ namespace TravailSession_2023
                 commande.ExecuteNonQuery();
 
                 connection.Close();
-                reload();
+                showProjetsEnCours();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -118,6 +131,7 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
 

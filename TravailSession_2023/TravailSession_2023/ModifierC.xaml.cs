@@ -28,6 +28,8 @@ namespace TravailSession_2023
 
         Client client;
 
+        string erreurMsg;
+
         public ModifierC()
         {
             this.InitializeComponent();
@@ -62,6 +64,12 @@ namespace TravailSession_2023
                 email = client.Email;
                 tbxEmail.Text = email;
             }
+        }
+
+        public string ErreurMsg
+        {
+            get => erreurMsg;
+            set => erreurMsg = value;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -111,6 +119,9 @@ namespace TravailSession_2023
                 adresse = tbxAdresse.Text;
                 numTel = tbxNumTel.Text;
                 email = tbxEmail.Text;
+
+                Client client = new Client(id, nom, adresse, numTel, email);
+                ErreurMsg = SingletonClient.getInstance().modifierClient(client);
             }
             else
             {

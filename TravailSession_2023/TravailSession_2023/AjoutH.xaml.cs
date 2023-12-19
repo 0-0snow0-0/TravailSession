@@ -31,6 +31,8 @@ namespace TravailSession_2023
         ObservableCollection<Employe> listeEmployeProjet;
         ObservableCollection<Projet> listeProjetEnCours;
 
+        string erreurMsg;
+
         public AjoutH()
         {
             this.InitializeComponent();
@@ -51,6 +53,12 @@ namespace TravailSession_2023
                 projet = value;
                 listeEmployeProjet = SingletonEmployes.getInstance().getListeEmployesPourProjet(projet);
             } 
+        }
+
+        public string ErreurMsg
+        {
+            get => erreurMsg;
+            set => erreurMsg = value;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -110,7 +118,7 @@ namespace TravailSession_2023
             if (!erreur)
             {     
                 HeuresTravaille ht = new HeuresTravaille(emp.Matricule, projet.NumProjet, 0, 0);
-                SingletonHeuresTravaille.getInstance().ajouterHeuresTravailles(ht);
+                ErreurMsg = SingletonHeuresTravaille.getInstance().ajouterHeuresTravailles(ht);
             }
             else
             {

@@ -36,6 +36,8 @@ namespace TravailSession_2023
         Employe employe;
         ObservableCollection<Projet> listeProjetsEnCours;
 
+        string erreurMsg;
+
         public ModifierE()
         {
             this.InitializeComponent();  
@@ -112,6 +114,11 @@ namespace TravailSession_2023
 
                 cNumP.SelectedItem = sProjet;
             } 
+        }
+        public string ErreurMsg
+        {
+            get => erreurMsg;
+            set => erreurMsg = value;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -207,6 +214,7 @@ namespace TravailSession_2023
                 {
                     erreur = true;
                     eTauxH.Text = "Le taux horaire maximum est de 60$";
+                    eTauxH.Visibility = Visibility.Visible;
                 }
             }
             else
@@ -227,7 +235,7 @@ namespace TravailSession_2023
                 erreur = true;
                 eStatut.Visibility = Visibility.Visible;
             }
-            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-3) && cStatut.SelectedItem == "Permanent")
+            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-3) && cStatut.SelectedItem.ToString() == "Permanent")
             {
                 erreur = true;
                 eStatut.Text = "L'employé ne peut pas avoir le statut permanent s'il travail à la company depuis moins de 3 ans ";
@@ -267,7 +275,7 @@ namespace TravailSession_2023
 
                 employe = new Employe(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo_url, statut, numProjet);
 
-                SingletonEmployes.getInstance().modifierEmploye(employe);
+                ErreurMsg = SingletonEmployes.getInstance().modifierEmploye(employe);
             }
             else
             {

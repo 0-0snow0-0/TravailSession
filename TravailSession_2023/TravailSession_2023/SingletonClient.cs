@@ -38,7 +38,7 @@ namespace TravailSession_2023
             return listeClients[index];
         }
 
-        public void ajouterClient(Client client) 
+        public string ajouterClient(Client client) 
         { 
             try
             {
@@ -58,6 +58,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex) 
             { 
@@ -66,10 +67,11 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
 
-        public void modifierClient(Client client)
+        public string modifierClient(Client client)
         {
             try
             {
@@ -89,6 +91,7 @@ namespace TravailSession_2023
 
                 connection.Close();
                 reload();
+                return "Ok";
             }
             catch (Exception ex)
             {
@@ -97,6 +100,7 @@ namespace TravailSession_2023
                     Console.WriteLine(ex.Message);
                     connection.Close();
                 }
+                return ex.Message;
             }
         }
 

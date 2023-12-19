@@ -27,6 +27,8 @@ namespace TravailSession_2023
         string numProjet;
         string matricule;
 
+        string erreurMsg;
+
         public ModifierH()
         {
             this.InitializeComponent();
@@ -46,6 +48,12 @@ namespace TravailSession_2023
             {
                 matricule = value;
             }
+        }
+
+        public string ErreurMsg
+        {
+            get => erreurMsg;
+            set => erreurMsg = value;
         }
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
@@ -72,6 +80,12 @@ namespace TravailSession_2023
                         eHeuresT.Text = "Veuillez entrer une valeur positive";
                         eHeuresT.Visibility= Visibility.Visible;
                         goto End;
+                    } if(numHeures > 10000)
+                    {
+                        erreur =true;
+                        eHeuresT.Text = "Le nombre d'heures travaillés ne doit pas dépasser 10000";
+                        eHeuresT.Visibility = Visibility.Visible;
+                        goto End;
                     }
                 }
                 else
@@ -90,7 +104,7 @@ namespace TravailSession_2023
 
                 HeuresTravaille ht = new HeuresTravaille(matricule, numProjet, numHeures, 0);
 
-                SingletonHeuresTravaille.getInstance().modifierHeuresTravaille(ht);
+                ErreurMsg = SingletonHeuresTravaille.getInstance().modifierHeuresTravaille(ht);
             }
             else
             {

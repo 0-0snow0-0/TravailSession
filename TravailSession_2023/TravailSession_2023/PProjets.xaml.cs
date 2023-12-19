@@ -32,7 +32,7 @@ namespace TravailSession_2023
                 btnAjouter.IsEnabled = false;   
             }
             
-            gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsEnCours();
+            //gvProjets.ItemsSource = SingletonProjets.getInstance().getListeProjetsEnCours();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -82,7 +82,9 @@ namespace TravailSession_2023
 
                 ContentDialogResult resultat = await dialog.ShowAsync();
 
-                if(resultat.ToString() != "None")
+                if (dialog.ErreurMsg != "Ok" && dialog.ErreurMsg != null)
+                    throw new Exception(dialog.ErreurMsg);
+                else if(resultat.ToString() != "None")
                 {
                     ContentDialog dialog1 = new ContentDialog();
                     dialog1.XamlRoot = gProjets.XamlRoot;

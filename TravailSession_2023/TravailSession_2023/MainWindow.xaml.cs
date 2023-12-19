@@ -81,17 +81,27 @@ namespace TravailSession_2023
             Connexion dialog = new Connexion();
             dialog.XamlRoot = navView.XamlRoot;
             dialog.Check = admin;
-            dialog.Title = "Connexion";
-            dialog.PrimaryButtonText = "Continuer";
-            dialog.CloseButtonText = "Annuler";
-            dialog.DefaultButton = ContentDialogButton.Primary;
 
+            if(admin)
+            {
+                dialog.Title = "Initialisation admin";
+                dialog.PrimaryButtonText = "Créer admin";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+            }
+            else
+            {
+                dialog.Title = "Connexion";
+                dialog.PrimaryButtonText = "Se connecter";
+                dialog.CloseButtonText = "Annuler";
+                dialog.DefaultButton = ContentDialogButton.Primary;
+            }
             ContentDialogResult resultat = await dialog.ShowAsync();
+
 
             if (resultat == ContentDialogResult.Primary && SingletonAdmin.getInstance().LoggedIn == true)
             {
-                PerformLogout();
-                
+                PerformLogout(admin);                
             }
             
         }
@@ -109,9 +119,9 @@ namespace TravailSession_2023
 
            
         }
-        private void PerformLogout() 
+        private void PerformLogout(bool admin) 
         {
-            ShowLoginMessageDialog();
+            ShowLoginMessageDialog(admin);
             Login.Content = "Déconnexion";
 
             Windows.UI.Color color = Windows.UI.Color.FromArgb(0xFF, 0x84, 0x3C, 0x41);
@@ -133,19 +143,43 @@ namespace TravailSession_2023
             this.mainFrame.Navigate(typeof(PProjets), "En cours");
         }
 
-        private async void ShowLoginMessageDialog()
+        private async void ShowLoginMessageDialog(bool admin)
         {
             ContentDialog loginDialog = new ContentDialog();
             loginDialog.XamlRoot = navView.XamlRoot;
-            loginDialog.Title = "Connexion réussie";
-            loginDialog.CloseButtonText = "OK";
-            loginDialog.Content = "Vous êtes maintenant connecté.";
+            if(admin) 
+            {
+                loginDialog.Title = "Création réussie";
+                loginDialog.CloseButtonText = "OK";
+                loginDialog.Content = "Le compte admin à été créer avec succès.";
+            }
+            else
+            {
+                loginDialog.Title = "Connexion réussie";
+                loginDialog.CloseButtonText = "OK";
+                loginDialog.Content = "Vous êtes maintenant connecté.";
+            }            
 
             var resultat = await loginDialog.ShowAsync();
 
             SingletonAdmin.getInstance().LoggedIn = true;
             this.mainFrame.Navigate(typeof(PProjets), "En cours");
         }
+
+        private async void ShowCreationMessageDialog()
+        {
+            ContentDialog loginDialog = new ContentDialog();
+            loginDialog.XamlRoot = navView.XamlRoot;
+            loginDialog.Title = "Création réussie";
+            loginDialog.CloseButtonText = "OK";
+            loginDialog.Content = "Compte admin créer avec succès.";
+
+            var resultat = await loginDialog.ShowAsync();
+
+            SingletonAdmin.getInstance().LoggedIn = true;
+            this.mainFrame.Navigate(typeof(PProjets), "En cours");
+        }
+
         private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             if (mainFrame.CanGoBack)
