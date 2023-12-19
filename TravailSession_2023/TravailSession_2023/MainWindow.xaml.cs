@@ -107,8 +107,7 @@ namespace TravailSession_2023
 
             Login.Background = brush;
 
-            this.mainFrame.Navigate(typeof(PProjets), "En cours");
-
+           
         }
         private void PerformLogout() 
         {

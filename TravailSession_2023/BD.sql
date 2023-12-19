@@ -214,40 +214,28 @@
     DELIMITER ;
 
 /*Veryfication ADMIN - JF*/
-/* DROP PROCEDURE IF EXISTS verify_admin;
+DROP PROCEDURE IF EXISTS verify_admin;
 
 DELIMITER //
-CREATE PROCEDURE verify_admin(IN username_a VARCHAR(100), IN password_a VARCHAR(255), OUT result_message VARCHAR(255))
+CREATE PROCEDURE verify_admin(IN username_a VARCHAR(100), IN password_a VARCHAR(255))
 BEGIN
-    DECLARE user_count INT;
-
+    DECLARE userCount INT;
+    
     SELECT COUNT(*)
-    INTO user_count
+    INTO userCount
     FROM admin
     WHERE username = username_a AND password = password_a;
-
-    IF user_count > 0 THEN
-        SET result_message = 'Connexion réussie';
-    ELSE
-        SET result_message = 'Échec de la connexion';
+    
+    -- signal une erreur
+    IF userCount = 0 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Échec de la connexion: Mot de passe ou nom d''utilisateur invalide';
+        SET MESSAGE_TEXT = 'Nom d\'utilisateur ou mot de passe invalide';
     END IF;
-END //
-
-DELIMITER ; */
-
-DROP PROCEDURE IF EXISTS verify_admin;
-DELIMITER //
-CREATE PROCEDURE verify_admin(IN username_a VARCHAR(100), IN password_a VARCHAR(50))
-BEGIN
-
+    -- Pas d'erreur = returne le resultat
     SELECT username, password
     FROM admin
     WHERE username = username_a AND password = password_a;
-
 END //
-
 DELIMITER ;
 
 

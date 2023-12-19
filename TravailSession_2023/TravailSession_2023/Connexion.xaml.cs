@@ -118,12 +118,16 @@ namespace TravailSession_2023
             else {
                     eNU.Visibility = Visibility.Collapsed;
                     eMDP.Visibility = Visibility.Collapsed;
-                    bool erreur = false;
+                    eNU.Text = "Le nom d'utilisateur est invalide";
+                    eMDP.Text = "Le mot de passe est invalide";
+
+                bool erreur = false;
 
                     if (tbxNU.Text == "")
                     {
                         erreur = true;
                         eNU.Visibility = Visibility.Visible;
+
                     }
 
                     if (pwdMDP.Password == "")
@@ -141,16 +145,24 @@ namespace TravailSession_2023
                         {
                             Admin admin = new Admin(utilisateur, password);
                             SingletonAdmin.getInstance().validationAdmin(admin);
-                        //Does not work
 
-                        }
+                            
+                            
+
+                    }
                         catch (Exception ex)
                         {
 
-                           //await ShowVerifyMessageDialog();
+                           
                             Console.WriteLine(ex.Message);
-
+                            tbxNU.Text = "";
+                            pwdMDP.Password = "";
+                            eNU.Visibility = Visibility.Visible;
+                            eNU.Text = "Le nom d'utilisateur est invalide";
+                            eMDP.Visibility = Visibility.Visible;
+                            eMDP.Text = "Le mot de passe est invalide";
                             args.Cancel = true;
+                           
                         }
                     }
                     else
@@ -164,20 +176,5 @@ namespace TravailSession_2023
         }
 
 
-        //private async Task ShowVerifyMessageDialog()
-        //{
-        //    // Create and configure the secondary dialog
-        //    ErrorDialog dialog = new ErrorDialog();
-        //    dialog.XamlRoot = stkConnexion.XamlRoot;
-        //    dialog.ErrorMessage = "Échec de la connexion: Mot de passe ou nom d''utilisateur invalide";
-        //    dialog.Title = "Erreur";
-        //    dialog.PrimaryButtonText = "Ok";
-        //    dialog.CloseButtonText = "Close";
-
-        //    // Show the secondary dialog
-        //    await dialog.ShowAsync();
-        //}
-
-       
     }
 }
