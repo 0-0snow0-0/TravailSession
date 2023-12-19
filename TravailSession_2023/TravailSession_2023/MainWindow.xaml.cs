@@ -60,7 +60,7 @@ namespace TravailSession_2023
                     mainFrame.Navigate(typeof(PEmployes));
                     break;
                 case "Login":
-                    if (SingletonAdmin.LoggedIn == true)
+                    if (SingletonAdmin.getInstance().LoggedIn == true)
                     {
                         PerformLogin();
                     }
@@ -88,7 +88,7 @@ namespace TravailSession_2023
 
             ContentDialogResult resultat = await dialog.ShowAsync();
 
-            if (resultat == ContentDialogResult.Primary && SingletonAdmin.LoggedIn == true)
+            if (resultat == ContentDialogResult.Primary && SingletonAdmin.getInstance().LoggedIn == true)
             {
                 PerformLogout();
                 
@@ -130,7 +130,8 @@ namespace TravailSession_2023
 
             var resultat = await logoutDialog.ShowAsync();
             
-            SingletonAdmin.LoggedIn = false;
+            SingletonAdmin.getInstance().LoggedIn = false;
+            this.mainFrame.Navigate(typeof(PProjets), "En cours");
         }
 
         private async void ShowLoginMessageDialog()
@@ -143,7 +144,8 @@ namespace TravailSession_2023
 
             var resultat = await loginDialog.ShowAsync();
 
-            SingletonAdmin.LoggedIn = true;
+            SingletonAdmin.getInstance().LoggedIn = true;
+            this.mainFrame.Navigate(typeof(PProjets), "En cours");
         }
         private void navView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {

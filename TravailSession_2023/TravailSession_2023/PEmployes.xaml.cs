@@ -27,6 +27,10 @@ namespace TravailSession_2023
         public PEmployes()
         {
             this.InitializeComponent();
+            if (SingletonAdmin.getInstance().LoggedIn == false)
+            {
+                btnAjouter.IsEnabled = false;
+            }
             gvEmployes.ItemsSource = SingletonEmployes.getInstance().getListeEmployes();
         }
 

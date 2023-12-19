@@ -58,18 +58,18 @@ namespace TravailSession_2023
                     zPhotoURL.Text = employe.Photo_url;
                     zStatut.Text = employe.Statut;
                     zNumP.Text = employe.NumProjet.ToString();
-
-                    if (SingletonAdmin.LoggedIn == false) { ModE.IsEnabled = ConditionToEnableButton(); }
+                     
+                    if (SingletonAdmin.getInstance().LoggedIn == false) 
+                    { 
+                        ModE.IsEnabled = false; 
+                        Sup.IsEnabled = false;
+                    }
                 }
 
             }
 
         }
-        //Could move this into the SingletonAdmin
-        private bool ConditionToEnableButton()
-        {
-            return SingletonAdmin.LoggedIn;
-        }
+        
         private async void ModE_Click(object sender, RoutedEventArgs e)
         {
 
@@ -116,6 +116,7 @@ namespace TravailSession_2023
 
         private async void Sup_Click(object sender, RoutedEventArgs e)
         {
+
             bool sup = false;
             string errorMessage = "";
 
