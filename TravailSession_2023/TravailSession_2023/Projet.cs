@@ -20,6 +20,8 @@ namespace TravailSession_2023
         int client;
         string statut;
 
+       
+
         public Projet(string numProjet, string titre, DateTime dateDebut, string description, long budget, int nbrEmpRequis, double totalSalaire, int client, string statut) 
         { 
             this.numProjet = numProjet;
@@ -110,6 +112,12 @@ namespace TravailSession_2023
             get { return statut; }
             set {  statut = value; }
         }
+
+        public string ToCSV_String()
+        {
+            return NumProjet + "," + Titre + "," + DateDebut.ToString("yyyy/MM/dd") + "," + Description + "," + Budget.ToString() + "," + NbrEmpRequis.ToString() + "," + totalSalaire.ToString() + "," + Client.ToString() + "," + Statut;
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

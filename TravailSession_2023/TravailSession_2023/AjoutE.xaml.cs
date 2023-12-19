@@ -110,6 +110,12 @@ namespace TravailSession_2023
                 eDateN.Text = "L'employé ne peux pas avoir en dessous de 18 ans";
                 eDateN.Visibility = Visibility.Visible;
             }
+            else if (dtDateN.SelectedDate <= DateTime.Now.AddYears(-65))
+            {
+                erreur = true;
+                eDateN.Text = "L'employé ne peux pas être à la retraite";
+                eDateN.Visibility = Visibility.Visible;
+            }
 
             if (tbxEmail.Text == "")
             {
@@ -144,11 +150,16 @@ namespace TravailSession_2023
             }
             else if (double.TryParse(tbxTauxH.Text, out d_tauxH))
             {
-                if (d_tauxH < 15)
+                if (d_tauxH < 20)
                 {
                     erreur = true;
-                    eTauxH.Text = "Le taux horaire minimum est de 15$";
+                    eTauxH.Text = "Le taux horaire minimum est de 20$";
                     eTauxH.Visibility = Visibility.Visible;
+                }
+                if (d_tauxH > 60)
+                {
+                    erreur = true;
+                    eTauxH.Text = "Le taux horaire maximum est de 60$";
                 }
             }
             else
@@ -169,18 +180,20 @@ namespace TravailSession_2023
                 erreur = true;
                 eStatut.Visibility = Visibility.Visible;
             }
-            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-18) && cStatut.SelectedItem == "Permanent")
+            else if (dtDateE.SelectedDate > DateTime.Now.AddYears(-3) && cStatut.SelectedItem == "Permanent")
             {
                 erreur = true;
                 eStatut.Text = "L'employé ne peut pas avoir le statut permanent s'il travail à la company depuis moins de 3 ans ";
                 eStatut.Visibility = Visibility.Visible;
             }
 
+            /* Assigne l'employé à partir de la page du projet
             if (cNumP.SelectedIndex <= -1)
             {
                 erreur = true;
                 eNumP.Visibility = Visibility.Visible;
             }
+            */
 
             if (!erreur)
             {
@@ -195,7 +208,7 @@ namespace TravailSession_2023
                 photo_url = tbxPhotoUrl.Text;
                 statut = cStatut.SelectedItem.ToString();
 
-
+                /*
                 foreach (Projet projet in listeProjetsEnCours)
                 {
                     if (projet.NumProjet == cNumP.SelectedItem.ToString())
@@ -203,6 +216,7 @@ namespace TravailSession_2023
                         numProjet = projet.NumProjet;
                     }
                 }
+                */
 
                 employe = new Employe(matricule, nom, prenom, dateNaissance, email, adresse, dateEmbauche, tauxHoraire, photo_url, statut, numProjet);
 
